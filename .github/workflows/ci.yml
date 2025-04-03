@@ -58,11 +58,13 @@ jobs:
         # Create .nojekyll file immediately
         touch dist/.nojekyll
         
-        # Copy baseurl.js to subdirectories for proper asset path resolution
+        # Copy path fixing scripts to subdirectories
         mkdir -p dist/courses
         cp dist/baseurl.js dist/courses/
+        cp dist/redirect.js dist/courses/
         mkdir -p dist/forms
         cp dist/baseurl.js dist/forms/
+        cp dist/redirect.js dist/forms/
         
         # Run the custom build script
         ./build.sh
