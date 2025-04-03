@@ -30,6 +30,7 @@ jobs:
         rm -rf node_modules package-lock.json
         npm install
         npm install terser@latest --save-dev
+        npm list terser
     
     - name: Build project
       run: npm run build
