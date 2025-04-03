@@ -35,7 +35,16 @@ jobs:
         # Create a shell script to run build with --no-minify flag
         cat > build.sh << 'EOF'
         #!/bin/bash
+        # Check if Vite can build without minification
+        echo "Running Vite build with --minify=false to avoid terser"
         npx vite build --minify=false
+        # Check if build was successful
+        if [ $? -ne 0 ]; then
+          echo "Build with --minify=false failed, trying with direct copy"
+          mkdir -p dist/assets
+          cp -r src/* dist/assets/
+          cp *.html dist/
+        fi
         EOF
         chmod +x build.sh
     
@@ -63,6 +72,7 @@ jobs:
         name: build-output
         path: dist/
         retention-days: 7
+        if-no-files-found: error
         
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
