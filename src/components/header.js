@@ -10,12 +10,31 @@ function createHeader() {
   
   // Use the base URL from baseurl.js if available, otherwise fallback to detection
   const baseUrl = window.siteConfig?.baseUrl || '';
+  const isGitHubPages = window.siteConfig?.isGitHubPages || window.location.hostname.includes('github.io');
   
   // Helper to fix URLs for GitHub Pages
   function fixUrl(url) {
     // If it's an external URL or anchor, don't modify it
     if (!url.startsWith('/') || url === '#') {
       return url;
+    }
+    
+    // If on GitHub Pages, ensure HTML extension is present
+    if (isGitHubPages) {
+      // Use the helper from baseurl.js if available
+      if (window.siteConfig?.toHtmlUrl) {
+        return window.siteConfig.toHtmlUrl(url);
+      }
+      
+      // Add the base URL
+      let fixedUrl = baseUrl ? `${baseUrl}${url}` : url;
+      
+      // Add .html extension if not present and not ending with /
+      if (!fixedUrl.endsWith('.html') && !fixedUrl.endsWith('/')) {
+        fixedUrl = fixedUrl + '.html';
+      }
+      
+      return fixedUrl;
     }
     
     // Use the baseUrl to fix paths
