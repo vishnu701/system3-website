@@ -2236,11 +2236,15 @@ ScrollTrigger.core = {
 };
 _getGSAP2() && gsap.registerPlugin(ScrollTrigger);
 function createHeader() {
+  var _a;
   const currentPath = window.location.pathname;
-  const isGitHubPages = window.location.hostname.includes("github.io");
+  const baseUrl = ((_a = window.siteConfig) == null ? void 0 : _a.baseUrl) || "";
   function fixUrl(url) {
-    if (isGitHubPages && url.startsWith("/")) {
-      return url.substring(1);
+    if (!url.startsWith("/") || url === "#") {
+      return url;
+    }
+    if (baseUrl) {
+      return `${baseUrl}${url}`;
     }
     return url;
   }
