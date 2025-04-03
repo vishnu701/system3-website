@@ -32,11 +32,12 @@ jobs:
         npm install terser@latest --save-dev
         # Show that terser is installed
         npm list terser
-        # Create empty .nojekyll file to ensure proper GitHub Pages deployment
-        touch dist/.nojekyll
     
     - name: Build project
-      run: npm run build
+      run: |
+        npm run build
+        # Create .nojekyll file after build
+        touch dist/.nojekyll
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
