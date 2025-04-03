@@ -30,7 +30,10 @@ jobs:
         rm -rf node_modules package-lock.json
         npm install
         npm install terser@latest --save-dev
+        # Show that terser is installed
         npm list terser
+        # Create empty .nojekyll file to ensure proper GitHub Pages deployment
+        touch dist/.nojekyll
     
     - name: Build project
       run: npm run build

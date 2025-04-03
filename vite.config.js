@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
+// Force specific minifier settings to prevent terser usage
 export default defineConfig({
   resolve: {
     alias: {
@@ -19,6 +20,8 @@ export default defineConfig({
     assetsDir: 'assets',
     minify: 'esbuild', // Use esbuild instead of terser
     sourcemap: false,
+    // Explicitly disable terser
+    terserOptions: false,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -26,5 +29,8 @@ export default defineConfig({
         }
       }
     }
+  },
+  optimizeDeps: {
+    exclude: ['terser'] // Explicitly exclude terser from dependencies
   }
 });
