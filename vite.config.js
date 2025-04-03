@@ -1,13 +1,10 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-// Check if we're in production mode
-const isProd = process.env.NODE_ENV === 'production';
-
 // Force specific minifier settings to prevent terser usage
 export default defineConfig({
-  // For GitHub Pages deployment, use relative paths
-  base: isProd ? './' : '/',
+  // Always use relative paths to support GitHub Pages
+  base: './',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')

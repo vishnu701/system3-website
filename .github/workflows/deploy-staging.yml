@@ -1,10 +1,10 @@
-# This is a separate workflow file for deploying to staging
 name: Deploy Staging
 
 on:
   push:
     branches: [ staging ]
 
+# Permissions needed for GitHub Pages
 permissions:
   contents: write
   pages: write
@@ -13,42 +13,25 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    container: node:18-alpine
     
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
     
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Clean install
-      run: |
-        rm -rf node_modules package-lock.json
-        npm install
-    
-    - name: Create custom build script
-      run: |
-        # Create a shell script to run build with --no-minify flag
-        cat > build.sh << 'EOF'
-        #!/bin/bash
-        npx vite build --minify=false
-        EOF
-        chmod +x build.sh
+    - name: Install dependencies
+      run: npm install
     
     - name: Build project
+      run: npm run build
+      
+    - name: Prepare for GitHub Pages
       run: |
-        # Run the custom build script
-        ./build.sh
-        
+        # Create .nojekyll file to disable Jekyll processing
         touch dist/.nojekyll
-        cp 404.html dist/
-        cp education.html consultancy.html about.html contact.html dist/
-        mkdir -p dist/forms
-        cp forms/*.html dist/forms/
-        mkdir -p dist/courses
-        cp courses/*.html dist/courses/
+        
+        # Create empty README in dist to help GitHub Pages
+        echo "# System3 Website - Staging" > dist/README.md
     
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
@@ -56,5 +39,4 @@ jobs:
         folder: dist
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages-staging
-        clean-exclude: |
-          .nojekyll
+        clean: true
