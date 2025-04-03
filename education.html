@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="en" class="loading">
+  <head>
+    <style>
+    /* Prevent FOUC (Flash of Unstyled Content) */
+    html.loading {
+      display: none !important;
+    }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Education - System3</title>
+    <meta name="description" content="Premium AI education from System3 - led by the Harvard Scientific Program Director">
+    <link rel="icon" href="/public/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body class="smooth-scroll">
+    <div id="app">
+      <!-- Navigation - Content dynamically inserted by header.js -->
+      <header>
+        <!-- Header content will be inserted here by JavaScript -->
+      </header>
+
+      <!-- 3D Background Canvas -->
+      <canvas class="webgl"></canvas>
+
+      <div class="content">
+        <!-- Education Hero Section -->
+        <section class="section section-sliding-up active" id="education-hero">
+          <div class="section-overlay"></div>
+          <div class="hero-content">
+            <h1>System3 <span class="gradient-text">Education</span></h1>
+            <p>Premium AI education led by Harvard's Scientific Program Director and his expert team</p>
+          </div>
+        </section>
+
+        <!-- About Education Section -->
+        <section class="section section-sliding-up" id="about-education">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Harvard-Level Education</span></h2>
+            <p class="section-description">We recreate the AI experience taught at Harvard and tailor it for high school students</p>
+            
+            <div class="education-about">
+              <div class="about-image">
+                <img src="/src/assets/images/people/PavlosTeaching.jpeg" alt="Harvard Education" />
+              </div>
+              <div class="about-text">
+                <p>As leaders in the field of AI, we believe in pushing the boundaries and bringing a new perspective to the field of high school education. Led by the Harvard Scientific Director and his team, we give high schoolers the ability to learn how to code and then create their own AI and Machine Learning applications from scratch.</p>
+                <p>Our education programs are designed to be accessible to students with no prior coding experience, while challenging enough for those who already have a foundation.</p>
+                <div class="about-cta">
+                  <a href="/courses/" class="cta-button primary" id="about-courses-btn">Explore Courses</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="section section-sliding-up" id="benefits-section">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Benefits</span></h2>
+            <p class="section-description">What makes System3 Education unique</p>
+            
+            <div class="benefits-grid">
+              <div class="benefit-card">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <h3>Harvard Expertise</h3>
+                <p>Direct tutelage from the Harvard Scientific Director and his team of experts</p>
+              </div>
+              
+              <div class="benefit-card">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </div>
+                <h3>Tailored Content</h3>
+                <p>Custom curriculum designed for Python, AI, and ML from scratch</p>
+              </div>
+              
+              <div class="benefit-card">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <h3>Personalized Mentoring</h3>
+                <p>One-on-one and small group mentoring sessions with experienced instructors</p>
+              </div>
+            </div>
+            
+            <div class="benefits-grid benefits-grid-centered">
+              <div class="benefit-card">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                </div>
+                <h3>Hands-On Projects</h3>
+                <p>Build and publish your own AI projects with guidance from industry experts</p>
+              </div>
+              
+              <div class="benefit-card">
+                <div class="benefit-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <circle cx="8" cy="14" r="1"></circle>
+                    <circle cx="12" cy="14" r="1"></circle>
+                    <circle cx="16" cy="14" r="1"></circle>
+                    <circle cx="8" cy="18" r="1"></circle>
+                    <circle cx="12" cy="18" r="1"></circle>
+                    <circle cx="16" cy="18" r="1"></circle>
+                  </svg>
+                </div>
+                <h3>Live Classes</h3>
+                <p>Interactive live sessions with real-time feedback and collaborative learning experiences</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="section section-sliding-up" id="how-it-works">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">How It Works</span></h2>
+            <p class="section-description">Our proven educational approach</p>
+            
+            <div class="steps-container">
+              <div class="step-item">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                  <h3>Learning Concepts</h3>
+                  <p>Even if you're a complete beginner, our team will guide you through the building blocks of AI. We break down complex concepts into digestible modules.</p>
+                </div>
+              </div>
+              
+              <div class="step-item">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                  <h3>Exploring Code</h3>
+                  <p>We map learning concepts to working code, starting with Python fundamentals and progressing to creating simple to complex machine learning models.</p>
+                </div>
+              </div>
+              
+              <div class="step-item">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                  <h3>Creating Projects</h3>
+                  <p>Build a project from scratch, tackling a real-world problem with AI. Our mentors guide you through the entire process, from conception to completion.</p>
+                </div>
+              </div>
+              
+              <div class="step-item">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                  <h3>Ongoing Support</h3>
+                  <p>With 24/7 community access and regular mentoring sessions, you'll never be stuck. Our team is always available to help you overcome challenges.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Courses Preview Section -->
+        <section class="section section-sliding-up" id="courses-preview">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Our Courses</span></h2>
+            <p class="section-description">Comprehensive AI education for all skill levels</p>
+            
+            <!-- Course Level Tabs -->
+            <div class="course-level-tabs">
+              <button class="level-tab active" data-level="high-school" id="high-school-tab">High School</button>
+              <button class="level-tab" data-level="graduate" id="graduate-tab">Graduate & Corporate</button>
+            </div>
+            
+            <!-- High School Level Courses -->
+            <div class="courses-preview-grid active" id="high-school-courses">
+              <!-- Dynamically filled from coursesData -->
+            </div>
+            
+            <!-- Graduate & Corporate Level Courses -->
+            <div class="courses-preview-grid" id="graduate-courses">
+              <!-- Dynamically filled from coursesData -->
+            </div>
+            
+            <div class="courses-cta">
+              <a href="/courses/" class="cta-button primary" id="view-all-courses-btn">View All Courses</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section section-sliding-up" id="testimonials-section">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Student Testimonials</span></h2>
+            <p class="section-description">What our students are saying about their learning experience</p>
+            
+            <div class="testimonials-container">
+              <div class="testimonials-carousel">
+                <div class="testimonial-card active" data-testimonial="1">
+                  <div class="testimonial-quote-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32">
+                      <path fill="currentColor" d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"></path>
+                    </svg>
+                  </div>
+                  <div class="testimonial-content">
+                    <p>"The Data Science course was transformative for my career. The instructors broke down complex concepts into digestible modules, and I was able to build my first ML model within weeks!"</p>
+                  </div>
+                  <div class="testimonial-author">
+                    <div class="author-image">
+                      <img src="/src/assets/images/people/AnshikaGupta.png" alt="Maya Rodriguez" />
+                    </div>
+                    <div class="author-info">
+                      <h4>Maya Rodriguez</h4>
+                      <p>Data Science Student • Class of 2023</p>
+                    </div>
+                  </div>
+                  <div class="testimonial-decoration"></div>
+                </div>
+                
+                <div class="testimonial-card" data-testimonial="2">
+                  <div class="testimonial-quote-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32">
+                      <path fill="currentColor" d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"></path>
+                    </svg>
+                  </div>
+                  <div class="testimonial-content">
+                    <p>"I joined with zero coding experience, feeling intimidated. Six months later, I've built my own computer vision application that can identify bird species! The mentorship was exceptional."</p>
+                  </div>
+                  <div class="testimonial-author">
+                    <div class="author-image">
+                      <img src="/src/assets/images/people/LakshayChawla.png" alt="James Chen" />
+                    </div>
+                    <div class="author-info">
+                      <h4>James Chen</h4>
+                      <p>Computer Vision Student • Class of 2023</p>
+                    </div>
+                  </div>
+                  <div class="testimonial-decoration"></div>
+                </div>
+                
+                <div class="testimonial-card" data-testimonial="3">
+                  <div class="testimonial-quote-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32">
+                      <path fill="currentColor" d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"></path>
+                    </svg>
+                  </div>
+                  <div class="testimonial-content">
+                    <p>"The live classes and 24/7 community support made all the difference. I could ask questions anytime and get immediate help. My Machine Learning project got me three job interviews!"</p>
+                  </div>
+                  <div class="testimonial-author">
+                    <div class="author-image">
+                      <img src="/src/assets/images/people/ShibaniBudhraja.png" alt="Sarah Johnson" />
+                    </div>
+                    <div class="author-info">
+                      <h4>Sarah Johnson</h4>
+                      <p>Machine Learning Student • Class of 2022</p>
+                    </div>
+                  </div>
+                  <div class="testimonial-decoration"></div>
+                </div>
+                
+                <div class="testimonial-card" data-testimonial="4">
+                  <div class="testimonial-quote-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32">
+                      <path fill="currentColor" d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"></path>
+                    </svg>
+                  </div>
+                  <div class="testimonial-content">
+                    <p>"As a high school student, I never thought I'd be able to understand neural networks and build AI applications. The curriculum was challenging but incredibly rewarding. Now I'm helping my school implement AI tools!"</p>
+                  </div>
+                  <div class="testimonial-author">
+                    <div class="author-image">
+                      <img src="/src/assets/images/people/IgnacioBecker.png" alt="David Patel" />
+                    </div>
+                    <div class="author-info">
+                      <h4>David Patel</h4>
+                      <p>AI Foundations Student • Class of 2023</p>
+                    </div>
+                  </div>
+                  <div class="testimonial-decoration"></div>
+                </div>
+              </div>
+              
+              <div class="testimonial-navigation">
+                <button class="nav-button prev-button" aria-label="Previous testimonial" style="cursor:pointer; z-index:100;" onclick="window.prevTestimonial()">
+                  <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-width="3" d="M15 18l-6-6 6-6"></path>
+                  </svg>
+                </button>
+                
+                <div class="testimonial-indicators">
+                  <button class="indicator active" data-slide="0" aria-label="Testimonial 1" onclick="window.goToTestimonial(0)"></button>
+                  <button class="indicator" data-slide="1" aria-label="Testimonial 2" onclick="window.goToTestimonial(1)"></button>
+                  <button class="indicator" data-slide="2" aria-label="Testimonial 3" onclick="window.goToTestimonial(2)"></button>
+                  <button class="indicator" data-slide="3" aria-label="Testimonial 4" onclick="window.goToTestimonial(3)"></button>
+                </div>
+                
+                <button class="nav-button next-button" aria-label="Next testimonial" style="cursor:pointer; z-index:100;" onclick="window.nextTestimonial()">
+                  <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" stroke="currentColor" stroke-width="3" d="M9 18l6-6-6-6"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section section-sliding-up" id="education-cta">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Start Your AI Journey</span></h2>
+            <p class="section-description">Join students from around the world in our cutting-edge AI education programs</p>
+            
+            <div class="cta-box">
+              <h3>Ready to learn AI from Harvard experts?</h3>
+              <p>Our next cohort starts soon. Register now to secure your spot.</p>
+              <div class="cta-container">
+                <a href="/#contact-section" class="cta-button primary">Register Now</a>
+                <a href="/courses/" class="cta-button secondary" id="cta-explore-courses">Explore Courses</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-content">
+          <div class="footer-branding">
+            <div class="footer-logo">
+              <span class="logo-mark"></span>
+              System3
+            </div>
+            <p>Pioneering the future of AI education and consulting</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/consultancy.html">AI Consulting</a></li>
+                <li><a href="/education.html">AI Education</a></li>
+                <li><a href="/#consulting-section">Data Strategy</a></li>
+                <li><a href="/#consulting-section">AI Implementation</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Courses</h4>
+              <ul>
+                <li><a href="/courses/data-science.html">Data Science</a></li>
+                <li><a href="/courses/">Machine Learning</a></li>
+                <li><a href="/courses/">Computer Vision</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/about.html#team">Team</a></li>
+                <li><a href="/#contact-section">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 System3, Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+    <link rel="stylesheet" href="/src/style.css">
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      // Initialize page immediately
+      document.addEventListener('DOMContentLoaded', () => {
+        // Set theme preference
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme') || 
+          (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        // Set initial theme
+        if (currentTheme === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+        
+        // Wait for header to be fully created before setting up theme toggle
+        setTimeout(() => {
+          // Fix theme toggle functionality
+          const themeToggle = document.querySelector('.theme-toggle');
+          if (themeToggle) {
+            // Remove any existing event listeners by cloning
+            const newThemeToggle = themeToggle.cloneNode(true);
+            themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
+            
+            newThemeToggle.addEventListener('click', () => {
+              let theme;
+              
+              // Toggle between light and dark themes
+              if (document.documentElement.getAttribute('data-theme') === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                theme = 'dark';
+              } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                theme = 'light';
+              }
+              
+              // Save the preference
+              localStorage.setItem('theme', theme);
+            });
+          }
+        }, 100); // Short delay to ensure header is fully loaded
+        
+        // Activate the hero section immediately
+        const heroSection = document.getElementById('education-hero');
+        if (heroSection) {
+          heroSection.classList.add('active');
+        }
+        
+        // Initialize GSAP animations for sections
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          initSectionAnimations();
+        } else {
+          // Fallback if GSAP isn't loaded
+          const sections = document.querySelectorAll('.section');
+          sections.forEach(section => {
+            section.classList.add('active');
+          });
+        }
+
+        // Handle course tab switching
+        setupCourseTabs();
+      });
+
+      // Function to handle course tab switching and store selection
+      function setupCourseTabs() {
+        const highSchoolTab = document.getElementById('high-school-tab');
+        const graduateTab = document.getElementById('graduate-tab');
+        
+        // Store selected tab in localStorage when changed
+        if (highSchoolTab) {
+          highSchoolTab.addEventListener('click', () => {
+            localStorage.setItem('selectedCourseTab', 'high-school');
+          });
+        }
+        
+        if (graduateTab) {
+          graduateTab.addEventListener('click', () => {
+            localStorage.setItem('selectedCourseTab', 'graduate');
+          });
+        }
+      }
+      
+      // Import coursesData (will be available globally via main.js)
+      // Function to initialize section animations
+      function initSectionAnimations() {
+        // Track which sections have been animated to prevent re-animation
+        const animatedSections = new Set();
+        
+        // Select all sections
+        const sections = document.querySelectorAll('.section');
+        
+        // Initialize first section 
+        if (sections.length > 0) {
+          sections[0].classList.add('active');
+          animatedSections.add(sections[0].id || 'first-section');
+          animateSection(sections[0]);
+        }
+        
+        // Setup scrolltrigger for each section
+        sections.forEach((section, index) => {
+          const sectionId = section.id || `section-${index}`;
+          
+          // Create scroll trigger for each section
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top 75%", // Start when the top of the section is 75% from the top of the viewport
+            onEnter: () => {
+              if (!animatedSections.has(sectionId)) {
+                section.classList.add('active');
+                animatedSections.add(sectionId);
+                animateSection(section);
+              }
+            }
+          });
+        });
+        
+        // Animate elements within a section
+        function animateSection(section) {
+          // First set initial state of all animated elements
+          gsap.set(section.querySelectorAll('.benefit-card, .step-item, .course-preview-card, h2, .section-description, .course-level-tabs'), {
+            opacity: 0,
+            y: 20,
+            scale: 1
+          });
+          
+          // Animate course level tabs if they exist
+          const levelTabs = section.querySelector('.course-level-tabs');
+          if (levelTabs) {
+            gsap.to(levelTabs, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: "power2.out",
+              onComplete: () => {
+                // Initialize tab functionality
+                initCourseLevelTabs();
+                // Populate courses
+                populateCoursePreviews();
+              }
+            });
+          }
+          
+          // Animate benefit cards
+          const benefitCards = section.querySelectorAll('.benefit-card');
+          if (benefitCards.length) {
+            gsap.to(benefitCards, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: "power2.out"
+            });
+          }
+          
+          // Animate step items
+          const stepItems = section.querySelectorAll('.step-item');
+          if (stepItems.length) {
+            gsap.to(stepItems, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: "power2.out"
+            });
+          }
+          
+          // Animate course preview cards
+          const courseCards = section.querySelectorAll('.courses-preview-grid.active .course-preview-card');
+          if (courseCards.length) {
+            gsap.to(courseCards, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: "power2.out"
+            });
+          }
+          
+          // Animation for section description
+          const sectionDesc = section.querySelector('.section-description');
+          if (sectionDesc) {
+            gsap.to(sectionDesc, {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              delay: 0.2,
+              ease: "power2.out"
+            });
+          }
+          
+          // Animation for section heading
+          const sectionHeading = section.querySelector('h2');
+          if (sectionHeading) {
+            gsap.to(sectionHeading, {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out"
+            });
+          }
+          
+          // Animate CTA box
+          const ctaBox = section.querySelector('.cta-box');
+          if (ctaBox) {
+            gsap.to(ctaBox, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: "power2.out"
+            });
+          }
+          
+          // Animate about education section
+          const aboutEducation = section.querySelector('.education-about');
+          if (aboutEducation) {
+            gsap.to(aboutEducation, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: "power2.out"
+            });
+          }
+        }
+      }
+      
+      // Function to populate course previews
+      function populateCoursePreviews() {
+        const highSchoolGrid = document.getElementById('high-school-courses');
+        const graduateGrid = document.getElementById('graduate-courses');
+        
+        if (!highSchoolGrid || !graduateGrid) return;
+        
+        // Clear existing content
+        highSchoolGrid.innerHTML = '';
+        graduateGrid.innerHTML = '';
+        
+        // Populate high school courses - only featured courses, up to 3
+        const highSchoolCourses = window.coursesData.getFeaturedCourses('highSchool', 3);
+        highSchoolCourses.forEach(course => {
+          const courseCard = createCoursePreviewCard(course);
+          highSchoolGrid.appendChild(courseCard);
+        });
+        
+        // Populate graduate courses - only featured courses, up to 3
+        const graduateCourses = window.coursesData.getFeaturedCourses('graduate', 3);
+        graduateCourses.forEach(course => {
+          const courseCard = createCoursePreviewCard(course);
+          graduateGrid.appendChild(courseCard);
+        });
+      }
+      
+      // Create course preview card
+      function createCoursePreviewCard(course) {
+        const courseCard = document.createElement('div');
+        courseCard.className = 'course-preview-card';
+        
+        // Add plus badge for graduate courses if applicable
+        const titleHtml = course.plusBadge 
+          ? `${course.title}<span class="plus">+</span>` 
+          : course.title;
+        
+        courseCard.innerHTML = `
+          <div class="course-preview-image">
+            <img src="${course.iconLight}" alt="${course.title}" width="70" height="70" class="light-mode-icon" />
+            <img src="${course.iconDark}" alt="${course.title}" width="70" height="70" class="dark-mode-icon" />
+          </div>
+          <div class="course-preview-content">
+            <h3>${titleHtml}</h3>
+            <p>${course.description}</p>
+            <a href="${course.link}" class="course-link">Learn More</a>
+          </div>
+        `;
+        
+        return courseCard;
+      }
+      
+      // Function to initialize course level tabs functionality
+      function initCourseLevelTabs() {
+        const tabs = document.querySelectorAll('.level-tab');
+        const courseGrids = {
+          'high-school': document.getElementById('high-school-courses'),
+          'graduate': document.getElementById('graduate-courses')
+        };
+        
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Hide all course grids
+            Object.values(courseGrids).forEach(grid => {
+              if (grid) {
+                grid.classList.remove('active');
+              }
+            });
+            
+            // Show selected course grid
+            const level = tab.dataset.level;
+            if (courseGrids[level]) {
+              courseGrids[level].classList.add('active');
+              
+              // Trigger a custom event that other scripts can listen for
+              const tabChangeEvent = new CustomEvent('tabChanged', { 
+                detail: { level: level }
+              });
+              document.dispatchEvent(tabChangeEvent);
+              
+              // Animate the cards in the newly active grid
+              const courseCards = courseGrids[level].querySelectorAll('.course-preview-card');
+              gsap.fromTo(courseCards, 
+                { y: 20, opacity: 0 },
+                { 
+                  y: 0, 
+                  opacity: 1, 
+                  duration: 0.5, 
+                  stagger: 0.1, 
+                  ease: "power2.out"
+                }
+              );
+            }
+          });
+        });
+      }
+    </script>
+    
+    <style>
+      /* Education page specific styles */
+      #education-hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('./public/data-science-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      #education-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(138, 133, 255, 0.2), transparent 80%);
+        opacity: 1;
+        z-index: 1;
+      }
+      
+      [data-theme="light"] #education-hero::before {
+        background: radial-gradient(circle at center, rgba(138, 133, 255, 0.15), transparent 80%);
+      }
+      
+      #education-hero .hero-content {
+        text-align: center;
+        max-width: 800px;
+        opacity: 1; /* Ensure content is visible */
+        padding: 0 2rem;
+        z-index: 5;
+        position: relative;
+      }
+      
+      #education-hero .hero-content h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        color: var(--color-text);
+      }
+      
+      #education-hero .hero-content p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        font-weight: 400;
+      }
+      
+      .education-about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin-top: 3rem;
+      }
+      
+      .about-image img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 12px 24px -12px rgba(16, 24, 40, 0.18);
+      }
+      
+      .about-text p {
+        margin-bottom: 1.5rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+      
+      .about-cta {
+        margin-top: 2rem;
+      }
+      
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      
+      .benefits-grid-centered {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+      }
+      
+      @media (max-width: 992px) {
+        .benefits-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .benefits-grid-centered {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          max-width: 100%;
+        }
+      }
+      
+      .benefit-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+      
+      .benefit-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1.5rem;
+        color: var(--color-primary);
+      }
+      
+      .benefit-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+      
+      .steps-container {
+        margin-top: 3rem;
+      }
+      
+      .step-item {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+      
+      .step-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: 25px;
+        top: 60px;
+        height: calc(100% - 30px);
+        width: 2px;
+        background: var(--color-primary);
+        opacity: 0.5;
+      }
+      
+      .step-number {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        background: var(--color-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: white;
+      }
+      
+      .step-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-primary);
+      }
+      
+      .courses-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      
+      .course-preview-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .course-preview-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+      
+      .course-preview-image {
+        height: 160px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      
+      .course-preview-image img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+      }
+      
+      .course-preview-card:hover .course-preview-image img {
+        transform: scale(1.05);
+      }
+      
+      .course-preview-content {
+        padding: 1.5rem;
+      }
+      
+      .course-preview-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      
+      .course-preview-content p {
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Styling for the "Learn More" course link */
+      .course-link {
+        display: inline-block;
+        padding: 0.7rem 1.4rem;
+        background: transparent;
+        border: 1.5px solid var(--color-primary);
+        color: var(--color-primary);
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        text-align: center;
+        letter-spacing: 0.3px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .course-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: var(--color-primary);
+        transition: width 0.3s ease;
+        z-index: -1;
+      }
+      
+      .course-link:hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(138, 133, 255, 0.2);
+      }
+      
+      .course-link:hover::before {
+        width: 100%;
+      }
+      
+      .courses-cta {
+        text-align: center;
+        margin-top: 3rem;
+      }
+      
+      .cta-box {
+        max-width: 800px;
+        margin: 3rem auto 0;
+        background: rgba(138, 133, 255, 0.05);
+        border: 1px solid var(--color-primary);
+        border-radius: 10px;
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+      
+      .cta-box h3 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+      }
+      
+      .cta-box p {
+        margin-bottom: 2rem;
+      }
+      
+      .cta-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+      
+      /* Light mode adjustments */
+      [data-theme="light"] .benefit-card,
+      [data-theme="light"] .course-preview-card,
+      [data-theme="light"] .cta-box {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      
+      /* Course Level Tabs Styles */
+      .course-level-tabs {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0 0;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .course-level-tabs::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--color-border);
+        z-index: -1;
+      }
+      
+      .level-tab {
+        padding: 0.8rem 2rem;
+        background: transparent;
+        border: none;
+        border-bottom: 3px solid transparent;
+        color: var(--color-text-secondary);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        position: relative;
+        margin: 0 1rem;
+      }
+      
+      .level-tab::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--color-primary);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+      }
+      
+      .level-tab:hover::after {
+        transform: scaleX(0.8);
+      }
+      
+      .level-tab.active {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+      }
+      
+      .level-tab.active::after {
+        transform: scaleX(1);
+      }
+      
+      /* Hide inactive course grid */
+      .courses-preview-grid {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        margin-top: 2rem;
+      }
+      
+      .courses-preview-grid.active {
+        display: grid;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* High School course styling */
+      #high-school-courses .course-preview-card {
+        border-top: 4px solid var(--color-primary);
+        position: relative;
+      }
+      
+      #high-school-courses .course-preview-content h3 {
+        color: var(--color-primary);
+      }
+      
+      /* Graduate course styling - using design differences to indicate advanced level */
+      #graduate-courses .course-preview-card {
+        border-top: 4px solid var(--color-primary);
+        position: relative;
+        box-shadow: 0 8px 24px rgba(138, 133, 255, 0.2);
+      }
+      
+      #graduate-courses .course-preview-card::before {
+        content: 'Advanced';
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--color-primary);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 12px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      
+      #graduate-courses .course-preview-content h3 {
+        color: var(--color-primary);
+      }
+      
+      /* Removed duplicate plus sign that was causing issues */
+      
+      #graduate-courses .course-link {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+      }
+      
+      #graduate-courses .course-link::before {
+        background: var(--color-primary);
+      }
+      
+      /* Enhanced light mode styles */
+      [data-theme="light"] body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+      }
+      
+      [data-theme="light"] .section-overlay {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      
+      [data-theme="light"] .step-number {
+        color: white;
+      }
+      
+      /* Light mode tabs */
+      [data-theme="light"] .level-tab {
+        background: transparent;
+        color: rgba(32, 33, 36, 0.7);
+      }
+      
+      [data-theme="light"] .level-tab.active {
+        color: var(--color-primary);
+      }
+      
+      [data-theme="light"] .course-level-tabs::after {
+        background: rgba(138, 133, 255, 0.2);
+      }
+      
+      /* Light mode graduate course adjustments */
+      [data-theme="light"] #graduate-courses .course-preview-card {
+        border-top-color: var(--color-primary);
+        box-shadow: 0 8px 24px rgba(138, 133, 255, 0.15);
+      }
+      
+      /* Light mode hero section adjustments */
+      [data-theme="light"] #education-hero {
+        background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5)), url('/public/data-science-hero.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      
+      [data-theme="light"] #education-hero .hero-content {
+        background: transparent;
+        box-shadow: none;
+        /* backdrop-filter: blur(5px); */
+      }
+      
+      [data-theme="light"] #education-hero .hero-content h1 {
+        color: #202124;
+      }
+      
+      [data-theme="light"] #education-hero .hero-content p {
+        color: rgba(32, 33, 36, 0.8);
+      }
+      
+      [data-theme="light"] .benefit-card:hover,
+      [data-theme="light"] .course-preview-card:hover {
+        box-shadow: 0 12px 24px rgba(138, 133, 255, 0.15);
+      }
+      
+      /* Responsive styles */
+      @media (max-width: 992px) {
+        .education-about {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .about-image {
+          order: -1;
+        }
+        
+        .cta-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .step-item {
+          gap: 1.5rem;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        #education-hero {
+          height: 50vh;
+        }
+        
+        .benefit-card,
+        .step-item {
+          padding: 1.5rem;
+        }
+        
+        .step-item:not(:last-child)::after {
+          left: 20px;
+        }
+        
+        .step-number {
+          width: 40px;
+          height: 40px;
+          min-width: 40px;
+          font-size: 1rem;
+        }
+        
+        /* Responsive course tabs */
+        .course-level-tabs {
+          flex-direction: row;
+          width: 100%;
+          gap: 0;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        
+        .level-tab {
+          flex: 1;
+          text-align: center;
+          margin: 0;
+          padding: 0.8rem 0.5rem;
+          font-size: 0.95rem;
+        }
+      }
+      
+      /* Plus sign styles for graduate courses */
+      #graduate-courses .course-preview-content h3 {
+        position: relative;
+      }
+      
+      #graduate-courses .course-preview-content h3 span.plus {
+        display: inline-block;
+        font-weight: 700;
+        margin-left: 4px;
+        white-space: nowrap; /* Prevent breaking between title and plus */
+        line-height: 1; /* Align with text */
+      }
+      
+      /* ======================= */
+      /* Testimonials Section    */
+      /* ======================= */
+      #testimonials-section {
+        padding: 8rem 0;
+        background: linear-gradient(to bottom, rgba(10, 10, 15, 0.6), rgba(10, 10, 15, 0.8));
+        position: relative;
+        overflow: hidden;
+      }
+      
+      [data-theme="light"] #testimonials-section {
+        background: linear-gradient(to bottom, rgba(245, 245, 250, 0.8), rgba(245, 245, 250, 0.95));
+      }
+      
+      #testimonials-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 30%, rgba(138, 133, 255, 0.12), transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(138, 133, 255, 0.12), transparent 50%);
+        opacity: 0.8;
+        z-index: 1;
+      }
+      
+      .testimonials-container {
+        max-width: 1200px;
+        margin: 3rem auto 0;
+        position: relative;
+        z-index: 5;
+        overflow: hidden;
+        padding: 1rem 0 2rem; /* Add padding for better spacing */
+      }
+      
+      .testimonials-carousel {
+        position: relative;
+        height: 400px;
+        perspective: 1500px;
+        margin: 0 -80px; /* Create space for side cards */
+        transform-style: preserve-3d; /* Enhance 3D effect */
+        overflow: visible; /* Allow side cards to be visible */
+        will-change: transform; /* Hint for browser to optimize */
+        backface-visibility: hidden; /* Prevent flickering */
+        -webkit-font-smoothing: antialiased; /* Improve text rendering during animations */
+        -moz-osx-font-smoothing: grayscale; /* Improve text rendering during animations */
+        contain: layout style; /* Performance optimization */
+        z-index: 1; /* Stacking context for optimization */
+      }
+      
+      /* Create an extra overlay that improves the visual look of sliding */
+      .testimonials-carousel::before,
+      .testimonials-carousel::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 80px;
+        z-index: 20;
+        pointer-events: none; /* Allow clicking through */
+      }
+      
+      .testimonials-carousel::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(10, 10, 15, 0.8), transparent);
+      }
+      
+      .testimonials-carousel::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(10, 10, 15, 0.8), transparent);
+      }
+      
+      [data-theme="light"] .testimonials-carousel::before {
+        background: linear-gradient(to right, rgba(245, 245, 250, 0.8), transparent);
+      }
+      
+      [data-theme="light"] .testimonials-carousel::after {
+        background: linear-gradient(to left, rgba(245, 245, 250, 0.8), transparent);
+      }
+      
+      .testimonial-card {
+        position: absolute;
+        width: 50%; /* Narrower cards to fit more in view */
+        height: 100%;
+        left: 25%; /* Center the active card */
+        top: 0;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 16px;
+        padding: 2.5rem;
+        opacity: 0;
+        transform: translateX(0) rotateY(0) scale(0.85);
+        transform-origin: center;
+        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        visibility: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(138, 133, 255, 0.15);
+        overflow: hidden;
+        pointer-events: none; /* Disable pointer events for non-active cards */
+      }
+      
+      [data-theme="light"] .testimonial-card {
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 15px 35px rgba(138, 133, 255, 0.15);
+      }
+      
+      .testimonial-card.active {
+        opacity: 1;
+        transform: translateX(0) rotateY(0) scale(1);
+        z-index: 10;
+        visibility: visible;
+        filter: none;
+        pointer-events: auto; /* Enable pointer events for active card */
+        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      
+      .testimonial-card.prev {
+        opacity: 0.6;
+        transform: translateX(-60%) rotateY(10deg) scale(0.85);
+        z-index: 5;
+        visibility: visible;
+        filter: blur(2px);
+        left: 10%; /* Position to the left */
+        pointer-events: none;
+        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      
+      .testimonial-card.next {
+        opacity: 0.6;
+        transform: translateX(60%) rotateY(-10deg) scale(0.85);
+        z-index: 5;
+        visibility: visible;
+        filter: blur(2px);
+        left: 40%; /* Position to the right */
+        pointer-events: none;
+        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      
+      .testimonial-card.far-prev {
+        opacity: 0.3;
+        transform: translateX(-110%) rotateY(15deg) scale(0.8);
+        z-index: 1;
+        visibility: visible;
+        filter: blur(3px);
+        left: 0%;
+        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      
+      .testimonial-card.far-next {
+        opacity: 0.3;
+        transform: translateX(110%) rotateY(-15deg) scale(0.8);
+        z-index: 1;
+        visibility: visible;
+        filter: blur(3px);
+        left: 50%;
+        transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      
+      /* Sliding animation classes */
+      .testimonial-card.sliding-left {
+        animation: none; /* We'll use CSS transitions instead of keyframe animations */
+      }
+      
+      .testimonial-card.sliding-right {
+        animation: none; /* We'll use CSS transitions instead of keyframe animations */
+      }
+      
+      .testimonial-quote-icon {
+        color: var(--color-primary);
+        opacity: 0.4;
+        margin-bottom: 1rem;
+        transform: translateY(0);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+      
+      .testimonial-card.active .testimonial-quote-icon {
+        opacity: 0.7;
+        transform: translateY(0);
+        animation: floatIcon 3s ease-in-out infinite;
+      }
+      
+      @keyframes floatIcon {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .testimonial-content {
+        margin-bottom: 2rem;
+        overflow: hidden; /* Prevent text from overlapping outside the card */
+        max-height: 60%; /* Limit height to prevent text overflow */
+        transition: opacity 0.3s ease;
+      }
+      
+      /* Hide content in non-active cards for better visual clarity */
+      .testimonial-card:not(.active) .testimonial-content {
+        opacity: 0.4; /* Very dim text in side cards */
+        max-height: 50%; /* Further restrict height for side cards */
+      }
+      
+      .testimonial-content p {
+        font-size: 1.25rem;
+        line-height: 1.7;
+        color: var(--color-text);
+        font-weight: 400;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .testimonial-card.active .testimonial-content p {
+        animation: fadeSlideUp 0.8s ease forwards;
+        opacity: 1;
+      }
+      
+      /* Make side card content less visible */
+      .testimonial-card.prev .testimonial-content p,
+      .testimonial-card.next .testimonial-content p {
+        opacity: 0.5;
+        font-size: 1.15rem; /* Slightly smaller text in side cards */
+      }
+      
+      .testimonial-card.far-prev .testimonial-content p,
+      .testimonial-card.far-next .testimonial-content p {
+        opacity: 0.2;
+      }
+      
+      @keyframes fadeSlideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+      }
+      
+      .testimonial-card.active .testimonial-author {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .author-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--color-primary);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+      
+      .author-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      
+      .testimonial-card:hover .author-image img {
+        transform: scale(1.1);
+      }
+      
+      .author-info h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+        color: var(--color-text);
+      }
+      
+      .author-info p {
+        font-size: 0.9rem;
+        color: var(--color-primary);
+        font-weight: 500;
+      }
+      
+      .testimonial-decoration {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, var(--color-primary), rgba(138, 133, 255, 0.5));
+        border-radius: 0 0 0 100%;
+        z-index: 1;
+        opacity: 0.15;
+        transition: all 0.5s ease;
+      }
+      
+      .testimonial-card.active .testimonial-decoration {
+        width: 120px;
+        height: 120px;
+        opacity: 0.2;
+      }
+      
+      .testimonial-card::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: -20px;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, var(--color-primary), rgba(138, 133, 255, 0.5));
+        border-radius: 50%;
+        z-index: 1;
+        opacity: 0.15;
+        filter: blur(10px);
+        transition: all 0.5s ease;
+      }
+      
+      .testimonial-card.active::after {
+        opacity: 0.25;
+        transform: scale(1.2);
+      }
+      
+      .testimonial-navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      
+      .nav-button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(138, 133, 255, 0.5);
+        color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 50; /* Make sure buttons are clickable */
+      }
+      
+      .nav-button:hover {
+        background: var(--color-primary);
+        color: white;
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 8px 20px rgba(138, 133, 255, 0.4);
+      }
+      
+      .nav-button:active {
+        transform: translateY(0) scale(0.95);
+        background: var(--color-primary);
+        color: white;
+      }
+      
+      .testimonial-indicators {
+        display: flex;
+        gap: 1rem;
+        margin: 0 10px;
+      }
+      
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(138, 133, 255, 0.3);
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 50; /* Make sure indicators are clickable */
+      }
+      
+      [data-theme="light"] .indicator {
+        background: rgba(138, 133, 255, 0.2);
+      }
+      
+      .indicator:hover {
+        background: rgba(138, 133, 255, 0.5);
+        transform: scale(1.2);
+      }
+      
+      .indicator.active {
+        background: var(--color-primary);
+        transform: scale(1.5);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 10px rgba(138, 133, 255, 0.5);
+      }
+      
+      [data-theme="light"] .indicator.active {
+        background: var(--color-primary);
+      }
+      
+      /* Light mode adjustments */
+      [data-theme="light"] .testimonial-content p {
+        color: #333;
+      }
+      
+      [data-theme="light"] .author-info h4 {
+        color: #333;
+      }
+      
+      [data-theme="light"] .nav-button {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(138, 133, 255, 0.3);
+      }
+      
+      /* Special class to temporarily disable transitions */
+      .carousel-animating .testimonial-card {
+        transition: none !important;
+      }
+      
+      /* Responsive styles with optimizations for the side-card carousel */
+      @media (max-width: 1200px) {
+        .testimonials-carousel {
+          height: 450px;
+        }
+        
+        .testimonial-card {
+          padding: 2.5rem;
+          width: 75%;
+          left: 12.5%;
+        }
+        
+        /* Adjust side cards positioning for medium screens */
+        .testimonial-card.prev {
+          transform: translateX(-70%) rotateY(15deg) scale(0.9);
+        }
+        
+        .testimonial-card.next {
+          transform: translateX(70%) rotateY(-15deg) scale(0.9);
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .testimonials-carousel {
+          height: 500px;
+          margin: 0 -40px; /* Reduce side margins */
+        }
+        
+        .testimonial-card {
+          padding: 2rem;
+          width: 80%;
+          left: 10%;
+        }
+        
+        /* Further adjust side cards for smaller screens */
+        .testimonial-card.prev {
+          transform: translateX(-65%) rotateY(10deg) scale(0.85);
+          opacity: 0.5;
+        }
+        
+        .testimonial-card.next {
+          transform: translateX(65%) rotateY(-10deg) scale(0.85);
+          opacity: 0.5;
+        }
+        
+        /* Hide far cards on smaller screens for better performance */
+        .testimonial-card.far-prev,
+        .testimonial-card.far-next {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .testimonials-carousel {
+          height: 550px;
+          margin: 0 -20px; /* Further reduce side margins */
+        }
+        
+        .testimonial-content p {
+          font-size: 1.1rem;
+        }
+        
+        .testimonial-card {
+          padding: 1.5rem;
+          width: 85%;
+          left: 7.5%;
+        }
+        
+        /* Minimize side cards on mobile for better readability */
+        .testimonial-card.prev {
+          transform: translateX(-60%) rotateY(5deg) scale(0.8);
+          opacity: 0.3;
+          filter: blur(2px);
+        }
+        
+        .testimonial-card.next {
+          transform: translateX(60%) rotateY(-5deg) scale(0.8);
+          opacity: 0.3;
+          filter: blur(2px);
+        }
+      }
+      
+      @media (max-width: 576px) {
+        .testimonials-carousel {
+          height: 600px;
+          margin: 0 -10px; /* Minimal side margins for very small screens */
+        }
+        
+        .testimonial-card {
+          padding: 1.5rem;
+          width: 90%;
+          left: 5%;
+        }
+        
+        /* Adjust side cards for very small screens */
+        .testimonial-card.prev {
+          transform: translateX(-55%) rotateY(0) scale(0.75);
+        }
+        
+        .testimonial-card.next {
+          transform: translateX(55%) rotateY(0) scale(0.75);
+        }
+        
+        .testimonial-author {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+        
+        .author-image {
+          width: 50px;
+          height: 50px;
+        }
+        
+        .testimonial-decoration {
+          width: 80px;
+          height: 80px;
+        }
+        
+        /* Optimize nav buttons for mobile */
+        .nav-button {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+    
+    <script>
+      // Simplest possible direct access testimonial navigation with global functions
+      
+      // Global variables for testimonial navigation
+      window.currentTestimonial = 0;
+      window.totalTestimonials = 4; // There are 4 testimonial cards
+      
+      // Basic navigation functions exposed globally
+      window.prevTestimonial = function() {
+        window.currentTestimonial = (window.currentTestimonial - 1 + window.totalTestimonials) % window.totalTestimonials;
+        window.updateTestimonials();
+      };
+      
+      window.nextTestimonial = function() {
+        window.currentTestimonial = (window.currentTestimonial + 1) % window.totalTestimonials;
+        window.updateTestimonials();
+      };
+      
+      window.goToTestimonial = function(index) {
+        window.currentTestimonial = index;
+        window.updateTestimonials();
+      };
+      
+      // Main function to update testimonial visibility
+      window.updateTestimonials = function() {
+        console.log("Showing testimonial " + (window.currentTestimonial + 1) + " of " + window.totalTestimonials);
+        
+        // Get all testimonial elements
+        const cards = document.querySelectorAll('.testimonial-card');
+        const indicators = document.querySelectorAll('.indicator');
+        
+        // Calculate relative positions
+        const prevIndex = (window.currentTestimonial - 1 + window.totalTestimonials) % window.totalTestimonials;
+        const nextIndex = (window.currentTestimonial + 1) % window.totalTestimonials;
+        const farPrevIndex = (window.currentTestimonial - 2 + window.totalTestimonials) % window.totalTestimonials;
+        const farNextIndex = (window.currentTestimonial + 2) % window.totalTestimonials;
+        
+        // Update all cards
+        cards.forEach((card, index) => {
+          // Clear previous classes
+          card.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next');
+          card.style.opacity = '';
+          card.style.visibility = 'visible';
+          
+          // Apply appropriate class based on position
+          if (index === window.currentTestimonial) {
+            card.classList.add('active');
+          } else if (index === prevIndex) {
+            card.classList.add('prev');
+          } else if (index === nextIndex) {
+            card.classList.add('next');
+          } else if (index === farPrevIndex) {
+            card.classList.add('far-prev');
+          } else if (index === farNextIndex) {
+            card.classList.add('far-next');
+          } else {
+            card.style.visibility = 'hidden';
+          }
+        });
+        
+        // Update indicator dots
+        indicators.forEach((dot, index) => {
+          dot.classList.toggle('active', index === window.currentTestimonial);
+        });
+      };
+      
+      // Auto-scrolling functionality
+      window.testimonialInterval = null;
+      window.isUserInteracting = false;
+      
+      // Start auto-scrolling with a frequency of 5 seconds
+      window.startAutoScroll = function() {
+        if (window.testimonialInterval) return; // Don't start if already running
+        
+        window.testimonialInterval = setInterval(function() {
+          if (!window.isUserInteracting) {
+            window.nextTestimonial();
+          }
+        }, 5000); // Change testimonial every 5 seconds
+      };
+      
+      // Stop auto-scrolling
+      window.stopAutoScroll = function() {
+        if (window.testimonialInterval) {
+          clearInterval(window.testimonialInterval);
+          window.testimonialInterval = null;
+        }
+      };
+      
+      // Pause on user interaction
+      document.querySelector('.testimonials-carousel').addEventListener('mouseenter', function() {
+        window.isUserInteracting = true;
+      });
+      
+      document.querySelector('.testimonials-carousel').addEventListener('mouseleave', function() {
+        window.isUserInteracting = false;
+      });
+      
+      // Run immediately after the document is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("Initializing testimonials");
+        window.updateTestimonials();
+        window.startAutoScroll();
+      });
+      
+      // Also run immediately in case DOM is already loaded
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        console.log("Document already loaded, initializing testimonials now");
+        setTimeout(function() {
+          window.updateTestimonials();
+          window.startAutoScroll();
+        }, 1);
+      }
+      
+      // Check if coursesData is loaded globally (keep original functionality)
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof window.coursesData === 'undefined') {
+          console.warn('coursesData is not yet available. Course previews might not render correctly.');
+        }
+      });
+    </script>
+    
+    <!-- Direct inline script to ensure testimonials work -->
+    <script>
+      // Immediate execution script
+      (function() {
+        // Try to initialize now
+        if (document.querySelectorAll('.testimonial-card').length > 0) {
+          console.log("Direct initialization");
+          if (typeof window.updateTestimonials === 'function') {
+            window.updateTestimonials();
+            
+            // Start auto-scrolling if the function exists
+            if (typeof window.startAutoScroll === 'function') {
+              window.startAutoScroll();
+            }
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
