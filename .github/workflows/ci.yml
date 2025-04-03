@@ -65,18 +65,14 @@ jobs:
         touch dist/.nojekyll
         
         # Create _config.yml for GitHub Pages to fix routing
-        cat > dist/_config.yml << 'EOF'
-permalink: pretty
-EOF
+        echo 'permalink: pretty' > dist/_config.yml
         
         # Create .htaccess for servers that support it
-        cat > dist/.htaccess << 'EOF'
-RewriteEngine On
+        echo 'RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.*)$ $1.html [L]
-EOF
+RewriteRule ^(.*)$ $1.html [L]' > dist/.htaccess
         
         # Copy 404.html to dist
         cp 404.html dist/
