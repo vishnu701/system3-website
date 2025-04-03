@@ -2483,11 +2483,13 @@ gsapWithCSS.registerPlugin(ScrollTrigger);
 window.isNavigationClick = false;
 window.addEventListener("DOMContentLoaded", function() {
   const isGitHubPages = window.location.hostname.includes("github.io");
+  const detectedBaseUrl = "/system3-website/";
+  const baseUrl = isGitHubPages ? "/system3-website" : detectedBaseUrl;
   window.siteConfig = window.siteConfig || {
-    baseUrl: isGitHubPages ? "/system3-website" : "",
+    baseUrl,
     isGitHubPages
   };
-  console.log("Site config initialized:", window.siteConfig);
+  console.log("Site config initialized:", window.siteConfig, "Using BASE_URL:", "/system3-website/");
 });
 function fixNavigationLinks() {
   document.querySelectorAll("nav a, .logo a").forEach((link) => {
