@@ -2236,12 +2236,24 @@ ScrollTrigger.core = {
 };
 _getGSAP2() && gsap.registerPlugin(ScrollTrigger);
 function createHeader() {
-  var _a;
+  var _a, _b;
   const currentPath = window.location.pathname;
   const baseUrl = ((_a = window.siteConfig) == null ? void 0 : _a.baseUrl) || "";
+  const isGitHubPages = ((_b = window.siteConfig) == null ? void 0 : _b.isGitHubPages) || window.location.hostname.includes("github.io");
   function fixUrl(url) {
+    var _a2;
     if (!url.startsWith("/") || url === "#") {
       return url;
+    }
+    if (isGitHubPages) {
+      if ((_a2 = window.siteConfig) == null ? void 0 : _a2.toHtmlUrl) {
+        return window.siteConfig.toHtmlUrl(url);
+      }
+      let fixedUrl = baseUrl ? `${baseUrl}${url}` : url;
+      if (!fixedUrl.endsWith(".html") && !fixedUrl.endsWith("/")) {
+        fixedUrl = fixedUrl + ".html";
+      }
+      return fixedUrl;
     }
     if (baseUrl) {
       return `${baseUrl}${url}`;
