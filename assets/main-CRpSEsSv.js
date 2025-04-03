@@ -2240,23 +2240,18 @@ function createHeader() {
   const currentPath = window.location.pathname;
   const baseUrl = ((_a = window.siteConfig) == null ? void 0 : _a.baseUrl) || "";
   const isGitHubPages = ((_b = window.siteConfig) == null ? void 0 : _b.isGitHubPages) || window.location.hostname.includes("github.io");
+  console.log("Header initializing with baseUrl:", baseUrl, "isGitHubPages:", isGitHubPages);
   function fixUrl(url) {
-    var _a2;
     if (!url.startsWith("/") || url === "#") {
       return url;
     }
     if (isGitHubPages) {
-      if ((_a2 = window.siteConfig) == null ? void 0 : _a2.toHtmlUrl) {
-        return window.siteConfig.toHtmlUrl(url);
-      }
-      let fixedUrl = baseUrl ? `${baseUrl}${url}` : url;
+      let fixedUrl = baseUrl + url;
       if (!fixedUrl.endsWith(".html") && !fixedUrl.endsWith("/")) {
-        fixedUrl = fixedUrl + ".html";
+        fixedUrl += ".html";
       }
+      console.log(`Fixed URL for GitHub Pages: ${url} -> ${fixedUrl}`);
       return fixedUrl;
-    }
-    if (baseUrl) {
-      return `${baseUrl}${url}`;
     }
     return url;
   }
@@ -2486,6 +2481,14 @@ const coursesData = {
 window.coursesData = coursesData;
 gsapWithCSS.registerPlugin(ScrollTrigger);
 window.isNavigationClick = false;
+window.addEventListener("DOMContentLoaded", function() {
+  const isGitHubPages = window.location.hostname.includes("github.io");
+  window.siteConfig = window.siteConfig || {
+    baseUrl: isGitHubPages ? "/system3-website" : "",
+    isGitHubPages
+  };
+  console.log("Site config initialized:", window.siteConfig);
+});
 function fixNavigationLinks() {
   document.querySelectorAll("nav a, .logo a").forEach((link) => {
     const newLink = link.cloneNode(true);
@@ -2543,6 +2546,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 function init() {
   const canvas = document.querySelector("canvas.webgl");
+  if (!canvas) {
+    console.log("No canvas found, skipping THREE.js initialization");
+    return;
+  }
   const scene = new Scene();
   document.documentElement.classList.remove("loading");
   document.body.classList.remove("loading");
