@@ -27,6 +27,9 @@ jobs:
     
     - name: Install dependencies
       run: npm ci
+      
+    - name: Install terser explicitly
+      run: npm install terser
     
     - name: Build project
       run: npm run build
