@@ -14,81 +14,24 @@ gsap.registerPlugin(ScrollTrigger);
 // Track if this is a page navigation using the home link
 window.isNavigationClick = false;
 
+// Set up baseUrl for the application - this is critical for both local and GitHub Pages environments
+window.addEventListener('DOMContentLoaded', function() {
+  // Detect if we're on GitHub Pages or local development
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  
+  // Set up window.siteConfig for baseUrl access
+  window.siteConfig = window.siteConfig || {
+    baseUrl: isGitHubPages ? '/system3-website' : '',
+    isGitHubPages: isGitHubPages
+  };
+  
+  console.log('Site config initialized:', window.siteConfig);
+});
+
 // Function to check if we should show the loading screen (currently disabled)
 function isFirstVisit() {
   // Loading screen functionality is currently disabled
   // Keeping the code for future reference
-  
-  /* 
-  // Only show loading screen on the main page
-  const isHomePage = window.location.pathname === '/' || 
-                     window.location.pathname === '/index.html' ||
-                     window.location.pathname.endsWith('/index.html');
-                   
-  if (!isHomePage) {
-    return false;
-  }
-  
-  // Check for direct skip flags first (highest priority)
-  if (localStorage.getItem('skipLoadingScreen') || sessionStorage.getItem('skipLoadingScreen')) {
-    localStorage.removeItem('skipLoadingScreen');
-    sessionStorage.removeItem('skipLoadingScreen');
-    return false;
-  }
-
-  // NEVER show loading screen for navigation clicks
-  if (window.isNavigationClick) {
-    window.isNavigationClick = false; // Reset the flag
-    return false;
-  }
-  
-  // Also check localStorage for navigation flag in case of page refresh
-  const navClickTime = localStorage.getItem('navClick');
-  if (navClickTime) {
-    // Check if this navigation happened recently (within 5 seconds)
-    const timeDiff = Date.now() - parseInt(navClickTime);
-    if (timeDiff < 5000) {
-      localStorage.removeItem('navClick'); // Clear it
-      return false;
-    }
-    localStorage.removeItem('navClick'); // Clean up old entries
-  }
-  
-  // Skip loading screen if this is coming from any other page on the site
-  const referrer = document.referrer;
-  if (referrer && (referrer.includes(window.location.hostname) || referrer.includes('system3'))) {
-    return false;
-  }
-  
-  // For localStorage approach - more reliable than Performance API
-  // Only show on first visit or explicit refresh
-  const visitState = localStorage.getItem('visitedHomePage');
-  
-  if (!visitState) {
-    // First visit ever
-    localStorage.setItem('visitedHomePage', 'true');
-    return true;
-  }
-  
-  // Check if it's an explicit refresh/reload
-  if (window.performance) {
-    try {
-      // Use the newer Navigation API if available
-      if (performance.getEntriesByType && performance.getEntriesByType('navigation').length) {
-        const navType = performance.getEntriesByType('navigation')[0].type;
-        return navType === 'reload'; // Only show on explicit reload
-      }
-      
-      // Fallback to older Navigation API
-      if (performance.navigation) {
-        return performance.navigation.type === 1; // 1 = reload
-      }
-    } catch (e) {
-      console.error('Error checking navigation type:', e);
-    }
-  }
-  */
-  
   return false; // Always return false to skip loading screen
 }
 
@@ -193,6 +136,12 @@ function init() {
    */
   // Get the canvas element
   const canvas = document.querySelector('canvas.webgl');
+  
+  // Only proceed with THREE.js setup if we have a canvas
+  if (!canvas) {
+    console.log('No canvas found, skipping THREE.js initialization');
+    return;
+  }
   
   // Create the scene
   const scene = new THREE.Scene();

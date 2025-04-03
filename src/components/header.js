@@ -8,40 +8,35 @@ function createHeader() {
   // Get the current page path to set active class
   const currentPath = window.location.pathname;
   
-  // Use the base URL from baseurl.js if available, otherwise fallback to detection
+  // Use the base URL from window.siteConfig (set in main.js)
   const baseUrl = window.siteConfig?.baseUrl || '';
   const isGitHubPages = window.siteConfig?.isGitHubPages || window.location.hostname.includes('github.io');
   
-  // Helper to fix URLs for GitHub Pages
+  console.log('Header initializing with baseUrl:', baseUrl, 'isGitHubPages:', isGitHubPages);
+  
+  // Helper to fix URLs for both GitHub Pages and local development
   function fixUrl(url) {
     // If it's an external URL or anchor, don't modify it
     if (!url.startsWith('/') || url === '#') {
       return url;
     }
     
-    // If on GitHub Pages, ensure HTML extension is present
+    // On GitHub Pages, we need special handling
     if (isGitHubPages) {
-      // Use the helper from baseurl.js if available
-      if (window.siteConfig?.toHtmlUrl) {
-        return window.siteConfig.toHtmlUrl(url);
-      }
+      // First add the base URL (e.g., /system3-website)
+      let fixedUrl = baseUrl + url;
       
-      // Add the base URL
-      let fixedUrl = baseUrl ? `${baseUrl}${url}` : url;
-      
-      // Add .html extension if not present and not ending with /
+      // Ensure .html extension for direct navigation
       if (!fixedUrl.endsWith('.html') && !fixedUrl.endsWith('/')) {
-        fixedUrl = fixedUrl + '.html';
+        fixedUrl += '.html';
       }
       
+      console.log(`Fixed URL for GitHub Pages: ${url} -> ${fixedUrl}`);
       return fixedUrl;
     }
     
-    // Use the baseUrl to fix paths
-    if (baseUrl) {
-      return `${baseUrl}${url}`;
-    }
-    
+    // For local development, just return the URL as is
+    // No need to add .html extension in development
     return url;
   }
   
