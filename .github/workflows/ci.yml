@@ -50,6 +50,12 @@ jobs:
     
     - name: Build project
       run: |
+        # Create dist directory if it doesn't exist
+        mkdir -p dist
+        
+        # Copy public directory to dist as a backup
+        cp -r public/* dist/
+        
         # Run the custom build script
         ./build.sh
         
@@ -65,6 +71,10 @@ jobs:
         # Ensure courses directory exists and copy courses
         mkdir -p dist/courses
         cp courses/*.html dist/courses/
+        
+        # List the contents of dist to verify
+        echo "Contents of dist directory:"
+        ls -la dist/
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
