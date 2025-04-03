@@ -26,6 +26,9 @@ jobs:
     
     - name: Build project
       run: npm run build
+    - name: Install git
+      run: apk add --no-cache git
+
       
     - name: Prepare for GitHub Pages
       run: |
