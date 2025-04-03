@@ -25,6 +25,8 @@ jobs:
     
     - name: Install dependencies
       run: npm ci
+    - name: Install Terser (required by Vite for minification)
+      run: npm install terser --save-dev
     
     - name: Build project
       run: npm run build
