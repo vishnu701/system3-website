@@ -29,13 +29,21 @@ jobs:
       run: |
         rm -rf node_modules package-lock.json
         npm install
-        npm install terser@latest --save-dev
-        # Show that terser is installed
-        npm list terser
+    
+    - name: Create custom build script
+      run: |
+        # Create a shell script to run build with --no-minify flag
+        cat > build.sh << 'EOF'
+        #!/bin/bash
+        npx vite build --minify=false
+        EOF
+        chmod +x build.sh
     
     - name: Build project
       run: |
-        npm run build
+        # Run the custom build script
+        ./build.sh
+        
         # Create .nojekyll file after build
         touch dist/.nojekyll
         # Copy 404.html to dist
