@@ -8,30 +8,42 @@ function createHeader() {
   // Get the current page path to set active class
   const currentPath = window.location.pathname;
   
+  // Check if we're on GitHub Pages
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  
+  // Helper to fix URLs for GitHub Pages
+  function fixUrl(url) {
+    if (isGitHubPages && url.startsWith('/')) {
+      // Remove leading slash for GitHub Pages
+      return url.substring(1);
+    }
+    return url;
+  }
+  
   // Create header HTML - use # for home link on the home page to prevent full page reload
   const isHomePage = currentPath === '/' || 
                      currentPath === '/index.html' ||
                      currentPath.endsWith('/index.html');
   
-  const homeLink = isHomePage ? '#hero-section' : '/';
+  const homeLink = isHomePage ? '#hero-section' : fixUrl('/');
   
   const headerHTML = `
     <div class="logo">
       <span class="logo-mark"></span>
-      <a href="${isHomePage ? '#' : '/'}">System3</a>
+      <a href="${isHomePage ? '#' : fixUrl('/')}">System3</a>
     </div>
     <nav>
       <ul>
         <li><a href="${homeLink}" ${isHomePage ? 'class="active"' : ''}>Home</a></li>
         <li class="has-dropdown">
-          <a href="/education.html" ${currentPath === '/education.html' ? 'class="active"' : ''}>Education</a>
+          <a href="${fixUrl('/education.html')}" ${currentPath === '/education.html' ? 'class="active"' : ''}>Education</a>
           <ul class="dropdown-menu">
-            <li><a href="/courses/" ${currentPath.includes('/courses/') ? 'class="active"' : ''}>Courses</a></li>
+            <li><a href="${fixUrl('/courses/')}" ${currentPath.includes('/courses/') ? 'class="active"' : ''}>Courses</a></li>
           </ul>
         </li>
-        <li><a href="/consultancy.html" ${currentPath === '/consultancy.html' ? 'class="active"' : ''}>Consultancy</a></li>
-        <li><a href="/about.html" ${currentPath === '/about.html' ? 'class="active"' : ''}>About Us</a></li>
-        <li><a href="/contact.html" ${currentPath === '/contact.html' ? 'class="active"' : ''}>Contact</a></li>
+        <li><a href="${fixUrl('/consultancy.html')}" ${currentPath === '/consultancy.html' ? 'class="active"' : ''}>Consultancy</a></li>
+        <li><a href="${fixUrl('/about.html')}" ${currentPath === '/about.html' ? 'class="active"' : ''}>About Us</a></li>
+        <li><a href="${fixUrl('/contact.html')}" ${currentPath === '/contact.html' ? 'class="active"' : ''}>Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">

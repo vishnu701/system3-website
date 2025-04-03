@@ -53,8 +53,10 @@ jobs:
         # Create dist directory if it doesn't exist
         mkdir -p dist
         
-        # Copy public directory to dist as a backup
+        # Copy public directory to dist as a backup and for GitHub Pages configuration
         cp -r public/* dist/
+        # Create .nojekyll file immediately
+        touch dist/.nojekyll
         
         # Run the custom build script
         ./build.sh
