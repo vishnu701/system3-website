@@ -1,0 +1,61 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "serve": "/index.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/index.html",
+      "serve": "/index.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/education",
+      "serve": "/education.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/consultancy",
+      "serve": "/consultancy.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/about",
+      "serve": "/about.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/contact",
+      "serve": "/contact.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/courses",
+      "serve": "/courses/index.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/courses/data-science",
+      "serve": "/courses/data-science.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/forms/ai5",
+      "serve": "/forms/ai5-form.html",
+      "statusCode": 200
+    },
+    {
+      "route": "*",
+      "serve": "/404.html",
+      "statusCode": 404
+    }
+  ],
+  "platformErrorOverrides": [
+    {
+      "errorType": "NotFound",
+      "serve": "/404.html",
+      "statusCode": 404
+    }
+  ]
+}
