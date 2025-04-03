@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
+// Check if we're in production mode
+const isProd = process.env.NODE_ENV === 'production';
+
 // Force specific minifier settings to prevent terser usage
 export default defineConfig({
-  base: './', // Set base to relative paths
+  // For GitHub Pages deployment, use relative paths
+  base: isProd ? './' : '/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
@@ -32,6 +36,10 @@ export default defineConfig({
         contact: resolve(__dirname, 'contact.html'),
       },
       output: {
+        // Use a more compatible format for filenames
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         manualChunks: {
           vendor: ['three', 'gsap']
         }

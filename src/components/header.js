@@ -8,15 +8,21 @@ function createHeader() {
   // Get the current page path to set active class
   const currentPath = window.location.pathname;
   
-  // Check if we're on GitHub Pages
-  const isGitHubPages = window.location.hostname.includes('github.io');
+  // Use the base URL from baseurl.js if available, otherwise fallback to detection
+  const baseUrl = window.siteConfig?.baseUrl || '';
   
   // Helper to fix URLs for GitHub Pages
   function fixUrl(url) {
-    if (isGitHubPages && url.startsWith('/')) {
-      // Remove leading slash for GitHub Pages
-      return url.substring(1);
+    // If it's an external URL or anchor, don't modify it
+    if (!url.startsWith('/') || url === '#') {
+      return url;
     }
+    
+    // Use the baseUrl to fix paths
+    if (baseUrl) {
+      return `${baseUrl}${url}`;
+    }
+    
     return url;
   }
   
