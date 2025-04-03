@@ -3,6 +3,7 @@ import { resolve } from 'path';
 
 // Force specific minifier settings to prevent terser usage
 export default defineConfig({
+  base: './', // Set base to relative paths
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
@@ -23,6 +24,13 @@ export default defineConfig({
     // Explicitly disable terser
     terserOptions: false,
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        education: resolve(__dirname, 'education.html'),
+        consultancy: resolve(__dirname, 'consultancy.html'),
+        about: resolve(__dirname, 'about.html'),
+        contact: resolve(__dirname, 'contact.html'),
+      },
       output: {
         manualChunks: {
           vendor: ['three', 'gsap']
