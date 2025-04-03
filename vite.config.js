@@ -3,8 +3,8 @@ import { resolve } from 'path';
 
 // Force specific minifier settings to prevent terser usage
 export default defineConfig({
-  // Always use relative paths to support GitHub Pages
-  base: './',
+  // Correct base path for GitHub Pages project site
+  base: '/system3-website/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
