@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"
+     aria-labelledby="faqIllustrationTitle faqIllustrationDesc" role="img">
+  <title id="faqIllustrationTitle">Frequently Asked Questions Illustration</title>
+  <desc id="faqIllustrationDesc">A modern and clean illustration representing a FAQ interface with question cards.</desc>
+  
+  <!-- Subtle background glow -->
+  <circle cx="200" cy="200" r="160" fill="url(#bgGlow)" opacity="0.15"/>
+  
+  <!-- Search bar at top -->
+  <g id="search-component">
+    <rect x="100" y="70" width="200" height="40" rx="20" fill="#2A2A2A" stroke="#8a85ff" stroke-width="1.5"/>
+    <circle cx="120" cy="90" r="8" stroke="#8a85ff" stroke-width="1.5" fill="none"/>
+    <line x1="126" y1="96" x2="130" y2="100" stroke="#8a85ff" stroke-width="1.5"/>
+    <text x="140" y="96" font-family="sans-serif" font-size="14" fill="#8a85ff" opacity="0.9">Search questions...</text>
+    
+    <!-- Static pulse effect around search -->
+    <circle cx="120" cy="90" r="14" fill="#8a85ff" opacity="0.1"/>
+  </g>
+  
+  <!-- FAQ Cards -->
+  <g id="faq-cards">
+    <!-- Card 1 -->
+    <g transform="translate(100, 130)">
+      <rect width="200" height="50" rx="8" fill="#2A2A2A" opacity="0.9"/>
+      <rect x="16" y="16" width="140" height="6" rx="3" fill="white" opacity="0.8"/>
+      <rect x="16" y="28" width="90" height="6" rx="3" fill="white" opacity="0.5"/>
+      <circle cx="180" cy="25" r="10" fill="none" stroke="#8a85ff" stroke-width="1.5" opacity="0.8"/>
+      <line x1="175" y1="25" x2="185" y2="25" stroke="#8a85ff" stroke-width="1.5"/>
+      <line x1="180" y1="20" x2="180" y2="30" stroke="#8a85ff" stroke-width="1.5"/>
+    </g>
+    
+    <!-- Card 2 -->
+    <g transform="translate(100, 190)" opacity="0.95">
+      <rect width="200" height="50" rx="8" fill="#2A2A2A" opacity="0.9"/>
+      <rect x="16" y="16" width="120" height="6" rx="3" fill="white" opacity="0.8"/>
+      <rect x="16" y="28" width="80" height="6" rx="3" fill="white" opacity="0.5"/>
+      <circle cx="180" cy="25" r="10" fill="none" stroke="#c389c5" stroke-width="1.5" opacity="0.8"/>
+      <line x1="175" y1="25" x2="185" y2="25" stroke="#c389c5" stroke-width="1.5"/>
+      <line x1="180" y1="20" x2="180" y2="30" stroke="#c389c5" stroke-width="1.5"/>
+    </g>
+    
+    <!-- Card 3 -->
+    <g transform="translate(100, 250)" opacity="0.9">
+      <rect width="200" height="50" rx="8" fill="#2A2A2A" opacity="0.9"/>
+      <rect x="16" y="16" width="130" height="6" rx="3" fill="white" opacity="0.8"/>
+      <rect x="16" y="28" width="70" height="6" rx="3" fill="white" opacity="0.5"/>
+      <circle cx="180" cy="25" r="10" fill="none" stroke="#8bb8cf" stroke-width="1.5" opacity="0.8"/>
+      <line x1="175" y1="25" x2="185" y2="25" stroke="#8bb8cf" stroke-width="1.5"/>
+      <line x1="180" y1="20" x2="180" y2="30" stroke="#8bb8cf" stroke-width="1.5"/>
+    </g>
+  </g>
+  
+  <!-- Card 1 expanded answer -->
+  <g id="expanded-answer" transform="translate(100, 310)" opacity="0.85">
+    <rect width="200" height="40" rx="8" fill="#1A1A1A" opacity="0.95"/>
+    <rect x="16" y="10" width="170" height="4" rx="2" fill="white" opacity="0.6"/>
+    <rect x="16" y="18" width="150" height="4" rx="2" fill="white" opacity="0.6"/>
+    <rect x="16" y="26" width="160" height="4" rx="2" fill="white" opacity="0.6"/>
+  </g>
+  
+  <!-- Floating elements -->
+  <g id="floating-elements">
+    <!-- Question marks -->
+    <g transform="translate(50, 120)" opacity="0.7">
+      <path d="M0 15 C0 15, 0 15, 0 15 M0 5 C0 5, 0 8, 0 8 M-5 -5 C-5 -10, -2 -12, 0 -12 C2 -12, 5 -10, 5 -5 C5 0, 0 2, 0 4" 
+        stroke="#8a85ff" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </g>
+    
+    <g transform="translate(330, 230)" opacity="0.6">
+      <path d="M0 15 C0 15, 0 15, 0 15 M0 5 C0 5, 0 8, 0 8 M-5 -5 C-5 -10, -2 -12, 0 -12 C2 -12, 5 -10, 5 -5 C5 0, 0 2, 0 4" 
+        stroke="#c389c5" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </g>
+    
+    <g transform="translate(350, 110)" opacity="0.6">
+      <path d="M0 9 C0 9, 0 9, 0 9 M0 3 C0 3, 0 5, 0 5 M-3 -3 C-3 -6, -1 -7, 0 -7 C1 -7, 3 -6, 3 -3 C3 0, 0 1, 0 2" 
+        stroke="#8bb8cf" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </g>
+  </g>
+  
+  <!-- Static particles instead of animated -->
+  <g id="particles">
+    <circle cx="70" cy="80" r="2" fill="#8a85ff" opacity="0.8"/>
+    <circle cx="320" cy="70" r="2" fill="#c389c5" opacity="0.8"/>
+    <circle cx="340" cy="170" r="2.5" fill="#8bb8cf" opacity="0.7"/>
+    <circle cx="60" cy="200" r="1.5" fill="#8a85ff" opacity="0.7"/>
+    <circle cx="290" cy="330" r="2" fill="#c389c5" opacity="0.6"/>
+  </g>
+  
+  <!-- Define gradients -->
+  <defs>
+    <radialGradient id="bgGlow" cx="200" cy="200" r="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8a85ff" stop-opacity="0.3"/>
+      <stop offset="70%" stop-color="#8a85ff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#8a85ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
