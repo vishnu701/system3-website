@@ -19,13 +19,18 @@ window.addEventListener('DOMContentLoaded', function() {
   // Detect if we're on GitHub Pages or local development
   const isGitHubPages = window.location.hostname.includes('github.io');
   
+  // Get the base URL from the running application
+  // Vite adds a global variable import.meta.env.BASE_URL for this
+  const detectedBaseUrl = import.meta.env.BASE_URL || '';
+  const baseUrl = isGitHubPages ? '/system3-website' : detectedBaseUrl;
+  
   // Set up window.siteConfig for baseUrl access
   window.siteConfig = window.siteConfig || {
-    baseUrl: isGitHubPages ? '/system3-website' : '',
+    baseUrl: baseUrl,
     isGitHubPages: isGitHubPages
   };
   
-  console.log('Site config initialized:', window.siteConfig);
+  console.log('Site config initialized:', window.siteConfig, 'Using BASE_URL:', import.meta.env.BASE_URL);
 });
 
 // Function to check if we should show the loading screen (currently disabled)
