@@ -69,10 +69,10 @@ jobs:
         
         # Create .htaccess for servers that support it
         echo 'RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.*)$ $1.html [L]' > dist/.htaccess
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteCond %{REQUEST_FILENAME}.html -f
+        RewriteRule ^(.*)$ $1.html [L]' > dist/.htaccess
         
         # Copy 404.html to dist
         cp 404.html dist/
