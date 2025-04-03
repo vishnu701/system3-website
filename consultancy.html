@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en" class="fouc-protection no-js">
+  <head>
+    <script>
+      // Remove no-js class immediately to indicate JavaScript is running
+      document.documentElement.classList.remove('no-js');
+      
+      // Prevent FOUC and ensure smooth transitions between pages
+      document.documentElement.classList.add('fouc-protection');
+      
+      // Remove FOUC protection after stylesheet and basic DOM is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // Short delay to ensure CSS is applied
+        setTimeout(function() {
+          document.documentElement.classList.remove('fouc-protection');
+        }, 50);
+      });
+      
+      // Backup in case DOMContentLoaded doesn't fire properly
+      window.addEventListener('load', function() {
+        document.documentElement.classList.remove('fouc-protection');
+      });
+    </script>
+    <style>
+    /* Prevent FOUC (Flash of Unstyled Content) */
+    html {
+      visibility: visible;
+      opacity: 1;
+    }
+    html.fouc-protection {
+      visibility: hidden;
+      opacity: 0;
+    }
+    
+    /* Initial styles to prevent flash before JavaScript loads */
+    body {
+      background-color: #050505;
+      color: #ffffff;
+    }
+    
+    /* Immediately set theme from localStorage if available */
+    :root {
+      --color-primary: #8a85ff;
+      --color-secondary: #c389c5;
+      --color-accent: #8bb8cf;
+    }
+    </style>
+    <script>
+    // Immediately set theme from localStorage to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultancy - System3</title>
+    <meta name="description" content="Expert AI consultancy services from System3 - Implement cutting-edge AI solutions for your business">
+    <link rel="icon" href="/public/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Navigation - Content dynamically inserted by header.js -->
+      <header>
+        <!-- Header content will be inserted here by JavaScript -->
+      </header>
+
+      <!-- 3D Background Canvas -->
+      <canvas class="webgl"></canvas>
+
+      <div class="content">
+        <!-- Consultancy Hero Section -->
+        <section class="section section-sliding-up" id="consultancy-hero">
+          <div class="section-overlay"></div>
+          <div class="hero-content">
+            <h1>AI <span class="gradient-text">Consultancy</span></h1>
+            <p>Expert guidance to implement AI solutions tailored for your business challenges</p>
+          </div>
+        </section>
+
+        <!-- About Consultancy Section -->
+        <section class="section section-sliding-up" id="about-consultancy">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">AI Solutions for Business</span></h2>
+            <p class="section-description">Strategic AI implementation to revolutionize your operations</p>
+            
+            <div class="consultancy-about">
+              <div class="about-text">
+                <p>System3 Consultancy provides end-to-end AI implementation services to help businesses harness the transformative power of artificial intelligence. Our team of experts combines academic expertise with practical industry experience to deliver solutions that drive real business value.</p>
+                <p>We take a strategic approach to AI implementation, ensuring that every solution is aligned with your business objectives and integrated seamlessly with your existing systems. From initial assessment and strategy development to implementation and ongoing support, we guide you through every step of your AI journey.</p>
+                <div class="about-cta">
+                  <a href="/#contact-section" class="cta-button primary">Get Started</a>
+                </div>
+              </div>
+              <div class="about-image">
+                <img src="./src/assets/images/consulting-illustration.svg" alt="AI Consultancy Dashboard" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section section-sliding-up" id="services-section">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Our Services</span></h2>
+            <p class="section-description">Comprehensive AI consultancy for every stage of your business</p>
+            
+            <div class="services-grid">
+              <div class="service-card">
+                <div class="service-number">01</div>
+                <h3>Strategy Development</h3>
+                <p>Create a comprehensive AI roadmap aligned with your business objectives and industry positioning. We identify high-impact opportunities and develop a phased implementation plan.</p>
+              </div>
+              
+              <div class="service-card">
+                <div class="service-number">02</div>
+                <h3>Custom Solutions</h3>
+                <p>Develop tailored AI applications to solve your unique business challenges, from predictive analytics and natural language processing to computer vision and recommendation systems.</p>
+              </div>
+              
+              <div class="service-card">
+                <div class="service-number">03</div>
+                <h3>Implementation Support</h3>
+                <p>End-to-end guidance from conceptualization to deployment and maintenance. Our team works closely with yours to ensure smooth integration and knowledge transfer.</p>
+              </div>
+              
+              <div class="service-card">
+                <div class="service-number">04</div>
+                <h3>Ethical AI Framework</h3>
+                <p>Ensure your AI systems adhere to ethical standards and regulatory requirements. We help you build responsible AI systems that maintain trust with your customers and stakeholders.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Approach Section -->
+        <section class="section section-sliding-up" id="approach-section">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Our Approach</span></h2>
+            <p class="section-description">A methodical process for successful AI implementation</p>
+            
+            <div class="approach-steps">
+              <div class="approach-step">
+                <div class="step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
+                <h3>Discovery & Assessment</h3>
+                <p>We start by understanding your business, its challenges, and objectives. Our experts conduct a comprehensive assessment of your existing systems, data infrastructure, and AI readiness.</p>
+              </div>
+              
+              <div class="approach-step">
+                <div class="step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                  </svg>
+                </div>
+                <h3>Strategy & Solution Design</h3>
+                <p>Based on our findings, we develop a strategic roadmap and design custom AI solutions aligned with your business goals. This includes selecting the right technologies, algorithms, and implementation approach.</p>
+              </div>
+              
+              <div class="approach-step">
+                <div class="step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <h3>Development & Implementation</h3>
+                <p>Our team of experts develops and implements the AI solutions, ensuring integration with your existing systems. We follow agile methodologies to deliver value incrementally and adapt to changing requirements.</p>
+              </div>
+              
+              <div class="approach-step">
+                <div class="step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                  </svg>
+                </div>
+                <h3>Monitoring & Optimization</h3>
+                <p>We continuously monitor the performance of your AI systems, making necessary adjustments to improve accuracy and efficiency. Our team provides ongoing support to ensure long-term success.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section class="section section-sliding-up" id="case-studies">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Success Stories</span></h2>
+            <p class="section-description">Real-world AI implementations that delivered exceptional results</p>
+            
+            <div class="case-studies-grid">
+              <div class="case-study-card">
+                <div class="case-study-content">
+                  <h3>Retail Analytics Platform</h3>
+                  <p class="case-study-industry">Retail & E-commerce</p>
+                  <p class="case-study-description">Implemented a predictive analytics system that increased conversion rates by 24% and reduced inventory costs by 18% through accurate demand forecasting.</p>
+                  <div class="case-study-results">
+                    <div class="result-item">
+                      <span class="result-number">24%</span>
+                      <span class="result-label">Increased Conversions</span>
+                    </div>
+                    <div class="result-item">
+                      <span class="result-number">18%</span>
+                      <span class="result-label">Cost Reduction</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="case-study-card">
+                <div class="case-study-content">
+                  <h3>Healthcare Diagnostic Tool</h3>
+                  <p class="case-study-industry">Healthcare</p>
+                  <p class="case-study-description">Developed an AI-powered diagnostic system that improved early detection rates by 35% and reduced diagnostic time by 60% for medical professionals.</p>
+                  <div class="case-study-results">
+                    <div class="result-item">
+                      <span class="result-number">35%</span>
+                      <span class="result-label">Better Detection</span>
+                    </div>
+                    <div class="result-item">
+                      <span class="result-number">60%</span>
+                      <span class="result-label">Time Saved</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="case-study-card">
+                <div class="case-study-content">
+                  <h3>Financial Risk Assessment</h3>
+                  <p class="case-study-industry">Financial Services</p>
+                  <p class="case-study-description">Created a machine learning system for risk assessment that reduced fraud by 42% and improved credit decision accuracy by 28% for a leading financial institution.</p>
+                  <div class="case-study-results">
+                    <div class="result-item">
+                      <span class="result-number">42%</span>
+                      <span class="result-label">Fraud Reduction</span>
+                    </div>
+                    <div class="result-item">
+                      <span class="result-number">28%</span>
+                      <span class="result-label">Accuracy Improvement</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section section-sliding-up" id="consultancy-faq">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Frequently Asked Questions</span></h2>
+            <p class="section-description">Answers to common questions about our AI consultancy services</p>
+            
+            <div class="faq-container">
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>How do I know if my organization is ready for AI?</h3>
+                  <div class="faq-toggle"></div>
+                </div>
+                <div class="faq-answer">
+                  <p>We offer a comprehensive AI readiness assessment to evaluate your data infrastructure, technical capabilities, and strategic alignment. This helps determine your organization's preparedness and identifies areas for development.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>What kind of ROI can we expect from AI implementation?</h3>
+                  <div class="faq-toggle"></div>
+                </div>
+                <div class="faq-answer">
+                  <p>ROI varies based on your specific use case, industry, and implementation scope. Our clients typically see returns through efficiency gains, cost reduction, or revenue enhancement. We work with you to define clear KPIs and track performance.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>How long does it take to implement an AI solution?</h3>
+                  <div class="faq-toggle"></div>
+                </div>
+                <div class="faq-answer">
+                  <p>Implementation timelines range from 2-6 months for initial solutions to 12+ months for enterprise-wide transformations. We follow an agile methodology with regular deliverables to ensure continuous progress and value creation.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>Do you offer custom training for our team?</h3>
+                  <div class="faq-toggle"></div>
+                </div>
+                <div class="faq-answer">
+                  <p>Yes, we offer customized training programs to help your team understand and work with the implemented AI solutions. Knowledge transfer is a key component of our approach to ensure long-term success and self-sufficiency.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section section-sliding-up" id="consultancy-cta">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">Transform Your Business</span></h2>
+            <p class="section-description">Start your AI journey with expert guidance</p>
+            
+            <div class="cta-box">
+              <h3>Ready to leverage the power of AI?</h3>
+              <p>Schedule a consultation with our experts to discuss your business needs and explore how AI can drive growth and innovation for your organization.</p>
+              <div class="cta-container">
+                <a href="/#contact-section" class="cta-button primary">Schedule Consultation</a>
+                <a href="/about.html" class="cta-button secondary">Learn About Our Team</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-content">
+          <div class="footer-branding">
+            <div class="footer-logo">
+              <span class="logo-mark"></span>
+              System3
+            </div>
+            <p>Pioneering the future of AI education and consulting</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/consultancy.html">AI Consulting</a></li>
+                <li><a href="/education.html">AI Education</a></li>
+                <li><a href="/#consulting-section">Data Strategy</a></li>
+                <li><a href="/#consulting-section">AI Implementation</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Courses</h4>
+              <ul>
+                <li><a href="/courses/data-science.html">Data Science</a></li>
+                <li><a href="/courses/">Machine Learning</a></li>
+                <li><a href="/courses/">Computer Vision</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/about.html#team">Team</a></li>
+                <li><a href="/#contact-section">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 System3. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+    <link rel="stylesheet" href="/src/style.css">
+    <script type="module" src="/src/main.js"></script>
+    
+    <!-- Add standalone theme toggle script to ensure it works -->
+    <script>
+      window.addEventListener('load', function() {
+        // Get the theme toggle element
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        if (themeToggle) {
+          console.log('Theme toggle found, adding direct event listener');
+          
+          // Force clean up by cloning and replacing
+          const newThemeToggle = themeToggle.cloneNode(true);
+          themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
+          
+          // Add direct click event listener
+          newThemeToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Theme toggle clicked');
+            
+            // Toggle the theme
+            if (document.documentElement.getAttribute('data-theme') === 'light') {
+              document.documentElement.removeAttribute('data-theme');
+              localStorage.setItem('theme', 'dark');
+              console.log('Switched to dark theme');
+            } else {
+              document.documentElement.setAttribute('data-theme', 'light');
+              localStorage.setItem('theme', 'light');
+              console.log('Switched to light theme');
+            }
+          });
+          
+          // Set initial theme based on localStorage
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+          }
+        } else {
+          console.error('Theme toggle not found');
+        }
+      });
+    </script>
+    
+    <style>
+      /* Fix for blurring and overall page issues */
+      .webgl {
+        opacity: 0.5; /* Reduce the opacity of the 3D background */
+        position: fixed;
+        top: 0;
+        left: 0;
+        outline: none;
+        z-index: 1; /* Lower z-index to stay behind content */
+        pointer-events: none; /* Make it non-interactive */
+      }
+      
+      .content {
+        position: relative;
+        z-index: 10; /* Ensure content is above canvas */
+      }
+      
+      .section {
+        position: relative;
+        z-index: 10; /* Ensure sections are above canvas */
+      }
+      
+      /* Consultancy page specific styles */
+      #consultancy-hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+        overflow: hidden;
+      }
+      
+      #consultancy-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(138, 133, 255, 0.2), transparent 80%);
+        opacity: 1;
+        z-index: -1;
+      }
+      
+      [data-theme="light"] #consultancy-hero {
+        background: none;
+      }
+      
+      [data-theme="light"] #consultancy-hero::before {
+        background: radial-gradient(circle at center, rgba(138, 133, 255, 0.15), transparent 80%);
+      }
+      
+      .consultancy-about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin-top: 3rem;
+      }
+      
+      .about-image img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 12px 24px -12px rgba(16, 24, 40, 0.18);
+      }
+      
+      .about-text p {
+        margin-bottom: 1.5rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+      
+      .about-cta {
+        margin-top: 2rem;
+      }
+      
+      /* Services Section */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      
+      .service-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        padding: 2rem;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+      
+      .service-number {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        opacity: 0.6;
+      }
+      
+      .service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-right: 2rem;
+        color: var(--color-primary);
+      }
+      
+      .service-card p {
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+      }
+      
+      /* Approach Section */
+      .approach-steps {
+        margin-top: 3rem;
+      }
+      
+      .approach-step {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .approach-step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+      
+      .step-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        color: var(--color-primary);
+        margin-top: 0.5rem;
+      }
+      
+      .approach-step h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--color-primary);
+      }
+      
+      .approach-step p {
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+      }
+      
+      /* Case Studies Section */
+      .case-studies-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      
+      .case-study-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--color-primary);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .case-study-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(138, 133, 255, 0.15);
+      }
+      
+      .case-study-content {
+        padding: 2rem;
+      }
+      
+      .case-study-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-primary);
+      }
+      
+      .case-study-industry {
+        font-size: 0.875rem;
+        color: var(--color-primary);
+        margin-bottom: 1.5rem;
+        opacity: 0.8;
+      }
+      
+      .case-study-description {
+        margin-bottom: 1.5rem;
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+      }
+      
+      .case-study-results {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+        padding-top: 1.5rem;
+      }
+      
+      .result-item {
+        text-align: center;
+      }
+      
+      .result-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 0.25rem;
+      }
+      
+      .result-label {
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+      }
+      
+      /* FAQ Section */
+      .faq-container {
+        margin-top: 3rem;
+      }
+      
+      .faq-item {
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      
+      .faq-question {
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.02);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .faq-question h3 {
+        font-size: 1.25rem;
+        margin: 0;
+        font-weight: 600;
+      }
+      
+      .faq-toggle {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+      
+      .faq-toggle::before,
+      .faq-toggle::after {
+        content: '';
+        position: absolute;
+        background-color: var(--color-primary);
+        transition: all 0.3s ease;
+      }
+      
+      .faq-toggle::before {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        transform: translateY(-50%);
+      }
+      
+      .faq-toggle::after {
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        transform: translateX(-50%);
+      }
+      
+      .faq-item.active .faq-toggle::after {
+        transform: translateX(-50%) rotate(90deg);
+        opacity: 0;
+      }
+      
+      /* Base styles for answer section */
+      .faq-answer {
+        display: none !important;
+        padding: 0 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+      }
+      
+      /* Active state for answer section - using !important for maximum specificity */
+      .faq-item.active .faq-answer {
+        display: block !important;
+        padding: 1.5rem !important;
+        max-height: 500px !important; /* Allow enough space for content */
+        transition: max-height 0.3s ease, padding 0.2s ease;
+        visibility: visible !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+      }
+      
+      .faq-answer p {
+        margin: 0;
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+      }
+      
+      /* CTA Section */
+      .cta-box {
+        max-width: 800px;
+        margin: 3rem auto 0;
+        background: rgba(138, 133, 255, 0.05);
+        border: 1px solid var(--color-primary);
+        border-radius: 10px;
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+      
+      .cta-box h3 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+      }
+      
+      .cta-box p {
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .cta-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+      
+      /* Light mode adjustments */
+      [data-theme="light"] .service-card,
+      [data-theme="light"] .approach-step,
+      [data-theme="light"] .case-study-card,
+      [data-theme="light"] .faq-question,
+      [data-theme="light"] .cta-box {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-color: rgba(138, 133, 255, 0.2);
+      }
+      
+      [data-theme="light"] .service-card:hover,
+      [data-theme="light"] .approach-step:hover,
+      [data-theme="light"] .case-study-card:hover {
+        box-shadow: 0 12px 24px rgba(138, 133, 255, 0.15);
+      }
+      
+      /* Light mode styling for headings and content */
+      
+      [data-theme="light"] .service-number,
+      [data-theme="light"] .service-card h3,
+      [data-theme="light"] .approach-step h3,
+      [data-theme="light"] .case-study-card h3 {
+        color: var(--color-primary);
+      }
+      
+      [data-theme="light"] .service-card p,
+      [data-theme="light"] .approach-step p,
+      [data-theme="light"] .case-study-description,
+      [data-theme="light"] .faq-answer p {
+        color: var(--color-text-secondary);
+      }
+      
+      [data-theme="light"] .step-icon,
+      [data-theme="light"] .result-number {
+        color: var(--color-primary);
+      }
+      
+      [data-theme="light"] .section-overlay {
+        background: transparent;
+      }
+      
+      /* Fix for hero content visibility while allowing animations */
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 15; /* Ensure hero content is above other elements */
+      }
+      
+      /* Only apply forced visibility to hero content when JS fails */
+      .no-js .hero-content {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+      
+      /* Default animation for hero content when JS is working properly */
+      @keyframes heroFadeIn {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      
+      .hero-content h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        color: var(--color-text);
+      }
+      
+      .hero-content p {
+        font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        color: var(--color-text-secondary);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      [data-theme="light"] .hero-content h1 {
+        color: var(--color-text);
+      }
+      
+      [data-theme="light"] .hero-content p {
+        color: var(--color-text-secondary);
+      }
+      
+      /* Fix for section overlay */
+      .section-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        pointer-events: none;
+      }
+      
+      /* Fix theme toggle styles and make it clickable */
+      .theme-toggle {
+        position: relative;
+        width: 48px;
+        height: 24px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 2px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        z-index: 9999; /* Ensure it's above other elements */
+        pointer-events: auto !important; /* Force clickable */
+      }
+      
+      .theme-toggle::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        transform: translateX(0);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+      
+      [data-theme="light"] .theme-toggle {
+        background-color: rgba(138, 133, 255, 0.1);
+      }
+      
+      [data-theme="light"] .theme-toggle::before {
+        transform: translateX(24px);
+        background-color: var(--color-primary);
+      }
+      
+      /* Responsive styles */
+      @media (max-width: 992px) {
+        .consultancy-about {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .about-image {
+          order: -1;
+        }
+        
+        .approach-step {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .step-icon {
+          margin-top: 0;
+        }
+        
+        .cta-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .hero-content {
+          padding: 0 1.5rem;
+        }
+        
+        .hero-content h1 {
+          font-size: 3.5rem;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        #consultancy-hero {
+          height: 50vh;
+        }
+        
+        .services-grid,
+        .case-studies-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .service-card,
+        .approach-step,
+        .case-study-card {
+          padding: 1.5rem;
+        }
+        
+        .case-study-results {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+      }
+    </style>
+    
+    <script>
+      // IMPROVED FAQ ACCORDION FUNCTIONALITY
+      window.addEventListener('load', function() {
+        const initFaqAccordion = () => {
+          console.log("Initializing FAQ accordion");
+          const faqItems = document.querySelectorAll('.faq-item');
+          
+          if (!faqItems || faqItems.length === 0) {
+            console.log("No FAQ items found");
+            return;
+          }
+          
+          console.log(`Found ${faqItems.length} FAQ items`);
+          
+          // First reset all items to ensure consistent initial state
+          faqItems.forEach(item => {
+            const answer = item.querySelector('.faq-answer');
+            if (answer) {
+              answer.style.display = 'none';
+            }
+            item.classList.remove('active');
+          });
+          
+          // Add robust click handlers to all FAQ questions
+          faqItems.forEach((item, index) => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            if (!question || !answer) {
+              console.log(`Missing question or answer for FAQ item ${index}`);
+              return;
+            }
+            
+            // Using onclick for maximum compatibility
+            question.onclick = function(event) {
+              // Prevent default and stop propagation
+              event.preventDefault();
+              event.stopPropagation();
+              
+              // Get active state
+              const isActive = item.classList.contains('active');
+              
+              // Force close all items
+              faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const otherAnswer = otherItem.querySelector('.faq-answer');
+                if (otherAnswer) {
+                  otherAnswer.style.display = 'none';
+                }
+              });
+              
+              // Toggle this one if it wasn't already active
+              if (!isActive) {
+                item.classList.add('active');
+                answer.style.display = 'block';
+                
+                // Force answers to be visible regardless of any style conflicts
+                setTimeout(() => {
+                  answer.style.cssText = "display: block !important; visibility: visible !important; opacity: 1 !important;";
+                }, 50);
+              }
+            };
+          });
+        };
+        
+        // Initialize accordion immediately
+        initFaqAccordion();
+        
+        // Also initialize after a short delay to handle any AJAX or dynamic content
+        setTimeout(initFaqAccordion, 500);
+      });
+        
+        // Fix theme toggle if not working from main.js
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+          // Remove any existing event listeners by cloning
+          const newThemeToggle = themeToggle.cloneNode(true);
+          themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
+          
+          // Add event listener to toggle theme
+          newThemeToggle.addEventListener('click', () => {
+            let theme;
+            
+            // Toggle between light and dark themes
+            if (document.documentElement.getAttribute('data-theme') === 'light') {
+              document.documentElement.removeAttribute('data-theme');
+              theme = 'dark';
+            } else {
+              document.documentElement.setAttribute('data-theme', 'light');
+              theme = 'light';
+            }
+            
+            // Save the preference
+            localStorage.setItem('theme', theme);
+          });
+          
+          // Set initial theme based on saved preference
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

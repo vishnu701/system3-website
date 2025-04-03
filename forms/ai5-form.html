@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" class="fouc-protection no-js">
+  <head>
+    <script>
+      // Remove no-js class immediately to indicate JavaScript is running
+      document.documentElement.classList.remove('no-js');
+      
+      // Prevent FOUC and ensure smooth transitions between pages
+      document.documentElement.classList.add('fouc-protection');
+      
+      // Remove FOUC protection after stylesheet and basic DOM is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // Short delay to ensure CSS is applied
+        setTimeout(function() {
+          document.documentElement.classList.remove('fouc-protection');
+        }, 50);
+      });
+      
+      // Backup in case DOMContentLoaded doesn't fire properly
+      window.addEventListener('load', function() {
+        document.documentElement.classList.remove('fouc-protection');
+      });
+    </script>
+    <style>
+    /* Prevent FOUC (Flash of Unstyled Content) */
+    html {
+      visibility: visible;
+      opacity: 1;
+    }
+    html.fouc-protection {
+      visibility: hidden;
+      opacity: 0;
+    }
+    
+    /* Initial styles to prevent flash before JavaScript loads */
+    body {
+      background-color: #050505;
+      color: #ffffff;
+    }
+    
+    /* Immediately set theme from localStorage if available */
+    :root {
+      --color-primary: #8a85ff;
+      --color-secondary: #c389c5;
+      --color-accent: #8bb8cf;
+    }
+    </style>
+    <script>
+    // Immediately set theme from localStorage to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI5 Form | System3</title>
+    <meta name="description" content="Form for AI5 course group formation at System3">
+    <link rel="icon" href="/public/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- System3 main stylesheet -->
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Navigation - Content dynamically inserted by header.js -->
+      <header>
+        <!-- Header content will be inserted here by JavaScript -->
+      </header>
+
+      <div class="content">
+        <!-- Main Form Section -->
+        <section class="section" id="form-section">
+          <div class="section-content">
+            <div class="form-wrapper">
+              <div class="form-container">
+                <div class="form-header">
+                  <div class="form-logo">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="url(#paint0_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M7 7H17" stroke="url(#paint1_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M7 12H17" stroke="url(#paint2_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M7 17H13" stroke="url(#paint3_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <defs>
+                        <linearGradient id="paint0_linear" x1="3" y1="12" x2="21" y2="12" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#8a85ff"/>
+                          <stop offset="1" stop-color="#c389c5"/>
+                        </linearGradient>
+                        <linearGradient id="paint1_linear" x1="7" y1="7.5" x2="17" y2="7.5" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#8a85ff"/>
+                          <stop offset="1" stop-color="#c389c5"/>
+                        </linearGradient>
+                        <linearGradient id="paint2_linear" x1="7" y1="12.5" x2="17" y2="12.5" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#8a85ff"/>
+                          <stop offset="1" stop-color="#c389c5"/>
+                        </linearGradient>
+                        <linearGradient id="paint3_linear" x1="7" y1="17.5" x2="13" y2="17.5" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#8a85ff"/>
+                          <stop offset="1" stop-color="#c389c5"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                  <h1>AI5 Group Formation Form</h1>
+                  <p>Please provide the following information to help us form optimal project groups based on shared interests, schedules, and working styles.</p>
+                </div>
+                
+                <form id="ai5-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfLFUfIZX8iLatR6atuBLydoEl-V3dTJZR5ZJ7mVGe2HE1cAw/formResponse" method="post" target="hidden-iframe">
+                  <!-- Personal Information Section -->
+                  <div class="form-section">
+                    <h2 class="form-section-title">Personal Information</h2>
+                    
+                    <div class="form-group">
+                      <label for="name" class="required-field">Name (as it appears on Ed)</label>
+                      <input type="text" class="form-control" id="name" name="entry.955886242" required placeholder="Your full name as listed in Ed">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="entry.120469467" placeholder="Your contact email">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="university">What university, school, program are you currently enrolled in?</label>
+                      <input type="text" class="form-control" id="university" name="entry.653435233" placeholder="e.g., Harvard Extension School, Data Science program">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="employment">Are you currently employed? Describe your organization and your role.</label>
+                      <textarea class="form-control" id="employment" name="entry.111697871" rows="3" placeholder="Please share your current employment details"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="experience">Would you like to share other relevant information e.g. similar courses taken or any work experience?</label>
+                      <textarea class="form-control" id="experience" name="entry.152637414" rows="3" placeholder="Any relevant courses, experience, or skills that may help with group formation"></textarea>
+                    </div>
+                  </div>
+                  
+                  <!-- Group Preferences -->
+                  <div class="form-section">
+                    <h2 class="form-section-title">Group & Working Preferences</h2>
+                    
+                    <div class="form-group">
+                      <label class="required-field">Have you formed a group? (group of 4 for project)</label>
+                      <div class="radio-group">
+                        <div class="radio-option">
+                          <input type="radio" id="group-yes" name="entry.1325852028" value="Yes" required>
+                          <label for="group-yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                          <input type="radio" id="group-no" name="entry.1325852028" value="No">
+                          <label for="group-no">No</label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Do you prefer to work during the day, early morning, late at night?</label>
+                      <div class="checkbox-group">
+                        <div class="checkbox-option">
+                          <input type="checkbox" id="time-morning" name="entry.735127486" value="Early Morning">
+                          <label for="time-morning">Early Morning</label>
+                        </div>
+                        <div class="checkbox-option">
+                          <input type="checkbox" id="time-day" name="entry.735127486" value="During the day">
+                          <label for="time-day">During the day</label>
+                        </div>
+                        <div class="checkbox-option">
+                          <input type="checkbox" id="time-night" name="entry.735127486" value="Late at night">
+                          <label for="time-night">Late at night</label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Do you consider yourself procrastinator or you prefer to plan and work ahead of time?</label>
+                      <div class="radio-group">
+                        <div class="radio-option">
+                          <input type="radio" id="work-1" name="entry.642328209" value="1">
+                          <label for="work-1">1 - Procrastinator</label>
+                        </div>
+                        <div class="radio-option">
+                          <input type="radio" id="work-2" name="entry.642328209" value="2">
+                          <label for="work-2">2</label>
+                        </div>
+                        <div class="radio-option">
+                          <input type="radio" id="work-3" name="entry.642328209" value="3">
+                          <label for="work-3">3</label>
+                        </div>
+                        <div class="radio-option">
+                          <input type="radio" id="work-4" name="entry.642328209" value="4">
+                          <label for="work-4">4</label>
+                        </div>
+                        <div class="radio-option">
+                          <input type="radio" id="work-5" name="entry.642328209" value="5">
+                          <label for="work-5">5 - Plan and work ahead of time</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Additional Information -->
+                  <div class="form-section">
+                    <h2 class="form-section-title">Additional Information</h2>
+                    
+                    <div class="form-group">
+                      <label for="about">Tell us more about yourself, any interesting hobbies/activities, favorite music/TV shows/movies.</label>
+                      <textarea class="form-control" id="about" name="entry.1469805238" rows="3" placeholder="Share your hobbies, interests and favorites to help find like-minded group members"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="computer">What is your computer specifications (Operating System, OS version, RAM, HDD)</label>
+                      <textarea class="form-control" id="computer" name="entry.713432881" rows="2" placeholder="e.g., Windows 11, 16GB RAM, 512GB SSD"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="required-field">Can we publish your response for other students in this course?</label>
+                      <div class="radio-group">
+                        <div class="radio-option">
+                          <input type="radio" id="publish-yes" name="entry.465867713" value="Yes" required>
+                          <label for="publish-yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                          <input type="radio" id="publish-no" name="entry.465867713" value="No">
+                          <label for="publish-no">No</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-submit">
+                    <button type="submit" class="submit-btn">Submit Form</button>
+                  </div>
+                  
+                  <div class="form-note">
+                    <p>* Required fields</p>
+                  </div>
+                </form>
+                
+                <div id="success-message" class="success-message">
+                  <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  </div>
+                  <h3>Form Submitted Successfully!</h3>
+                  <p>Thank you for your submission. Your information has been received and will be used for group formation in the AI5 course.</p>
+                  <a href="/forms/" class="success-btn">Return to Forms Directory</a>
+                </div>
+                
+                <!-- Hidden iframe for the form submission -->
+                <iframe name="hidden-iframe" id="hidden-iframe" style="display:none;"></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <!-- Footer -->
+      <footer>
+        <div class="footer-content">
+          <div class="footer-branding">
+            <div class="footer-logo">
+              <span class="logo-mark"></span>
+              System3
+            </div>
+            <p>Pioneering the future of AI education and consulting</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/consultancy.html">AI Consulting</a></li>
+                <li><a href="/education.html">AI Education</a></li>
+                <li><a href="/">Data Strategy</a></li>
+                <li><a href="/">AI Implementation</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Courses</h4>
+              <ul>
+                <li><a href="/courses/data-science.html">Data Science</a></li>
+                <li><a href="/courses/machine-learning.html">Machine Learning</a></li>
+                <li><a href="/courses/computer-vision.html">Computer Vision</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/about.html#team">Team</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 System3, Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+    
+    <style>
+      /* Custom form styling */
+      #form-section {
+        padding: 120px 0 80px;
+      }
+      
+      .form-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      .form-container {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        border: 1px solid var(--color-border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        position: relative;
+      }
+      
+      .form-header {
+        margin-bottom: 40px;
+        text-align: center;
+      }
+      
+      .form-logo {
+        margin: 0 auto 25px;
+        width: 80px;
+        height: 80px;
+        background: rgba(138, 133, 255, 0.03);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(138, 133, 255, 0.1);
+        border: 1px solid rgba(138, 133, 255, 0.1);
+        position: relative;
+      }
+      
+      .form-logo::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: radial-gradient(circle at center, rgba(138, 133, 255, 0.15), transparent 70%);
+        border-radius: 50%;
+        opacity: 0.5;
+        z-index: -1;
+      }
+      
+      [data-theme="light"] .form-logo {
+        background: white;
+        box-shadow: 0 10px 30px rgba(138, 133, 255, 0.15);
+      }
+      
+      .form-header h1 {
+        font-size: 28px;
+        margin-bottom: 16px;
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+      
+      .form-header p {
+        color: var(--color-text-secondary);
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      
+      .form-section {
+        margin-bottom: 50px;
+        background: rgba(138, 133, 255, 0.02);
+        border-radius: 12px;
+        padding: 25px;
+        border: 1px solid rgba(138, 133, 255, 0.08);
+      }
+      
+      [data-theme="light"] .form-section {
+        background: rgba(138, 133, 255, 0.03);
+        border: 1px solid rgba(138, 133, 255, 0.1);
+      }
+      
+      .form-section-title {
+        font-size: 20px;
+        color: var(--color-primary);
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(138, 133, 255, 0.2);
+        font-weight: 600;
+      }
+      
+      /* Override global styles - use !important to ensure our styles take precedence */
+      #form-section .form-group {
+        margin-bottom: 35px;
+        position: static !important;
+        display: block !important;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(138, 133, 255, 0.1);
+      }
+      
+      #form-section .form-group:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+      
+      /* Reset any animations that might be causing issues */
+      #form-section * {
+        animation: none !important;
+      }
+      
+      /* More specific selector to override global styles */
+      #form-section .form-group label {
+        display: block;
+        position: static !important;
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: var(--color-text);
+        font-size: 16px;
+        top: auto !important;
+        left: auto !important;
+        pointer-events: auto !important;
+        transition: none !important;
+        transform: none !important;
+      }
+      
+      .required-field::after {
+        content: '*';
+        color: var(--color-primary);
+        margin-left: 4px;
+      }
+      
+      /* Override global form control styles */
+      #form-section .form-control {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        padding: 12px 16px !important;
+        color: var(--color-text);
+        font-size: 15px;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+        position: static !important;
+      }
+      
+      #form-section .form-control:focus,
+      #form-section .form-control:not(:placeholder-shown) {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba(138, 133, 255, 0.2);
+        outline: none;
+        padding: 12px 16px !important; /* Override the global padding changes on focus */
+      }
+      
+      #form-section textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+      }
+      
+      .radio-group, .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      
+      .radio-option, .checkbox-option {
+        display: flex;
+        align-items: flex-start;
+        cursor: pointer;
+        padding: 10px;
+        position: static !important;
+        border-radius: 6px;
+        margin-bottom: 5px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(138, 133, 255, 0.05);
+      }
+      
+      .radio-option:hover, .checkbox-option:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      
+      .radio-option input, .checkbox-option input {
+        margin: 3px 10px 0 0;
+        accent-color: var(--color-primary);
+        width: 16px !important;
+        height: 16px !important;
+        padding: 0 !important;
+        position: static !important;
+        opacity: 1 !important;
+      }
+      
+      /* Override global styles for radio/checkbox labels */
+      #form-section .radio-option label, 
+      #form-section .checkbox-option label {
+        margin: 0;
+        font-weight: normal;
+        position: static !important;
+        display: inline !important;
+        width: auto !important;
+        top: auto !important;
+        left: auto !important;
+        font-size: 15px !important;
+        pointer-events: auto !important;
+        text-align: left !important;
+      }
+      
+      .form-submit {
+        margin-top: 32px;
+        text-align: center;
+      }
+      
+      .submit-btn {
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 32px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .submit-btn:hover {
+        background: #7a75e6;
+      }
+      
+      .form-note {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 14px;
+        color: var(--color-text-secondary);
+      }
+      
+      .success-message {
+        display: none;
+        background: rgba(46, 213, 115, 0.08);
+        border: 1px solid rgba(46, 213, 115, 0.2);
+        border-radius: 12px;
+        padding: 32px;
+        text-align: center;
+      }
+      
+      .success-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 16px;
+        color: #2ed573;
+      }
+      
+      .success-message h3 {
+        color: #2ed573;
+        margin-bottom: 16px;
+        font-size: 22px;
+      }
+      
+      .success-message p {
+        color: var(--color-text-secondary);
+        margin-bottom: 24px;
+      }
+      
+      .success-btn {
+        display: inline-block;
+        background: rgba(46, 213, 115, 0.1);
+        color: #2ed573;
+        border: 1px solid rgba(46, 213, 115, 0.3);
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-size: 14px;
+        text-decoration: none;
+      }
+      
+      .success-btn:hover {
+        background: rgba(46, 213, 115, 0.2);
+      }
+      
+      /* Light mode styles */
+      [data-theme="light"] .form-container {
+        background: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+      
+      [data-theme="light"] .form-control {
+        background: #f9f9f9;
+        border-color: rgba(0, 0, 0, 0.1);
+      }
+      
+      [data-theme="light"] .radio-option, 
+      [data-theme="light"] .checkbox-option {
+        background: rgba(138, 133, 255, 0.03);
+        border: 1px solid rgba(138, 133, 255, 0.1);
+      }
+      
+      [data-theme="light"] .radio-option:hover, 
+      [data-theme="light"] .checkbox-option:hover {
+        background: rgba(138, 133, 255, 0.08);
+      }
+      
+      [data-theme="light"] #form-section .form-group {
+        border-bottom-color: rgba(0, 0, 0, 0.05);
+      }
+      
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        #form-section {
+          padding: 100px 0 60px;
+        }
+        
+        .form-container {
+          padding: 30px 20px;
+        }
+        
+        .form-header h1 {
+          font-size: 24px;
+        }
+        
+        .form-header p {
+          font-size: 14px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        #form-section {
+          padding: 80px 0 40px;
+        }
+        
+        .form-container {
+          padding: 20px 15px;
+        }
+        
+        .form-header h1 {
+          font-size: 20px;
+        }
+        
+        .form-section-title {
+          font-size: 18px;
+        }
+        
+        .submit-btn {
+          width: 100%;
+        }
+      }
+    </style>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('ai5-form');
+        const successMessage = document.getElementById('success-message');
+        const iframe = document.getElementById('hidden-iframe');
+        
+        // Initialize theme
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme') || 
+                            (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        // Set initial theme
+        if (currentTheme === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+        
+        // Set up theme toggle (wait a bit for header to be inserted)
+        setTimeout(function() {
+          const themeToggle = document.querySelector('.theme-toggle');
+          if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+              let theme;
+              
+              // Toggle between light and dark themes
+              if (document.documentElement.getAttribute('data-theme') === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                theme = 'dark';
+              } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                theme = 'light';
+              }
+              
+              // Save the preference
+              localStorage.setItem('theme', theme);
+            });
+          }
+        }, 500);
+        
+        // Handle form submission
+        form.addEventListener('submit', function(e) {
+          // Show loading state
+          const submitBtn = form.querySelector('.submit-btn');
+          submitBtn.innerHTML = 'Submitting...';
+          submitBtn.disabled = true;
+        });
+        
+        // When iframe loads after form submission
+        iframe.addEventListener('load', function() {
+          // Check if form was actually submitted (not just page load)
+          if (form.classList.contains('submitted')) {
+            showSuccessMessage();
+          }
+        });
+        
+        // Add submitted class when form is submitted
+        form.addEventListener('submit', function() {
+          form.classList.add('submitted');
+        });
+        
+        // Show success message and reset form
+        function showSuccessMessage() {
+          // Hide form and show success message
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+          
+          // Reset form for potential resubmission
+          form.reset();
+          const submitBtn = form.querySelector('.submit-btn');
+          submitBtn.innerHTML = 'Submit Form';
+          submitBtn.disabled = false;
+        }
+        
+        // Make all sections active immediately to fix opacity
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.add('active');
+        });
+        
+        // Apply additional fixes to override global styles that might be causing issues
+        document.querySelectorAll('#form-section .form-group label').forEach(label => {
+          label.style.position = 'static';
+          label.style.top = 'auto';
+          label.style.left = 'auto';
+        });
+        
+        document.querySelectorAll('#form-section .form-control').forEach(control => {
+          // Ensure the padding doesn't change on focus
+          control.addEventListener('focus', function() {
+            this.style.paddingTop = '12px';
+            this.style.paddingBottom = '12px';
+          });
+        });
+        
+        // Ensure radio and checkbox labels stay properly aligned
+        document.querySelectorAll('#form-section .radio-option label, #form-section .checkbox-option label').forEach(label => {
+          label.style.position = 'static';
+          label.style.display = 'inline';
+          label.style.width = 'auto';
+          label.style.margin = '0';
+        });
+      });
+    </script>
+  </body>
+</html>

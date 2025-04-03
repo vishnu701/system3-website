@@ -1,0 +1,48 @@
+name: Deploy to Hostinger
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose environment to deploy to Hostinger'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build project
+      run: npm run build
+      
+    - name: Install lftp
+      run: sudo apt-get install -y lftp
+    
+    - name: Deploy to Hostinger
+      env:
+        HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        HOSTINGER_PASSWORD: ${{ secrets.HOSTINGER_PASSWORD }}
+        HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+        DEPLOY_PATH: ${{ github.event.inputs.environment == 'production' && secrets.HOSTINGER_PROD_PATH || secrets.HOSTINGER_STAGING_PATH }}
+      run: |
+        # Using lftp to mirror the dist folder to Hostinger
+        lftp -c "set ssl:verify-certificate no; \
+                open -u $HOSTINGER_USER,$HOSTINGER_PASSWORD $HOSTINGER_HOST; \
+                mirror -R --delete-first --parallel=10 dist/ $DEPLOY_PATH"
+      shell: bash

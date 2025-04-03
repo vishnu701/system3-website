@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System3 Form Builder</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  
+  <!-- Form.io CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.css">
+  
+  <!-- Form.io JS - specifically using unpkg CDN which is more reliable -->
+  <script src="https://unpkg.com/formiojs@4.13.0/dist/formio.full.min.js"></script>
+  
+  <!-- Simple Form.io detection script -->
+  <script>
+    // Function to load Form.io from multiple sources if needed
+    function ensureFormioLoaded() {
+      if (typeof Formio !== 'undefined') {
+        console.log("Formio already loaded");
+        return Promise.resolve(window.Formio);
+      }
+      
+      return new Promise((resolve, reject) => {
+        console.log("Attempting to load Formio from alternate source");
+        
+        // Try to load from different CDN
+        const script = document.createElement('script');
+        script.src = "https://cdn.form.io/formio.full.min.js";
+        script.async = false;
+        script.onload = () => {
+          if (typeof Formio !== 'undefined') {
+            console.log("Formio loaded successfully");
+            resolve(window.Formio);
+          } else {
+            reject(new Error("Failed to load Form.io"));
+          }
+        };
+        script.onerror = (e) => {
+          reject(new Error("Failed to load Form.io"));
+        };
+        
+        document.head.appendChild(script);
+      });
+    }
+  </script>
+  
+  <!-- System3 stylesheet for styling consistency -->
+  <link rel="stylesheet" href="/src/style.css">
+  
+  <style>
+    /* Password protection styles */
+    #password-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(5, 5, 5, 0.95);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .password-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2.5rem;
+      border-radius: 12px;
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+      color: #fff;
+      border: 1px solid rgba(138, 133, 255, 0.3);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .password-container h2 {
+      margin-bottom: 1.5rem;
+      color: #8a85ff;
+    }
+    
+    .password-container input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .password-container input:focus {
+      border-color: #8a85ff;
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .password-container button {
+      background: #8a85ff;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .password-container button:hover {
+      background: #7a75ef;
+      transform: translateY(-2px);
+    }
+    
+    /* System3 styled form preview */
+    .system3-form-preview {
+      border: 1px solid rgba(138, 133, 255, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    [data-theme="light"] .system3-form-preview {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(138, 133, 255, 0.2);
+    }
+    
+    /* System3 form element styles for preview */
+    .form-control-system3 {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      color: white !important;
+      padding: 10px !important;
+      border-radius: 6px !important;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control-system3:focus {
+      border-color: #8a85ff !important;
+      box-shadow: 0 0 0 3px rgba(138, 133, 255, 0.2) !important;
+    }
+    
+    .btn-system3 {
+      background: #8a85ff !important;
+      color: white !important;
+      border: none !important;
+      padding: 10px 20px !important;
+      border-radius: 6px !important;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-system3:hover {
+      background: #7a75ef !important;
+      transform: translateY(-2px);
+    }
+    
+    /* Light theme overrides */
+    [data-theme="light"] .form-control-system3 {
+      background: white !important;
+      border: 1px solid #ddd !important;
+      color: #333 !important;
+    }
+    
+    /* Custom tab styles to match System3 */
+    .nav-tabs .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.75rem 1.25rem;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-tabs .nav-link:hover {
+      color: #8a85ff;
+      border-bottom-color: rgba(138, 133, 255, 0.5);
+    }
+    
+    .nav-tabs .nav-link.active {
+      color: #8a85ff;
+      background: transparent;
+      border-bottom: 2px solid #8a85ff;
+    }
+    
+    [data-theme="light"] .nav-tabs .nav-link {
+      color: rgba(0, 0, 0, 0.6);
+    }
+    
+    /* Embed/JSON container styling */
+    .code-container {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    [data-theme="light"] .code-container {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .code-container pre {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #f8f9fa;
+    }
+    
+    [data-theme="light"] .code-container pre {
+      background: rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+    
+    /* Form builder templates */
+    .template-option {
+      margin-bottom: 15px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .template-option:hover {
+      background: rgba(138, 133, 255, 0.1);
+      border-color: rgba(138, 133, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .template-option h5 {
+      color: #8a85ff;
+      margin-bottom: 10px;
+    }
+    
+    [data-theme="light"] .template-option {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Password Protection Screen -->
+  <div id="password-screen">
+    <div class="password-container">
+      <h2>System3 Form Builder</h2>
+      <p>Enter the password to access the form builder</p>
+      <input type="password" id="password-input" placeholder="Enter password...">
+      <button id="submit-password">Access Form Builder</button>
+      <p id="password-error" style="color: #ff6b6b; margin-top: 10px; display: none;">Incorrect password. Please try again.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Having trouble with the form builder?</strong> If the builder doesn't load correctly, try our 
+      <a href="#" onclick="loadSimpleBuilder()" class="alert-link">simple backup form builder</a> instead.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="row mt-4">
+      <div class="col-12">
+        <h1 class="text-center">System3 Form Builder</h1>
+        <p class="text-center mb-4">Create forms for your website with this simple drag-and-drop builder.</p>
+      </div>
+    </div>
+    
+    <div class="row mt-3">
+      <div class="col-12">
+        <ul class="nav nav-tabs" id="formTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="builder-tab" data-toggle="tab" href="#builder" role="tab">Builder</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview" role="tab">Preview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="embed-tab" data-toggle="tab" href="#embed" role="tab">Embed Code</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="json-tab" data-toggle="tab" href="#json" role="tab">JSON</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="integration-tab" data-toggle="tab" href="#integration" role="tab">Integrations</a>
+          </li>
+        </ul>
+        
+        <div class="tab-content mt-3" id="formTabsContent">
+          <!-- Builder Tab -->
+          <div class="tab-pane fade show active" id="builder" role="tabpanel">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card mb-4">
+                  <div class="card-header">Form Templates</div>
+                  <div class="card-body">
+                    <div class="template-option" data-template="contact">
+                      <h5>Contact Form</h5>
+                      <p class="small">Basic contact form with name, email, and message fields</p>
+                    </div>
+                    <div class="template-option" data-template="registration">
+                      <h5>Registration Form</h5>
+                      <p class="small">User registration with account details</p>
+                    </div>
+                    <div class="template-option" data-template="feedback">
+                      <h5>Feedback Form</h5>
+                      <p class="small">Customer feedback and satisfaction survey</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">Form Actions</div>
+                  <div class="card-body">
+                    <button class="btn btn-primary btn-block mb-2" id="save-json">Save Form</button>
+                    <button class="btn btn-secondary btn-block" id="load-json">Load Form</button>
+                    <input type="file" id="json-file-input" accept=".json" style="display:none">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div id="formio-builder"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Preview Tab -->
+          <div class="tab-pane fade" id="preview" role="tabpanel">
+            <h4 class="mb-3">System3 Styled Form Preview</h4>
+            <div class="system3-form-preview">
+              <div id="formio-preview"></div>
+            </div>
+          </div>
+          
+          <!-- Embed Code Tab -->
+          <div class="tab-pane fade" id="embed" role="tabpanel">
+            <div class="row">
+              <div class="col-12">
+                <h4 class="mb-3">Embed This Form On Your Website</h4>
+                <div class="code-container">
+                  <p>Copy this code and paste it into any HTML page to embed your form:</p>
+                  <pre id="embed-code"></pre>
+                  <button class="btn btn-primary mt-2" id="copy-embed">Copy Embed Code</button>
+                </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- JSON Tab -->
+          <div class="tab-pane fade" id="json" role="tabpanel">
+            <div class="mb-3">
+              <h4>Form Definition JSON</h4>
+              <p>This is the raw JSON definition of your form:</p>
+              <button class="btn btn-primary mb-3" id="copy-json">Copy JSON</button>
+            </div>
+            <div class="code-container">
+              <pre id="json-content"></pre>
+            </div>
+          </div>
+          
+          <!-- Integrations Tab -->
+          <div class="tab-pane fade" id="integration" role="tabpanel">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="mb-4">Form Integrations</h3>
+                
+                <!-- Google Sheets Integration -->
+                <div class="card mb-5">
+                  <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">Google Sheets Integration</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="alert alert-warning">
+                      <h5><strong>Important: This is NOT Google Forms</strong></h5>
+                      <p>This integration connects your System3 form directly to Google Sheets. You do NOT need to create a Google Form - data goes straight from your website to your Google Sheet.</p>
+                    </div>
+                    
+                    <div class="alert alert-info mb-4">
+                      <h5><strong>Understanding Form Fields vs. Google Sheet Columns</strong></h5>
+                      <p>For this integration to work, your Google Sheet column headers must <strong>exactly match</strong> the <code>key</code> values of your form fields (not the display labels).</p>
+                      <p>These keys can be found in the JSON tab:</p>
+                      <pre class="bg-light p-2">
+{
+  "components": [
+    {
+      "label": "Full Name",  // This is what users see
+      "key": "name",        // This is what should be your Google Sheet column header
+      // ...
+    },
+    {
+      "label": "Email Address",  // This is what users see
+      "key": "email",           // This is what should be your Google Sheet column header
+      // ...
+    }
+  ]
+}</pre>
+                    </div>
+
+                    <h5 class="mt-4 mb-3">Follow these detailed steps to integrate your form with Google Sheets:</h5>
+                    
+                    <div class="accordion" id="googleSheetsSteps">
+                      <!-- Step 1 -->
+                      <div class="card mb-2">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Step 1: Create a Google Sheet with Matching Column Headers
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#googleSheetsSteps">
+                          <div class="card-body">
+                            <ol>
+                              <li>Go to <a href="https://sheets.google.com" target="_blank">Google Sheets</a> and create a new spreadsheet</li>
+                              <li>Name your spreadsheet (e.g., "System3 Form Responses")</li>
+                              <li>In the first row, create column headers that match your form field keys:</li>
+                              <ul>
+                                <li>A1: <strong>Timestamp</strong> (automatically added by the script)</li>
+                                <li>B1, C1, etc.: Add headers matching your form field keys</li>
+                              </ul>
+                              <li class="text-danger"><strong>Important:</strong> Column headers must exactly match the "key" values (not the "label" values) from your form fields</li>
+                              <li>To find your form field keys, go to the JSON tab and look for the "key" property of each component</li>
+                            </ol>
+                            
+                            <div class="card bg-light p-3 mt-3">
+                              <h6>Example:</h6>
+                              <p>If your form has these fields (visible in the JSON tab):</p>
+                              <ul>
+                                <li>A field with label "Full Name" and key "name"</li>
+                                <li>A field with label "Email Address" and key "email"</li>
+                                <li>A field with label "Your Message" and key "message"</li>
+                              </ul>
+                              
+                              <p>Your Google Sheet headers should be:</p>
+                              <table class="table table-bordered">
+                                <tr>
+                                  <th>A1</th>
+                                  <th>B1</th>
+                                  <th>C1</th>
+                                  <th>D1</th>
+                                </tr>
+                                <tr>
+                                  <td>Timestamp</td>
+                                  <td>name</td>
+                                  <td>email</td>
+                                  <td>message</td>
+                                </tr>
+                              </table>
+                              
+                              <p class="text-danger"><strong>Note:</strong> Use "name" (the key), not "Full Name" (the label)</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Step 2 -->
+                      <div class="card mb-2">
+                        <div class="card-header" id="headingTwo">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Step 2: Create a Google Apps Script
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#googleSheetsSteps">
+                          <div class="card-body">
+                            <ol>
+                              <li>In your Google Sheet, click on <strong>Extensions</strong> > <strong>Apps Script</strong></li>
+                              <li>Replace any existing code with the following script:</li>
+                              <div class="code-container">
+                                <pre>function doPost(e) {
+  // Parse the incoming JSON data
+  var data = JSON.parse(e.postData.contents);
+  var formData = data.data; // Form.io submissions include data in a nested "data" object
+  
+  // Get the active sheet
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // Get the headers from the first row
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  
+  // Initialize an array for the new row with a timestamp
+  var row = [new Date()];
+  
+  // For each header (skipping the first which is Timestamp)
+  for (var i = 1; i &lt; headers.length; i++) {
+    var header = headers[i];
+    // Add the corresponding value from the form data, or an empty string if not found
+    row.push(formData[header] || '');
+  }
+  
+  // Append the row to the sheet
+  sheet.appendRow(row);
+  
+  // Return a success response with CORS headers
+  return ContentService.createTextOutput(JSON.stringify({
+    "result": "success",
+    "message": "Form submission saved successfully"
+  }))
+  .setMimeType(ContentService.MimeType.JSON)
+  .setHeader('Access-Control-Allow-Origin', '*');
+}
+
+// Handle preflight OPTIONS requests (needed for CORS)
+function doOptions(e) {
+  return ContentService.createTextOutput("")
+    .setMimeType(ContentService.MimeType.TEXT)
+    .setHeader('Access-Control-Allow-Origin', '*')
+    .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+    .setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}</pre>
+                              </div>
+                              <li>Click <strong>Save</strong> and name your project (e.g., "System3 Form Handler")</li>
+                            </ol>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Step 3 -->
+                      <div class="card mb-2">
+                        <div class="card-header" id="headingThree">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Step 3: Deploy as a Web App
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#googleSheetsSteps">
+                          <div class="card-body">
+                            <ol>
+                              <li>In the Apps Script editor, click <strong>Deploy</strong> > <strong>New deployment</strong></li>
+                              <li>Click the gear icon next to "Select type" and choose <strong>Web app</strong></li>
+                              <li>Configure the deployment:
+                                <ul>
+                                  <li>Description: "System3 Form Handler"</li>
+                                  <li>Execute as: "Me" (your Google account)</li>
+                                  <li>Who has access: "Anyone" (to allow form submissions from any user)</li>
+                                </ul>
+                              </li>
+                              <li>Click <strong>Deploy</strong></li>
+                              <li>Authorize the script when prompted by clicking <strong>Authorize access</strong></li>
+                              <li>After allowing permissions, you'll receive a Web app URL. <strong>Copy this URL</strong> - you'll need it for your form.</li>
+                            </ol>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Step 4 -->
+                      <div class="card mb-2">
+                        <div class="card-header" id="headingFour">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                              Step 4: Update Your Form Embed Code
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#googleSheetsSteps">
+                          <div class="card-body">
+                            <ol>
+                              <li>In the embed code from the "Embed Code" tab, find this section:</li>
+                              <div class="code-container bg-dark text-light">
+                                <pre>// For Google Sheets integration, you would post to your Google Apps Script Web App URL
+// fetch("YOUR_GOOGLE_SCRIPT_URL", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify(submission),
+// })
+//   .then(response => response.json())
+//   .then(result => {
+//     console.log("Success:", result);
+//   })
+//   .catch(error => {
+//     console.error("Error:", error);
+//   });</pre>
+                              </div>
+                              <li>Replace <code>YOUR_GOOGLE_SCRIPT_URL</code> with the Web app URL you copied in Step 3</li>
+                              <li>Uncomment the fetch code (remove the <code>//</code> at the beginning of each line)</li>
+                            </ol>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Step 5 -->
+                      <div class="card mb-2">
+                        <div class="card-header" id="headingFive">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                              Step 5: Testing Your Integration
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#googleSheetsSteps">
+                          <div class="card-body">
+                            <ol>
+                              <li>Embed your form on a web page using the code from the "Embed Code" tab</li>
+                              <li>Submit a test form entry</li>
+                              <li>Check your Google Sheet to verify that the submission data appears as a new row</li>
+                              <li>Troubleshooting:
+                                <ul>
+                                  <li>If data isn't appearing, check the browser console for errors</li>
+                                  <li>Make sure you've set the correct permissions for your Apps Script</li>
+                                  <li><strong>Most common issue:</strong> Verify that your form field keys exactly match the column headers in your Google Sheet</li>
+                                </ul>
+                              </li>
+                            </ol>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="alert alert-info mt-4">
+                      <strong>Note:</strong> This integration works best for simple forms. For complex forms with file uploads, 
+                      nested data, or multi-page workflows, you might need a more sophisticated integration or a dedicated form 
+                      service.
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Other potential integrations could be added here -->
+                <div class="card mb-4">
+                  <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Need Other Integrations?</h5>
+                  </div>
+                  <div class="card-body">
+                    <p>In addition to Google Sheets, you can integrate your form with:</p>
+                    <ul>
+                      <li><strong>Email Services:</strong> Use services like Mailchimp, SendGrid, or a custom email handler</li>
+                      <li><strong>CRM Systems:</strong> Connect to HubSpot, Salesforce, or other CRM platforms</li>
+                      <li><strong>Custom API Endpoints:</strong> Send data to your own backend servers</li>
+                    </ul>
+                    <p>These require additional coding in the embed code's submission handler section.</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap JS + Popper -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+  
+  <!-- Form.io initialization script -->
+  <script>
+    // Password protection
+    const passwordScreen = document.getElementById('password-screen');
+    const passwordInput = document.getElementById('password-input');
+    const submitPassword = document.getElementById('submit-password');
+    const passwordError = document.getElementById('password-error');
+    
+    // Initialize authentication - no localStorage to avoid quota issues
+    function initAuth() {
+      console.log("Checking authentication");
+      try {
+        // In development mode, just bypass the password screen
+        console.log("Development mode: bypassing password screen");
+        
+        if (passwordScreen) {
+          passwordScreen.style.display = 'none';
+        } else {
+          console.warn("Password screen element not found");
+        }
+      } catch (e) {
+        console.error("Authentication error:", e);
+        // Still try to hide the password screen
+        try {
+          if (passwordScreen) passwordScreen.style.display = 'none';
+        } catch (err) {}
+      }
+    }
+    
+    // Verify password function
+    function verifyPassword() {
+      console.log("Verifying password");
+      // Simple password - in a real app, you'd use a server-side check
+      if (passwordInput.value === 'system3admin') {
+        console.log("Password correct");
+        try {
+          localStorage.setItem('form_builder_authenticated', 'true');
+        } catch (e) {
+          console.error("LocalStorage error:", e);
+        }
+        passwordScreen.style.display = 'none';
+        passwordError.style.display = 'none';
+      } else {
+        console.log("Password incorrect");
+        passwordError.style.display = 'block';
+        passwordInput.value = '';
+      }
+    }
+    
+    // For debugging/development
+    window.bypassAuth = function() {
+      passwordScreen.style.display = 'none';
+    };
+    
+    // Password verification event listener
+    submitPassword.addEventListener('click', verifyPassword);
+    
+    // Also allow pressing Enter to submit password
+    passwordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        verifyPassword();
+      }
+    });
+    
+    // Wait for DOM to be fully loaded before initializing
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log("DOM fully loaded, initializing application");
+      
+      // First ensure Form.io is loaded
+      ensureFormioLoaded()
+        .then(() => {
+          console.log("Form.io confirmed loaded, proceeding with initialization");
+          // Initialize authentication
+          initAuth();
+          
+          // Initialize form builder
+          initFormBuilder();
+        })
+        .catch(err => {
+          console.error("Failed to load Form.io:", err);
+          alert("There was a problem loading the form builder library. Please refresh the page and try again.");
+        });
+    });
+  
+    // Form builder initialization
+    function initFormBuilder() {
+      console.log("Initializing form builder");
+      
+      // Elements
+      const formBuilder = document.getElementById('formio-builder');
+      const formPreview = document.getElementById('formio-preview');
+      const jsonContent = document.getElementById('json-content');
+      const embedCode = document.getElementById('embed-code');
+      const copyJsonBtn = document.getElementById('copy-json');
+      const copyEmbedBtn = document.getElementById('copy-embed');
+      const saveJsonBtn = document.getElementById('save-json');
+      const loadJsonBtn = document.getElementById('load-json');
+      const jsonFileInput = document.getElementById('json-file-input');
+      const templateOptions = document.querySelectorAll('.template-option');
+      
+      if (!formBuilder) {
+        console.error("Form builder element not found!");
+        return;
+      }
+      
+      // Check if Formio is loaded
+      if (!window.Formio) {
+        console.error("Form.io library not loaded! Attempting to reload...");
+        
+        // Try to reload the Form.io script
+        const script = document.createElement('script');
+        script.src = "https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.js";
+        script.onload = function() {
+          console.log("Form.io library loaded successfully");
+          continueInitialization();
+        };
+        script.onerror = function() {
+          console.error("Failed to load Form.io library");
+          alert("Failed to load the form builder. Please try refreshing the page.");
+        };
+        document.head.appendChild(script);
+      } else {
+        console.log("Form.io library already loaded");
+        continueInitialization();
+      }
+      
+      function continueInitialization() {
+        console.log("Continuing form builder initialization");
+        
+        // Form templates
+        const templates = {
+        contact: {
+          components: [
+            {
+              type: 'textfield',
+              label: 'Name',
+              key: 'name',
+              placeholder: 'Enter your full name',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'email',
+              label: 'Email',
+              key: 'email',
+              placeholder: 'Enter your email address',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'textfield',
+              label: 'Subject',
+              key: 'subject',
+              placeholder: 'What is this regarding?',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'textarea',
+              label: 'Message',
+              key: 'message',
+              placeholder: 'Enter your message',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'button',
+              label: 'Submit',
+              key: 'submit',
+              action: 'submit',
+              theme: 'primary'
+            }
+          ]
+        },
+        registration: {
+          components: [
+            {
+              type: 'textfield',
+              label: 'First Name',
+              key: 'firstName',
+              placeholder: 'Enter your first name',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'textfield',
+              label: 'Last Name',
+              key: 'lastName',
+              placeholder: 'Enter your last name',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'email',
+              label: 'Email',
+              key: 'email',
+              placeholder: 'Enter your email address',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'password',
+              label: 'Password',
+              key: 'password',
+              placeholder: 'Create a password',
+              validate: {
+                required: true,
+                minLength: 8
+              }
+            },
+            {
+              type: 'button',
+              label: 'Register',
+              key: 'submit',
+              action: 'submit',
+              theme: 'primary'
+            }
+          ]
+        },
+        feedback: {
+          components: [
+            {
+              type: 'textfield',
+              label: 'Name',
+              key: 'name',
+              placeholder: 'Enter your full name',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'email',
+              label: 'Email',
+              key: 'email',
+              placeholder: 'Enter your email address',
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'radio',
+              label: 'How satisfied are you with our service?',
+              key: 'satisfaction',
+              values: [
+                { label: 'Very Satisfied', value: '5' },
+                { label: 'Satisfied', value: '4' },
+                { label: 'Neutral', value: '3' },
+                { label: 'Dissatisfied', value: '2' },
+                { label: 'Very Dissatisfied', value: '1' }
+              ],
+              validate: {
+                required: true
+              }
+            },
+            {
+              type: 'textarea',
+              label: 'Additional Feedback',
+              key: 'feedback',
+              placeholder: 'Please share any additional feedback'
+            },
+            {
+              type: 'button',
+              label: 'Submit Feedback',
+              key: 'submit',
+              action: 'submit',
+              theme: 'primary'
+            }
+          ]
+        }
+      };
+      
+      // Default empty form
+      const defaultForm = {
+        components: []
+      };
+      
+      // System3 form styling
+      const system3FormStyles = `
+      .formio-form {
+        font-family: 'Inter', sans-serif;
+      }
+      .formio-component input, .formio-component textarea, .formio-component select {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        border-radius: 6px;
+        padding: 10px;
+        transition: all 0.3s ease;
+      }
+      .formio-component input:focus, .formio-component textarea:focus, .formio-component select:focus {
+        border-color: #8a85ff;
+        box-shadow: 0 0 0 3px rgba(138, 133, 255, 0.2);
+        outline: none;
+      }
+      .formio-component-submit button {
+        background-color: #8a85ff !important;
+        border-color: #8a85ff !important;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .formio-component-submit button:hover {
+        background-color: #7a75ef !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(138, 133, 255, 0.2);
+      }
+      [data-theme="light"] .formio-component input, 
+      [data-theme="light"] .formio-component textarea, 
+      [data-theme="light"] .formio-component select {
+        background: white;
+        border: 1px solid #ddd;
+        color: #333;
+      }
+      [data-theme="light"] .formio-form {
+        color: #333;
+      }
+      `;
+      
+      // Initialize the form builder
+      try {
+        console.log("Starting Formio builder initialization...");
+        
+        if (!Formio || !Formio.builder) {
+          console.error("Formio.builder is not available!");
+          
+          // Display error message in the builder area
+          formBuilder.innerHTML = `
+            <div class="alert alert-danger">
+              <h4>Error Loading Form Builder</h4>
+              <p>We couldn't load the Form.io library correctly. Please try:</p>
+              <ol>
+                <li>Refreshing the page</li>
+                <li>Clearing your browser cache</li>
+                <li>Try a different browser</li>
+              </ol>
+              <p>Error details: Formio.builder function not available</p>
+              <button class="btn btn-primary" onclick="location.reload()">Refresh Page</button>
+            </div>
+          `;
+          return;
+        }
+        
+        // Important: DON'T use builder options - they cause "Cannot create property 'key' on boolean 'true'" error
+        // Just use the default builder without options
+        
+        Formio.builder(formBuilder, defaultForm).then(function(builder) {
+          console.log("Form builder initialized successfully");
+          
+          // Store the builder instance
+          window.formBuilder = builder;
+          
+          // When form changes, update preview and JSON
+          builder.on('change', function(schema) {
+            updateFormPreview(schema);
+            updateJsonView(schema);
+            updateEmbedCode(schema);
+          });
+          
+          // Initialize preview, JSON view, and embed code
+          updateFormPreview(defaultForm);
+          updateJsonView(defaultForm);
+          updateEmbedCode(defaultForm);
+        }).catch(function(error) {
+          console.error("Error initializing form builder:", error);
+          
+          // Display error message in the builder area
+          formBuilder.innerHTML = `
+            <div class="alert alert-danger">
+              <h4>Error Initializing Form Builder</h4>
+              <p>An error occurred while setting up the form builder:</p>
+              <pre>${error.message || "Unknown error"}</pre>
+              <button class="btn btn-primary mr-2" onclick="location.reload()">Refresh Page</button>
+              <button class="btn btn-success" onclick="loadSimpleBuilder()">Try Simple Builder</button>
+            </div>
+          `;
+        });
+      } catch (error) {
+        console.error("Exception in form builder initialization:", error);
+        
+        // Display error message in the builder area
+        formBuilder.innerHTML = `
+          <div class="alert alert-danger">
+            <h4>Error Initializing Form Builder</h4>
+            <p>An unexpected error occurred:</p>
+            <pre>${error.message || "Unknown error"}</pre>
+            <button class="btn btn-primary mr-2" onclick="location.reload()">Refresh Page</button>
+            <button class="btn btn-success" onclick="loadSimpleBuilder()">Try Simple Builder</button>
+          </div>
+        `;
+      }
+      
+      // Update form preview with System3 styling - simplified to avoid errors
+      function updateFormPreview(schema) {
+        try {
+          // Clear any existing preview
+          formPreview.innerHTML = '';
+          
+          // Add System3 styling to the form
+          const formWithStyle = Object.assign({}, schema);
+          if (!formWithStyle.settings) {
+            formWithStyle.settings = {};
+          }
+          formWithStyle.settings.customCSS = system3FormStyles;
+          
+          // Create the preview form - IMPORTANT: Don't use options parameter to avoid errors
+          Formio.createForm(formPreview, formWithStyle).then(function(form) {
+            console.log("Form preview created successfully");
+            form.on('submit', function(submission) {
+              console.log(submission);
+              alert('Form submitted! See console for details.');
+              return false;
+            });
+          }).catch(function(error) {
+            console.error("Error creating form preview:", error);
+            formPreview.innerHTML = '<div class="alert alert-danger">Error creating form preview: ' + error.message + '</div>';
+          });
+        } catch(err) {
+          console.error("Exception in updateFormPreview:", err);
+          formPreview.innerHTML = '<div class="alert alert-danger">Error creating form preview: ' + err.message + '</div>';
+        }
+      }
+      
+      // Update JSON view
+      function updateJsonView(schema) {
+        jsonContent.textContent = JSON.stringify(schema, null, 2);
+      }
+      
+      // Update embed code
+      function updateEmbedCode(schema) {
+        // Add System3 styling to the form
+        const formWithStyle = Object.assign({}, schema);
+        if (!formWithStyle.settings) {
+          formWithStyle.settings = {};
+        }
+        formWithStyle.settings.customCSS = system3FormStyles;
+        
+        // Convert form to a Base64 encoded string to avoid any escaping issues
+        const formBase64 = btoa(JSON.stringify(formWithStyle));
+        
+        // Build the HTML code in a safer way
+        const embedHead = [
+          '<!-- System3 Form Embed -->',
+          '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">',
+          '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.css">',
+          '<script src="https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.js"><\/script>',
+          '',
+          '<div id="system3-form"></div>',
+          ''
+        ].join('\n');
+        
+        const embedScript = [
+          '<script>',
+          '  // Form definition (Base64 encoded to avoid JSON escaping issues)',
+          '  const formBase64 = "' + formBase64 + '";',
+          '  const formDefinition = JSON.parse(atob(formBase64));',
+          '  ',
+          '  // Render the form',
+          '  Formio.createForm(document.getElementById("system3-form"), formDefinition)',
+          '    .then(function(form) {',
+          '      // Handle form submission',
+          '      form.on("submit", function(submission) {',
+          '        // You can customize this to redirect to a thank-you page or show a message',
+          '        alert("Thank you for your submission!");',
+          '        ',
+          '        // Log the submission data',
+          '        console.log(submission.data);',
+          '        ',
+          '        // For Google Sheets integration, you would post to your Google Apps Script Web App URL',
+          '        // fetch("YOUR_GOOGLE_SCRIPT_URL", {',
+          '        //   method: "POST",',
+          '        //   headers: {',
+          '        //     "Content-Type": "application/json",',
+          '        //   },',
+          '        //   body: JSON.stringify(submission),',
+          '        // })',
+          '        //   .then(response => response.json())',
+          '        //   .then(result => {',
+          '        //     console.log("Success:", result);',
+          '        //   })',
+          '        //   .catch(error => {',
+          '        //     console.error("Error:", error);',
+          '        //   });',
+          '        ',
+          '        return false; // Prevent default form submission',
+          '      });',
+          '    });',
+          '<\/script>'
+        ].join('\n');
+        
+        const code = embedHead + embedScript;
+        embedCode.textContent = code;
+      }
+      
+      // Copy JSON to clipboard
+      copyJsonBtn.addEventListener('click', function() {
+        const textarea = document.createElement('textarea');
+        textarea.value = jsonContent.textContent;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        alert('Form JSON copied to clipboard!');
+      });
+      
+      // Copy embed code to clipboard
+      copyEmbedBtn.addEventListener('click', function() {
+        const textarea = document.createElement('textarea');
+        textarea.value = embedCode.textContent;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        alert('Embed code copied to clipboard!');
+      });
+      
+      // Save JSON to file
+      saveJsonBtn.addEventListener('click', function() {
+        const schema = window.formBuilder.schema;
+        const blob = new Blob([JSON.stringify(schema, null, 2)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'system3-form.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+      
+      // Load JSON from file
+      loadJsonBtn.addEventListener('click', function() {
+        jsonFileInput.click();
+      });
+      
+      jsonFileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            try {
+              const schema = JSON.parse(e.target.result);
+              window.formBuilder.setForm(schema);
+              // Reset the file input
+              jsonFileInput.value = '';
+            } catch (error) {
+              console.error('Error loading form:', error);
+              alert('Error loading form: Invalid JSON format');
+            }
+          };
+          reader.readAsText(file);
+        }
+      });
+      
+      // Load form templates
+      templateOptions.forEach(template => {
+        template.addEventListener('click', function() {
+          const templateName = this.getAttribute('data-template');
+          if (templates[templateName]) {
+            window.formBuilder.setForm(templates[templateName]);
+          }
+        });
+      });
+      
+      // Tab navigation without jQuery dependency
+      document.querySelectorAll('[data-toggle="tab"]').forEach(function(tab) {
+        tab.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Remove active class from all tabs and panes
+          document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.tab-pane').forEach(p => {
+            p.classList.remove('show');
+            p.classList.remove('active');
+          });
+          
+          // Add active class to selected tab
+          this.classList.add('active');
+          
+          // Show selected pane
+          const target = document.querySelector(this.getAttribute('href'));
+          target.classList.add('show');
+          target.classList.add('active');
+        });
+      });
+      
+      } // End of continueInitialization function
+    } // End of initFormBuilder function
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primary-gradient" x1="20" y1="20" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5E5DF0" />
+      <stop offset="100%" stop-color="#6A67F0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="120" cy="120" r="100" fill="rgba(0, 0, 0, 0.05)" />
+  
+  <!-- Camera/Eye Outer Circle -->
+  <circle cx="120" cy="120" r="65" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" fill="none" />
+  
+  <!-- Camera Aperture Lines -->
+  <line x1="120" y1="55" x2="120" y2="70" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  <line x1="120" y1="170" x2="120" y2="185" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  <line x1="55" y1="120" x2="70" y2="120" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  <line x1="170" y1="120" x2="185" y2="120" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  
+  <!-- Diagonal Lines -->
+  <line x1="76" y1="76" x2="86" y2="86" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  <line x1="154" y1="154" x2="164" y2="164" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  <line x1="76" y1="164" x2="86" y2="154" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  <line x1="154" y1="86" x2="164" y2="76" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" />
+  
+  <!-- Grid Pattern for Computer Vision -->
+  <line x1="90" y1="90" x2="150" y2="90" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="90" y1="105" x2="150" y2="105" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="90" y1="120" x2="150" y2="120" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="90" y1="135" x2="150" y2="135" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="90" y1="150" x2="150" y2="150" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  
+  <line x1="90" y1="90" x2="90" y2="150" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="105" y1="90" x2="105" y2="150" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="120" y1="90" x2="120" y2="150" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="135" y1="90" x2="135" y2="150" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  <line x1="150" y1="90" x2="150" y2="150" stroke="rgba(0, 0, 0, 0.5)" stroke-width="2" />
+  
+  <!-- Camera Iris -->
+  <circle cx="120" cy="120" r="35" fill="url(#primary-gradient)" stroke="#000000" stroke-width="1.5" />
+  
+  <!-- Object Detection Box -->
+  <rect x="105" y="105" width="30" height="30" stroke="rgba(0, 0, 0, 0.8)" stroke-width="3" fill="none" />
+  
+  <!-- Pupil/Lens Center -->
+  <circle cx="120" cy="120" r="15" fill="#333333" stroke="#000000" stroke-width="0.5" />
+  <circle cx="112" cy="112" r="5" fill="white" opacity="0.7" />
+</svg>

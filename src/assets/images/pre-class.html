@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D Class Flow Diagram</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f8f9fa;">
+<svg 
+  width="900" height="400"
+  viewBox="0 0 900 400"
+  xmlns="http://www.w3.org/2000/svg"
+  style="background-color:#f8f9fa;"
+>
+  <!-- 
+    ===========================
+    1) MARKERS (ARROWHEADS)
+    ===========================
+  -->
+  <defs>
+    <marker 
+      id="arrow" 
+      markerWidth="10" 
+      markerHeight="10" 
+      refX="5" 
+      refY="3" 
+      orient="auto"
+    >
+      <path d="M0,0 L0,6 L6,3 z" fill="#333" />
+    </marker>
+    <marker
+      id="arrow-dotted"
+      markerWidth="10"
+      markerHeight="10"
+      refX="5"
+      refY="3"
+      orient="auto"
+    >
+      <path d="M0,0 L0,6 L6,3 z" fill="#333" />
+    </marker>
+  </defs>
+
+  <!-- 
+    ====================================================
+    2) PRE-CLASS BLOCK (two 3D slices side by side)
+    ====================================================
+    Coordinates chosen to create a “3D prism” effect.
+    We'll define polygons for:
+      - front-left slice
+      - top-left slice
+      - front-right slice
+      - top-right slice
+      - side (rightmost) face
+    Then place text labels in the center of each front slice.
+  -->
+  <g id="pre-class-block">
+    <!-- === FRONT-LEFT SLICE: "Pre-Class Assignment" === -->
+    <!-- front face -->
+    <polygon 
+      points="50,80 90,80 90,140 50,140"
+      fill="#CBD0E8" stroke="#333" 
+    />
+    <!-- top face -->
+    <polygon
+      points="50,80 40,70 80,70 90,80"
+      fill="#B8BDDC" stroke="#333"
+    />
+    <!-- no visible left side face, it’s “open” to the left -->
+    
+    <!-- Label: Pre-Class Assignment (center of front face) -->
+    <text
+      x="70" y="110"
+      font-family="sans-serif"
+      font-size="12"
+      text-anchor="middle"
+      fill="#000"
+    >
+      Pre-Class 
+      Assignment
+    </text>
+    
+    <!-- === FRONT-RIGHT SLICE: "Pre-Class Quiz" === -->
+    <!-- front face -->
+    <polygon 
+      points="90,80 130,80 130,140 90,140"
+      fill="#E1E4F0" stroke="#333"
+    />
+    <!-- top face -->
+    <polygon
+      points="90,80 80,70 120,70 130,80"
+      fill="#CED1E8" stroke="#333"
+    />
+    <!-- right side face -->
+    <polygon
+      points="130,80 120,70 120,130 130,140"
+      fill="#D4D7ED" stroke="#333"
+    />
+    
+    <!-- Label: Pre-Class Quiz (center of front face) -->
+    <text
+      x="110" y="110"
+      font-family="sans-serif"
+      font-size="12"
+      text-anchor="middle"
+      fill="#000"
+    >
+      Pre-Class 
+      Quiz
+    </text>
+  </g>
+  
+  <!-- 
+    ====================================================
+    3) MIDDLE (IN-CLASS) BLOCK 
+       Three 3D slices: Lecture, Questions, Hands on Exercise
+    ====================================================
+    We'll shift this block to the right and slightly upward.
+  -->
+  <g id="in-class-block">
+    <!-- For convenience, define starting X=280, Y=50 for the front face bottom-left corner. -->
+    <!-- Each slice is ~40px wide on the front face, total width ~120px. -->
+    
+    <!-- === SLICE 1: "Lecture" === -->
+    <!-- front face -->
+    <polygon
+      points="280,60 320,60 320,120 280,120"
+      fill="#C7E6D6" stroke="#333"
+    />
+    <!-- top face -->
+    <polygon
+      points="280,60 270,50 310,50 320,60"
+      fill="#B4DCC7" stroke="#333"
+    />
+    <!-- side face (only if it's the rightmost slice) - not needed here for slice 1 -->
+    <!-- Label -->
+    <text
+      x="300" y="90"
+      font-family="sans-serif"
+      font-size="12"
+      text-anchor="middle"
+      fill="#000"
+    >
+      Lecture
+    </text>
+
+    <!-- === SLICE 2: "Questions" === -->
+    <!-- front face -->
+    <polygon
+      points="320,60 360,60 360,120 320,120"
+      fill="#F7E1CB" stroke="#333"
+    />
+    <!-- top face -->
+    <polygon
+      points="320,60 310,50 350,50 360,60"
+      fill="#ECD5BA" stroke="#333"
+    />
+    <!-- side face - not needed, still not the rightmost slice -->
+    <!-- Label -->
+    <text
+      x="340" y="90"
+      font-family="sans-serif"
+      font-size="12"
+      text-anchor="middle"
+      fill="#000"
+    >
+      Questions
+    </text>
+    
+    <!-- === SLICE 3: "Hands on Exercise" === -->
+    <!-- front face -->
+    <polygon
+      points="360,60 400,60 400,120 360,120"
+      fill="#F9E5E1" stroke="#333"
+    />
+    <!-- top face -->
+    <polygon
+      points="360,60 350,50 390,50 400,60"
+      fill="#EED9D5" stroke="#333"
+    />
+    <!-- right side face -->
+    <polygon
+      points="400,60 390,50 390,110 400,120"
+      fill="#EAD3CE" stroke="#333"
+    />
+    <!-- Label -->
+    <text
+      x="380" y="90"
+      font-family="sans-serif"
+      font-size="12"
+      text-anchor="middle"
+      fill="#000"
+    >
+      Hands on 
+      Exercise
+    </text>
+  </g>
+
+  <!-- 
+    ====================================================
+    4) POST-CLASS QUIZ BLOCK (single 3D slice)
+    ====================================================
+    Shift it farther right.
+  -->
+  <g id="post-class-block">
+    <!-- front face -->
+    <polygon
+      points="500,80 560,80 560,120 500,120"
+      fill="#D6CBE8" stroke="#333"
+    />
+    <!-- top face -->
+    <polygon
+      points="500,80 490,70 550,70 560,80"
+      fill="#C4B9DC" stroke="#333"
+    />
+    <!-- side face -->
+    <polygon
+      points="560,80 550,70 550,110 560,120"
+      fill="#CEC3E2" stroke="#333"
+    />
+    <!-- Label -->
+    <text
+      x="530" y="100"
+      font-family="sans-serif"
+      font-size="12"
+      text-anchor="middle"
+      fill="#000"
+    >
+      Post-Class 
+      Quiz
+    </text>
+  </g>
+
+  <!-- 
+    ====================================================
+    5) ARROWS & LABELS
+    ====================================================
+    - Arrow from Pre-Class → In-Class
+    - Arrow from In-Class → Post-Class
+    - Arrow for "Discussion on Pre-Class Quiz" going back
+    - Arrow for "Repeats" looping around the In-Class block
+  -->
+  <!-- Arrow: Pre-Class → In-Class -->
+  <line
+    x1="130" y1="100"
+    x2="280" y2="90"
+    stroke="#333"
+    stroke-width="2"
+    marker-end="url(#arrow)"
+  />
+  
+  <!-- Arrow: In-Class → Post-Class -->
+  <line
+    x1="400" y1="90"
+    x2="500" y2="100"
+    stroke="#333"
+    stroke-width="2"
+    marker-end="url(#arrow)"
+  />
+
+  <!-- "Discussion on Pre-Class Quiz" arrow 
+       Curved path from middle block back to the right edge of the Pre-Class block
+  -->
+  <path
+    d="M 320 120
+       C 270 160, 200 150, 130 130"
+    fill="none"
+    stroke="#333"
+    stroke-width="2"
+    marker-end="url(#arrow)"
+  />
+  <text
+    x="230" y="155"
+    font-family="sans-serif"
+    font-size="12"
+    text-anchor="middle"
+    fill="#000"
+  >
+    Discussion on 
+    Pre-Class Quiz
+  </text>
+
+  <!-- "Repeats" arrow 
+       A loop around the in-class block 
+  -->
+  <path
+    d="M 420 80 
+       C 460 50, 460 130, 420 100
+       C 400 90, 400 90, 420 80"
+    fill="none"
+    stroke="#333"
+    stroke-width="2"
+    stroke-dasharray="4,4"
+    marker-end="url(#arrow-dotted)"
+  />
+  <text
+    x="460" y="80"
+    font-family="sans-serif"
+    font-size="12"
+    fill="#000"
+  >
+    Repeats
+  </text>
+</svg>
+</body>
+</html>

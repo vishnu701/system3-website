@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Builder - System3</title>
+    <meta name="description" content="Create custom forms for System3">
+    <link rel="icon" href="/public/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Form.io CSS & JS - Use version 4.13.0 for compatibility -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.js"></script>
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Add site styles -->
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body class="smooth-scroll">
+    <div id="app">
+      <!-- Navigation - Content dynamically inserted by header.js -->
+      <header>
+        <!-- Header content will be inserted here by JavaScript -->
+      </header>
+
+      <!-- 3D Background Canvas -->
+      <canvas class="webgl"></canvas>
+
+      <div class="content">
+        <!-- Form Builder Hero Section -->
+        <section class="section section-sliding-up active" id="form-builder-hero">
+          <div class="section-overlay"></div>
+          <div class="hero-content">
+            <h1>Form <span class="gradient-text">Builder</span></h1>
+            <p>Create custom forms to collect information from your users - no coding required</p>
+          </div>
+        </section>
+
+        <!-- Form Builder Section -->
+        <section class="section section-sliding-up" id="form-builder-section">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <div class="form-builder-container">
+              <div class="form-builder-tabs">
+                <button class="tab-button active" data-tab="builder">Form Builder</button>
+                <button class="tab-button" data-tab="preview">Preview Form</button>
+                <button class="tab-button" data-tab="embed">Get Embed Code</button>
+              </div>
+              
+              <div class="form-builder-content">
+                <div class="tab-content active" data-tab="builder">
+                  <div id="formio-builder"></div>
+                </div>
+                
+                <div class="tab-content" data-tab="preview">
+                  <div id="formio-preview"></div>
+                </div>
+                
+                <div class="tab-content" data-tab="embed">
+                  <div class="embed-code-container">
+                    <h3>Embed Code</h3>
+                    <p>Copy and paste this code to embed your form on any page:</p>
+                    <pre id="embed-code-display"></pre>
+                    <button id="copy-embed-code" class="cta-button primary">Copy Code</button>
+                    
+                    <div class="form-save-section">
+                      <h3>Save Your Form</h3>
+                      <p>Save your form definition to use later:</p>
+                      <div class="form-actions">
+                        <button id="save-form-json" class="cta-button secondary">Save Form Definition</button>
+                        <button id="load-form-json" class="cta-button secondary">Load Form Definition</button>
+                        <input type="file" id="load-form-input" style="display:none;" accept=".json">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section class="section section-sliding-up" id="how-to-use">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2><span class="gradient-text">How to Use</span></h2>
+            <div class="instructions-container">
+              <div class="instruction-step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                  <h3>Build Your Form</h3>
+                  <p>Drag and drop fields from the left sidebar to create your custom form. Configure each field by clicking on it.</p>
+                </div>
+              </div>
+              
+              <div class="instruction-step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                  <h3>Preview Your Form</h3>
+                  <p>Click the "Preview Form" tab to see how your form will look to users. Test submission to ensure it works correctly.</p>
+                </div>
+              </div>
+              
+              <div class="instruction-step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                  <h3>Get Embed Code</h3>
+                  <p>Copy the embed code and add it to any page. You can also save your form definition for future editing.</p>
+                </div>
+              </div>
+              
+              <div class="instruction-step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                  <h3>Collect Responses</h3>
+                  <p>Your form submissions will be stored and accessible via a generated Google Sheet or the submissions panel.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-content">
+          <div class="footer-branding">
+            <div class="footer-logo">
+              <span class="logo-mark"></span>
+              System3
+            </div>
+            <p>Pioneering the future of AI education and consulting</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/consultancy.html">AI Consulting</a></li>
+                <li><a href="/education.html">AI Education</a></li>
+                <li><a href="/#consulting-section">Data Strategy</a></li>
+                <li><a href="/#consulting-section">AI Implementation</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Courses</h4>
+              <ul>
+                <li><a href="/courses/data-science.html">Data Science</a></li>
+                <li><a href="/courses/">Machine Learning</a></li>
+                <li><a href="/courses/">Computer Vision</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/about.html#team">Team</a></li>
+                <li><a href="/#contact-section">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 System3, Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+    
+    <!-- Main site JavaScript -->
+    <script type="module" src="/src/main.js"></script>
+    
+    <style>
+      /* Form Builder specific styles */
+      #form-builder-hero {
+        height: 50vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/public/data-science-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .form-builder-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        border: 1px solid var(--color-border);
+        overflow: hidden;
+      }
+      
+      [data-theme="light"] .form-builder-container {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+      
+      .form-builder-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--color-border);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      
+      [data-theme="light"] .form-builder-tabs {
+        background: rgba(248, 249, 250, 0.9);
+      }
+      
+      .tab-button {
+        padding: 1rem 1.5rem;
+        background: transparent;
+        border: none;
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      
+      .tab-button:hover {
+        color: var(--color-primary);
+      }
+      
+      .tab-button.active {
+        color: var(--color-primary);
+      }
+      
+      .tab-button.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--color-primary);
+      }
+      
+      .form-builder-content {
+        min-height: 600px;
+      }
+      
+      .tab-content {
+        display: none;
+        padding: 1.5rem;
+      }
+      
+      .tab-content.active {
+        display: block;
+      }
+      
+      /* Embed code display */
+      .embed-code-container {
+        background: rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        border-radius: 8px;
+      }
+      
+      [data-theme="light"] .embed-code-container {
+        background: rgba(0, 0, 0, 0.03);
+      }
+      
+      pre#embed-code-display {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        color: #e0e0e0;
+        margin: 1.5rem 0;
+      }
+      
+      [data-theme="light"] pre#embed-code-display {
+        background: rgba(0, 0, 0, 0.05);
+        color: #333;
+      }
+      
+      /* Form save section */
+      .form-save-section {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--color-border);
+      }
+      
+      .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      
+      /* Instruction steps */
+      .instructions-container {
+        margin-top: 3rem;
+      }
+      
+      .instruction-step {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+      
+      .instruction-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: 25px;
+        top: 60px;
+        height: calc(100% - 30px);
+        width: 2px;
+        background: var(--color-primary);
+        opacity: 0.5;
+      }
+      
+      .step-number {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        background: var(--color-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: white;
+      }
+      
+      .step-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-primary);
+      }
+      
+      /* Fix Form.io styling to match our theme */
+      #formio-builder .formio-component,
+      #formio-preview .formio-component {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        border: 1px solid var(--color-border);
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+      }
+      
+      #formio-builder .formio-builder-component,
+      #formio-preview .formio-builder-component {
+        color: var(--color-text);
+      }
+      
+      [data-theme="light"] #formio-builder .formio-component,
+      [data-theme="light"] #formio-preview .formio-component {
+        background: white;
+      }
+      
+      /* Override Bootstrap styling conflicts */
+      #formio-builder .form-control,
+      #formio-preview .form-control {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+      }
+      
+      [data-theme="light"] #formio-builder .form-control,
+      [data-theme="light"] #formio-preview .form-control {
+        background-color: white;
+        color: #333;
+      }
+      
+      /* Responsive styles */
+      @media (max-width: 992px) {
+        .form-actions {
+          flex-direction: column;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .form-builder-tabs {
+          flex-direction: column;
+        }
+        
+        .tab-button {
+          text-align: left;
+        }
+        
+        .tab-button.active::after {
+          height: 100%;
+          width: 3px;
+          top: 0;
+        }
+      }
+    </style>
+    
+    <script>
+      // Form Builder Initialization
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM Content Loaded - Setting up form builder');
+        
+        // Make sure all sections are visible
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.add('active');
+        });
+        
+        // Init tabs functionality
+        setupTabs();
+        
+        // Wait a bit for all resources to load before initializing form builder
+        setTimeout(initializeFormBuilder, 500);
+      });
+
+      function setupTabs() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            button.classList.add('active');
+            const tabName = button.getAttribute('data-tab');
+            document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
+          });
+        });
+      }
+      
+      function initializeFormBuilder() {
+        console.log('Initializing Form Builder...');
+        
+        // Check if Formio is loaded
+        if (typeof Formio === 'undefined') {
+          console.warn('Formio not loaded yet, retrying in 800ms...');
+          setTimeout(initializeFormBuilder, 800);
+          return;
+        }
+        
+        // Get elements
+        const builder = document.getElementById('formio-builder');
+        const preview = document.getElementById('formio-preview');
+        const embedCodeDisplay = document.getElementById('embed-code-display');
+        const copyButton = document.getElementById('copy-embed-code');
+        const saveFormButton = document.getElementById('save-form-json');
+        const loadFormButton = document.getElementById('load-form-json');
+        const loadFormInput = document.getElementById('load-form-input');
+        
+        if (!builder) {
+          console.error('Form builder container not found!');
+          return;
+        }
+        
+        console.log('Form builder container found, initializing...');
+        
+        // Default form configuration that matches System3 aesthetic
+        const defaultForm = {
+          components: [],
+          display: 'form',
+          settings: {
+            customCSS: `.formio-form {
+              font-family: 'Inter', sans-serif;
+              color: #ffffff;
+            }
+            .formio-component-submit button {
+              background-color: #8a85ff;
+              border-color: #8a85ff;
+              border-radius: 6px;
+              padding: 0.75rem 1.5rem;
+              font-weight: 600;
+              transition: all 0.3s ease;
+            }
+            .formio-component-submit button:hover {
+              background-color: #7a75ef;
+              transform: translateY(-2px);
+              box-shadow: 0 5px 15px rgba(138, 133, 255, 0.2);
+            }
+            [data-theme="light"] .formio-form {
+              color: #333;
+            }
+            `
+          }
+        };
+        
+        // Initialize the form builder
+        try {
+          Formio.builder(builder, defaultForm, {
+            builder: {
+              basic: true,
+              advanced: false,
+              data: true,
+              layout: true,
+              customBasic: false,
+              premium: false
+            }
+          }).then(function(formbuilder) {
+            console.log('Form builder initialized successfully!');
+            
+            // Store the form builder instance
+            window.formbuilder = formbuilder;
+            
+            // When the form changes, update the preview and embed code
+            formbuilder.on('change', (form) => {
+              updateFormPreview(form);
+              updateEmbedCode(form);
+            });
+            
+            // Initialize with empty form
+            updateFormPreview(defaultForm);
+            updateEmbedCode(defaultForm);
+          }).catch(function(err) {
+            console.error('Form builder initialization failed:', err);
+          });
+        } catch (error) {
+          console.error('Error initializing form builder:', error);
+        }
+        
+        // Function to update form preview
+        function updateFormPreview(form) {
+          // Clear previous preview
+          preview.innerHTML = '';
+          
+          // Create a new form
+          Formio.createForm(preview, form).then(previewForm => {
+            // Handle form submission
+            previewForm.on('submit', (submission) => {
+              // In a real implementation, this would save to Google Sheets or your backend
+              alert('Form submitted successfully! Check console for data.');
+              console.log('Form submission:', submission.data);
+              return false; // Prevent default form submission
+            });
+          });
+        }
+        
+        // Function to update embed code display
+        function updateEmbedCode(form) {
+          // Create an embeddable version of the form
+          const formJson = JSON.stringify(form, null, 2);
+          
+          // Create both a direct embed code and a form definition for reuse
+          const embedCode = `<!-- System3 Form Embed -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.css">
+<script src="https://cdn.jsdelivr.net/npm/formiojs@4.13.0/dist/formio.full.min.js"></script>
+
+<div id="formio-form-container"></div>
+
+<script>
+  // Form definition
+  const formDefinition = ${formJson};
+  
+  // Render the form
+  Formio.createForm(document.getElementById('formio-form-container'), formDefinition)
+    .then(function(form) {
+      // Handle form submission
+      form.on('submit', function(submission) {
+        // Save form submission - customize this part to save to your service
+        console.log('Form submission:', submission.data);
+        alert('Form submitted successfully!');
+        return false; // Prevent default form submission
+      });
+    });
+</script>`;
+
+          // Display the embed code
+          embedCodeDisplay.textContent = embedCode;
+        }
+        
+        // Copy embed code functionality
+        copyButton.addEventListener('click', () => {
+          // Create a textarea to copy from
+          const textArea = document.createElement('textarea');
+          textArea.value = embedCodeDisplay.textContent;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          
+          // Give user feedback
+          copyButton.textContent = 'Copied!';
+          setTimeout(() => {
+            copyButton.textContent = 'Copy Code';
+          }, 2000);
+        });
+        
+        // Save form JSON functionality
+        saveFormButton.addEventListener('click', () => {
+          if (!window.formbuilder || !window.formbuilder.schema) {
+            alert('No form has been created yet');
+            return;
+          }
+          
+          const formJson = JSON.stringify(window.formbuilder.schema, null, 2);
+          
+          // Create a blob and download it
+          const blob = new Blob([formJson], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'system3-form.json';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        });
+        
+        // Load form JSON functionality
+        loadFormButton.addEventListener('click', () => {
+          loadFormInput.click();
+        });
+        
+        loadFormInput.addEventListener('change', (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              try {
+                const formSchema = JSON.parse(e.target.result);
+                // Load the form schema into the builder
+                window.formbuilder.setForm(formSchema);
+                // Reset the file input
+                loadFormInput.value = '';
+              } catch (error) {
+                alert('Invalid form definition file. Please select a valid JSON file.');
+              }
+            };
+            reader.readAsText(file);
+          }
+        });
+      }
+      
+      // Also try again on window load as a fallback
+      window.addEventListener('load', function() {
+        if (typeof window.formbuilder === 'undefined') {
+          console.log('Trying to initialize form builder on window load...');
+          setTimeout(initializeFormBuilder, 800);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primary-gradient" x1="20" y1="20" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5E5DF0" />
+      <stop offset="100%" stop-color="#6A67F0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="120" cy="120" r="100" fill="rgba(0, 0, 0, 0.05)" />
+  
+  <!-- Chat Bubble -->
+  <path d="M160 90C160 79.5066 151.493 71 141 71H89C78.5066 71 70 79.5066 70 90V130C70 140.493 78.5066 149 89 149H141C151.493 149 160 140.493 160 130V90Z" fill="url(#primary-gradient)" stroke="#000000" stroke-width="2"/>
+  <path d="M120 149L105 164V149" fill="url(#primary-gradient)" stroke="#000000" stroke-width="2"/>
+  
+  <!-- Text Lines -->
+  <line x1="90" y1="95" x2="140" y2="95" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <line x1="90" y1="110" x2="130" y2="110" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <line x1="90" y1="125" x2="120" y2="125" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Settings Gear -->
+  <circle cx="170" cy="150" r="30" fill="url(#primary-gradient)" stroke="#000000" stroke-width="2"/>
+  <circle cx="170" cy="150" r="10" fill="white" stroke="#000000" stroke-width="1.5"/>
+  
+  <!-- Gear Teeth -->
+  <rect x="168" y="114" width="4" height="12" rx="1" fill="white" stroke="#000000" stroke-width="1"/>
+  <rect x="168" y="174" width="4" height="12" rx="1" fill="white" stroke="#000000" stroke-width="1"/>
+  <rect x="134" y="148" width="12" height="4" rx="1" fill="white" stroke="#000000" stroke-width="1"/>
+  <rect x="194" y="148" width="12" height="4" rx="1" fill="white" stroke="#000000" stroke-width="1"/>
+  
+  <!-- Diagonal Teeth -->
+  <rect x="146" y="126" width="12" height="4" rx="1" transform="rotate(45 146 126)" fill="white" stroke="#000000" stroke-width="1"/>
+  <rect x="185" y="165" width="12" height="4" rx="1" transform="rotate(45 185 165)" fill="white" stroke="#000000" stroke-width="1"/>
+  <rect x="153" y="173" width="12" height="4" rx="1" transform="rotate(-45 153 173)" fill="white" stroke="#000000" stroke-width="1"/>
+  <rect x="192" y="134" width="12" height="4" rx="1" transform="rotate(-45 192 134)" fill="white" stroke="#000000" stroke-width="1"/>
+</svg>

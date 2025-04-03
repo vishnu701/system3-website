@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en" class="fouc-protection no-js">
+  <head>
+    <script>
+      // Remove no-js class immediately to indicate JavaScript is running
+      document.documentElement.classList.remove('no-js');
+      
+      // Prevent FOUC and ensure smooth transitions between pages
+      document.documentElement.classList.add('fouc-protection');
+      
+      // Remove FOUC protection after stylesheet and basic DOM is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // Short delay to ensure CSS is applied
+        setTimeout(function() {
+          document.documentElement.classList.remove('fouc-protection');
+        }, 50);
+      });
+      
+      // Backup in case DOMContentLoaded doesn't fire properly
+      window.addEventListener('load', function() {
+        document.documentElement.classList.remove('fouc-protection');
+      });
+    </script>
+    <style>
+    /* Prevent FOUC (Flash of Unstyled Content) */
+    html {
+      visibility: visible;
+      opacity: 1;
+    }
+    html.fouc-protection {
+      visibility: hidden;
+      opacity: 0;
+    }
+    
+    /* Initial styles to prevent flash before JavaScript loads */
+    body {
+      background-color: #050505;
+      color: #ffffff;
+    }
+    
+    /* Immediately set theme from localStorage if available */
+    :root {
+      --color-primary: #8a85ff;
+      --color-secondary: #c389c5;
+      --color-accent: #8bb8cf;
+    }
+    </style>
+    <script>
+    // Immediately set theme from localStorage to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - System3</title>
+    <meta name="description" content="Learn about System3's mission and our expert team of AI educators and consultants">
+    <link rel="icon" href="/public/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body class="smooth-scroll">
+    <div id="app">
+      <!-- Navigation - Content dynamically inserted by header.js -->
+      <header>
+        <!-- Header content will be inserted here by JavaScript -->
+      </header>
+
+      <!-- 3D Background Canvas -->
+      <canvas class="webgl"></canvas>
+
+      <div class="content">
+        <!-- Hero Section -->
+        <section class="section" id="about-hero">
+          <div class="section-overlay"></div>
+          <div class="hero-content">
+            <h1>About <span class="gradient-text">System3</span></h1>
+            <p>Setting the global standard in AI education and driving innovation with world-class solutions</p>
+          </div>
+        </section>
+
+        <!-- Vision Section -->
+        <section class="section" id="vision">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2 class="section-title"><span class="gradient-text">Our Vision</span></h2>
+            
+            <div class="split-section">
+              <div class="section-image-column">
+                <div class="section-illustration-container about-illustration-container">
+                  <img src="./src/assets/images/about-illustration.svg" alt="System3 Vision" class="section-illustration">
+                </div>
+              </div>
+              <div class="section-text-column">
+                <p class="large-text">
+                  At System3, we create an inspiring and innovative learning environment where high school students thrive. Our cutting-edge pedagogy ensures our courses are not only user-friendly but also equip students with the skills to excel in a rapidly evolving tech landscape.
+                </p>
+                <p class="large-text">
+                  We craft meticulously designed courses that ignite curiosity and passion, giving students the tools they need to excel, whether in healthcare, finance, art, or any field they choose. What sets us apart is our unwavering commitment to excellence. We handpick top talent from premier institutions, ensuring that our educators not only excel in their fields but also communicate complex ideas with clarity and enthusiasm. With their guidance, learning becomes an exciting journey filled with possibilities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Core Values Section -->
+        <section class="section" id="core-values">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2 class="section-title"><span class="gradient-text">Core Values</span></h2>
+            <p class="section-description">The principles that guide everything we do</p>
+            
+            <div class="values-grid">
+              <div class="value-card">
+                <div class="value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                    <line x1="6" y1="1" x2="6" y2="4"></line>
+                    <line x1="10" y1="1" x2="10" y2="4"></line>
+                    <line x1="14" y1="1" x2="14" y2="4"></line>
+                  </svg>
+                </div>
+                <h3>Integrity</h3>
+                <p>We maintain the highest standards of integrity in all our interactions, ensuring transparency and ethical conduct in everything we do.</p>
+              </div>
+              
+              <div class="value-card">
+                <div class="value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                  </svg>
+                </div>
+                <h3>Collaboration</h3>
+                <p>We believe in the power of working together to achieve common goals, fostering a collaborative environment that encourages diverse perspectives.</p>
+              </div>
+              
+              <div class="value-card">
+                <div class="value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                  </svg>
+                </div>
+                <h3>Innovation</h3>
+                <p>We constantly push the boundaries of what's possible in AI education and implementation, embracing new ideas and technologies.</p>
+              </div>
+              
+              <div class="value-card">
+                <div class="value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <h3>Accessibility</h3>
+                <p>We are committed to making AI education accessible to students of all backgrounds, ensuring that everyone has the opportunity to develop these crucial skills.</p>
+              </div>
+              
+              <div class="value-card">
+                <div class="value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <h3>Expertise</h3>
+                <p>We pride ourselves on our team's deep expertise in AI and education, combining academic excellence with practical experience to deliver exceptional results.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section" id="team">
+          <div class="section-overlay gradient-overlay"></div>
+          <div class="section-content">
+            <h2 class="section-title"><span class="gradient-text">Our Team</span></h2>
+            <p class="section-description team-description">We're a global team from USA, India & Cyprus with diverse educational backgrounds and working experiences</p>
+            
+            <div class="team-illustration-wrapper">
+              <img src="./src/assets/images/team-illustration.svg" alt="Our Global Team" class="team-illustration">
+            </div>
+            
+            <div class="team-leaders">
+              <div class="team-leader">
+                <div class="leader-image">
+                  <img src="./src/assets/images/people/PavlosProtopapas.jpeg" alt="Dr. Pavlos Protopapas" style="--pos-y: 15%;" />
+                </div>
+                <div class="leader-info">
+                  <h3>Dr. Pavlos Protopapas</h3>
+                  <p class="leader-title">CEO and Founder</p>
+                  <p class="leader-bio">Pavlos is an educator and researcher. As an educator, Pavlos is teaching CS109A, CS109B, introduction to data science and advanced topics of data science. He also teaches a course in MLOps. In the past he has taught capstone courses in data science and computational science, introduction to deep reinforcement learning, and planning a course in physics informed neural networks.</p>
+                  <div class="leader-links">
+                    <a href="https://seas.harvard.edu/person/pavlos-protopapas" target="_blank" class="harvard-link" aria-label="Harvard Directory">
+                      <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 3L3 9V11H29V9L16 3Z" fill="currentColor"/>
+                        <path d="M7 13V23H10V13H7Z" fill="currentColor"/>
+                        <path d="M13 13V23H16V13H13Z" fill="currentColor"/>
+                        <path d="M19 13V23H22V13H19Z" fill="currentColor"/>
+                        <path d="M25 13V23H28V13H25Z" fill="currentColor"/>
+                        <path d="M4 25V29H28V25H4Z" fill="currentColor"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="team-leader">
+                <div class="leader-image">
+                  <img src="./src/assets/images/people/IgnacioBecker.png" alt="Dr. Ignacio Becker" style="--pos-y: 20%;" />
+                </div>
+                <div class="leader-info">
+                  <h3>Dr. Ignacio Becker</h3>
+                  <p class="leader-title">Head of System3 Consulting</p>
+                  <p class="leader-bio">His main area of research is applied AI to astrophysical problems. Nowadays, he focuses on developing models to process the real-time data of the next generation of telescopes. He is the head of the consulting department in System 3.</p>
+                  <div class="leader-links">
+                    <a href="https://seas.harvard.edu/person/ignacio-becker-troncoso" target="_blank" class="harvard-link" aria-label="Harvard Directory">
+                      <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 3L3 9V11H29V9L16 3Z" fill="currentColor"/>
+                        <path d="M7 13V23H10V13H7Z" fill="currentColor"/>
+                        <path d="M13 13V23H16V13H13Z" fill="currentColor"/>
+                        <path d="M19 13V23H22V13H19Z" fill="currentColor"/>
+                        <path d="M25 13V23H28V13H25Z" fill="currentColor"/>
+                        <path d="M4 25V29H28V25H4Z" fill="currentColor"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="team-grid">
+              <div class="team-member">
+                <div class="member-image">
+                  <img src="./src/assets/images/people/VishnuM.png" alt="Vishnu M" style="--pos-y: top;" />
+                </div>
+                <div class="member-info">
+                  <h3>Vishnu M</h3>
+                  <p class="member-title">CTO</p>
+                  <div class="member-social">
+                    <a href="https://www.linkedin.com/in/vishnu701/" target="_blank" class="social-link">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="team-member">
+                <div class="member-image">
+                  <img src="./src/assets/images/people/AnshikaGupta.png" alt="Anshika Gupta" style="--pos-y: 10%;" />
+                </div>
+                <div class="member-info">
+                  <h3>Anshika Gupta</h3>
+                  <p class="member-title">AI Solutions Consultant | Head of Educational Programs</p>
+                  <div class="member-social">
+                    <a href="https://www.linkedin.com/in/iamanshika/" target="_blank" class="social-link">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="team-member">
+                <div class="member-image">
+                  <img src="./src/assets/images/people/ShibaniBudhraja.png" alt="Shibani Budhraja" style="--pos-y: 20%;" />
+                </div>
+                <div class="member-info">
+                  <h3>Shibani Budhraja</h3>
+                  <p class="member-title">Data Scientist</p>
+                  <div class="member-social">
+                    <a href="https://www.linkedin.com/in/shibanibudhraja/" target="_blank" class="social-link">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="team-member">
+                <div class="member-image">
+                  <img src="./src/assets/images/people/LakshayChawla.png" alt="Lakshay Chawla" style="--pos-y: 15%;" />
+                </div>
+                <div class="member-info">
+                  <h3>Lakshay Chawla</h3>
+                  <p class="member-title">Data Scientist</p>
+                  <div class="member-social">
+                    <a href="https://www.linkedin.com/in/lakshaychawla13/" target="_blank" class="social-link">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="team-member">
+                <div class="member-image">
+                  <img src="./src/assets/images/people/NawangBhutia.png" alt="Nawang Thinley Bhutia" style="--pos-y: 10%;" />
+                </div>
+                <div class="member-info">
+                  <h3>Nawang Thinley Bhutia</h3>
+                  <p class="member-title">Data Scientist</p>
+                  <div class="member-social">
+                    <a href="https://www.linkedin.com/in/nawang-thinley-bhutia-0158bb218/" target="_blank" class="social-link">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="team-member">
+                <div class="member-image">
+                  <img src="./src/assets/images/people/Nick.jpeg" alt="Nicholas Koundouros" style="--pos-y: 25%;" />
+                </div>
+                <div class="member-info">
+                  <h3>Nicholas Koundouros</h3>
+                  <p class="member-title">Market Head</p>
+                  <div class="member-social">
+                    <a href="#" target="_blank" class="social-link">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" id="contact-cta">
+          <div class="section-overlay"></div>
+          <div class="section-content">
+            <h2 class="section-title"><span class="gradient-text">Contact Us</span></h2>
+            <p class="section-description">Interested in our courses or consulting services? Get in touch!</p>
+            
+            <div class="cta-container">
+              <a href="/contact.html" class="cta-button primary">Contact Us</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-content">
+          <div class="footer-branding">
+            <div class="footer-logo">
+              <span class="logo-mark"></span>
+              System3
+            </div>
+            <p>Pioneering the future of AI education and consulting</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </a>
+              <a href="#" class="social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/#consulting-section">AI Consulting</a></li>
+                <li><a href="/#education-section">AI Education</a></li>
+                <li><a href="/">Data Strategy</a></li>
+                <li><a href="/">AI Implementation</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Courses</h4>
+              <ul>
+                <li><a href="/courses/data-science.html">Data Science</a></li>
+                <li><a href="/courses/machine-learning.html">Machine Learning</a></li>
+                <li><a href="/courses/computer-vision.html">Computer Vision</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/about.html#team">Team</a></li>
+                <li><a href="/#contact-section">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 System3, Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+    <link rel="stylesheet" href="./src/style.css">
+    <script type="module" src="./src/main.js"></script>
+    
+    <style>
+      /* About page specific styles */
+      /* Make all sections visible immediately */
+      .section {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      .section-description, .section-content > p, .section-content > div {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      #about-hero {
+        height: 70vh;
+        background: linear-gradient(135deg, rgba(5, 5, 5, 0.9), rgba(15, 15, 15, 0.8)), url('./public/data-science-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      #about-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(138, 133, 255, 0.2), transparent 80%);
+        opacity: 1;
+        z-index: 1;
+      }
+      
+      [data-theme="light"] #about-hero::before {
+        background: radial-gradient(circle at center, rgba(138, 133, 255, 0.15), transparent 80%);
+      }
+      
+            
+      /* Hero content styles */
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 15;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        color: var(--color-text);
+        position: relative;
+        z-index: 5;
+      }
+
+      .hero-content p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        /* font-weight: 400; */
+        opacity: 1 !important;
+        visibility: visible !important;
+        text-align: center;
+        position: relative;
+        z-index: 5;
+      }
+      
+      /* Vision Section */
+      #vision {
+        padding: 6rem 0;
+      }
+      
+      .about-illustration-container {
+        max-width: 400px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      
+      .about-illustration-container img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.5s ease;
+      }
+      
+      .about-illustration-container:hover img {
+        transform: scale(1.05);
+      }
+      
+      .section-title {
+        color: #ffffff;
+      }
+      
+      [data-theme="light"] .section-title {
+        color: #202124;
+      }
+      
+      .large-text {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      /* Core Values Section */
+      #core-values {
+        padding: 6rem 0;
+        background-color: rgba(10, 10, 10, 0.5);
+      }
+      
+      #core-values .section-description {
+        color: rgba(255, 255, 255, 0.85);
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      [data-theme="light"] #core-values .section-description {
+        color: rgba(32, 33, 36, 0.95);
+      }
+      
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      
+      .value-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                    border-color 0.4s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(138, 133, 255, 0.08);
+        border-color: var(--color-primary);
+      }
+      
+      .value-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 1.5rem;
+        color: var(--color-primary);
+      }
+      
+      .value-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+      
+      .value-card p {
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.8;
+        font-size: 1rem;
+        flex-grow: 1;
+      }
+      
+      /* Team Section */
+      #team {
+        padding: 6rem 0;
+        position: relative;
+      }
+      
+      #contact-cta .section-description {
+        color: rgba(255, 255, 255, 0.85);
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      [data-theme="light"] #contact-cta .section-description {
+        color: rgba(32, 33, 36, 0.95);
+      }
+      
+      #team .section-description {
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 400;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      [data-theme="light"] #team .section-description {
+        color: rgba(32, 33, 36, 0.95);
+      }
+      
+      .team-illustration-wrapper {
+        max-width: 400px;
+        margin: 0 auto 2rem;
+        text-align: center;
+      }
+      
+      .team-illustration {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin-bottom: 1rem;
+        transition: transform 0.5s ease;
+      }
+      
+      .team-illustration-wrapper:hover .team-illustration {
+        transform: scale(1.05);
+      }
+      
+      .team-leaders {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+      }
+      
+      .team-leader {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--color-border);
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                    border-color 0.4s ease;
+        height: 100%;
+        text-align: center;
+        padding-top: 0.5rem;
+      }
+      
+      .team-leader:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(138, 133, 255, 0.08);
+        border-color: var(--color-primary);
+      }
+      
+      .leader-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 2rem auto 1.5rem;
+        border: 3px solid var(--color-primary);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+      
+      .leader-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        /* Default position parameters - can be customized per person */
+        --pos-x: center;
+        --pos-y: center;
+        object-position: var(--pos-x) var(--pos-y);
+      }
+      
+      .team-leader:hover .leader-image img {
+        transform: scale(1.05);
+      }
+      
+      .leader-info {
+        padding: 0.5rem 2rem 2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .leader-info h3 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-primary);
+        font-weight: 700;
+      }
+      
+      .leader-title {
+        font-size: 1rem;
+        color: var(--color-primary);
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        font-weight: 500;
+      }
+      
+      .leader-links {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        justify-content: center;
+      }
+      
+      .harvard-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(138, 133, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        transition: all 0.3s ease;
+      }
+      
+      .harvard-link:hover {
+        background: var(--color-primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+      
+      [data-theme="light"] .harvard-link {
+        background: rgba(138, 133, 255, 0.1);
+      }
+      
+      .leader-bio {
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.8;
+        font-size: 1.05rem;
+        text-align: center;
+        margin-bottom: 0;
+        flex-grow: 1;
+        min-height: 160px;
+      }
+      
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+      }
+      
+      .team-member {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                    border-color 0.4s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-top: 0.5rem;
+      }
+      
+      .team-member:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(138, 133, 255, 0.08);
+        border-color: var(--color-primary);
+      }
+      
+      .member-image {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 2rem auto 1rem;
+        border: 3px solid var(--color-primary);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+      
+      .member-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        /* Default position parameters - can be customized per person */
+        --pos-x: center;
+        --pos-y: center;
+        object-position: var(--pos-x) var(--pos-y);
+      }
+      
+      .team-member:hover .member-image img {
+        transform: scale(1.08);
+      }
+      
+      .member-info {
+        padding: 0.5rem 1.5rem 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .member-info h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+      
+      .member-title {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 1rem;
+        line-height: 1.4;
+        flex-grow: 1;
+        max-width: 90%;
+        text-align: center;
+      }
+      
+      .member-social {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: auto;
+        justify-content: center;
+      }
+      
+      .social-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(138, 133, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        transition: all 0.3s ease;
+      }
+      
+      .social-link:hover {
+        background: var(--color-primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+      
+      .social-link svg {
+        width: 18px;
+        height: 18px;
+      }
+      
+      /* Gradient overlay for team section */
+      .gradient-overlay {
+        background: radial-gradient(circle at 70% 30%, rgba(138, 133, 255, 0.08), transparent 70%);
+      }
+      
+      /* CTA Section */
+      #contact-cta {
+        padding: 6rem 0;
+        text-align: center;
+      }
+      
+      .cta-container {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+      }
+      
+      /* Light mode adjustments */
+      [data-theme="light"] #about-hero {
+        background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.8)), url('./public/data-science-hero.jpg');
+      }
+      
+      [data-theme="light"] .hero-content p {
+        color: var(--color-text-secondary);
+        font-weight: 500;
+      }
+      
+      [data-theme="light"] .hero-content h1 {
+        color: var(--color-text);
+      }
+      
+      [data-theme="light"] #vision,
+      [data-theme="light"] #team,
+      [data-theme="light"] #contact-cta {
+        background-color: var(--color-bg-light);
+      }
+      
+      [data-theme="light"] #core-values {
+        background-color: rgba(138, 133, 255, 0.05);
+      }
+      
+      [data-theme="light"] .value-card,
+      [data-theme="light"] .team-leader,
+      [data-theme="light"] .team-member {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      
+      [data-theme="light"] .member-image,
+      [data-theme="light"] .leader-image {
+        border-color: rgba(138, 133, 255, 0.8);
+        box-shadow: 0 5px 15px rgba(138, 133, 255, 0.2);
+      }
+      
+      [data-theme="light"] .value-card:hover,
+      [data-theme="light"] .team-leader:hover,
+      [data-theme="light"] .team-member:hover {
+        box-shadow: 0 15px 30px rgba(138, 133, 255, 0.15);
+      }
+      
+      [data-theme="light"] .gradient-overlay {
+        background: radial-gradient(circle at 70% 30%, rgba(138, 133, 255, 0.05), transparent 70%);
+      }
+      
+      [data-theme="light"] .large-text,
+      [data-theme="light"] .leader-bio,
+      [data-theme="light"] .member-title {
+        color: rgba(32, 33, 36, 0.9);
+      }
+      
+      [data-theme="light"] .section-description,
+      [data-theme="light"] .value-card p {
+        color: rgba(32, 33, 36, 0.9);
+      }
+      
+      /* Responsive styles */
+      @media (max-width: 1200px) {
+        .team-leaders {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .hero-content h1 {
+          font-size: 3.5rem;
+        }
+        
+        .hero-content p {
+          font-size: 1.2rem;
+        }
+        
+        .large-text {
+          font-size: 1.1rem;
+        }
+      }
+      
+      @media (max-width: 1200px) {
+        .values-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .values-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        #about-hero {
+          height: 50vh;
+        }
+        
+        .hero-content h1 {
+          font-size: 2.8rem;
+        }
+        
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+        
+        .section {
+          padding: 4rem 0;
+        }
+        
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        #vision .split-section {
+          flex-direction: column-reverse;
+          gap: 2rem;
+        }
+        
+        .about-illustration-container {
+          max-width: 300px;
+          margin-top: 2rem;
+        }
+        
+        .team-illustration-wrapper {
+          max-width: 300px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    
+    <style>
+      /* Default animation for hero content when JS is working properly */
+      @keyframes heroFadeIn {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Only apply forced visibility to hero content when JS fails */
+      .no-js .hero-content {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Animate hero section
+        const hero = document.querySelector('#about-hero');
+        if (hero) {
+          hero.classList.add('active');
+          
+          const heroContent = hero.querySelector('.hero-content');
+          if (heroContent && window.gsap) {
+            // First set initial state
+            window.gsap.set(heroContent, { opacity: 0, y: 30 });
+            
+            // Main animation for hero content
+            window.gsap.to(heroContent, {
+              opacity: 1,
+              y: 0,
+              duration: 1.2,
+              ease: "power3.out"
+            });
+          }
+        }
+        
+      // Initialize theme
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const currentTheme = localStorage.getItem('theme') || 
+                          (prefersDarkScheme.matches ? 'dark' : 'light');
+      
+      // Set initial theme
+      if (currentTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      
+      // Make all sections active immediately to fix opacity
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('active');
+      });
+      
+      // Fix navigation dropdowns - prevent them from flashing during navigation
+      const navDropdowns = document.querySelectorAll('.dropdown-menu');
+      navDropdowns.forEach(dropdown => {
+        dropdown.style.transition = 'none'; // Disable transitions initially
+        setTimeout(() => {
+          dropdown.style.transition = ''; // Re-enable transitions after page load
+        }, 500);
+      });
+      
+      // Wait for header to be fully created before setting up theme toggle
+      setTimeout(() => {
+        // Set up theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+          // Remove any existing event listeners by cloning
+          const newThemeToggle = themeToggle.cloneNode(true);
+          themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
+          
+          newThemeToggle.addEventListener('click', () => {
+            let theme;
+            
+            // Toggle between light and dark themes
+            if (document.documentElement.getAttribute('data-theme') === 'light') {
+              document.documentElement.removeAttribute('data-theme');
+              theme = 'dark';
+            } else {
+              document.documentElement.setAttribute('data-theme', 'light');
+              theme = 'light';
+            }
+            
+            // Save the preference
+            localStorage.setItem('theme', theme);
+          });
+        }
+      }, 100); // Short delay to ensure header is fully loaded
+    </script>
+    
+    <link rel="stylesheet" href="./src/style.css">
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

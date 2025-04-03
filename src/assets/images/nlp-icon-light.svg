@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primary-gradient" x1="20" y1="20" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5E5DF0" />
+      <stop offset="100%" stop-color="#6A67F0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="120" cy="120" r="100" fill="rgba(0, 0, 0, 0.05)" />
+  
+  <!-- Speech Bubble -->
+  <path d="M80 100C80 78.9543 96.9543 62 118 62H142C163.046 62 180 78.9543 180 100V130C180 151.046 163.046 168 142 168H118C96.9543 168 80 151.046 80 130V100Z" fill="url(#primary-gradient)" stroke="#000000" stroke-width="2"/>
+  <path d="M120 168L100 188V168" fill="url(#primary-gradient)" stroke="#000000" stroke-width="2"/>
+  
+  <!-- Text Lines -->
+  <line x1="100" y1="90" x2="160" y2="90" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <line x1="100" y1="110" x2="150" y2="110" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <line x1="100" y1="130" x2="140" y2="130" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Small Bot -->
+  <circle cx="60" cy="160" r="18" fill="url(#primary-gradient)" stroke="#000000" stroke-width="2"/>
+  <circle cx="53" cy="155" r="3.5" fill="white"/>
+  <circle cx="67" cy="155" r="3.5" fill="white"/>
+  <path d="M54 166C57 169 63 169 66 166" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Antenna -->
+  <line x1="60" y1="142" x2="60" y2="130" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="60" cy="128" r="3" fill="url(#primary-gradient)" stroke="#000000" stroke-width="1.5"/>
+</svg>

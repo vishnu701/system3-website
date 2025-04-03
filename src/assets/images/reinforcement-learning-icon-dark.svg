@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primary-gradient" x1="20" y1="20" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5E5DF0" />
+      <stop offset="100%" stop-color="#6A67F0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="120" cy="120" r="100" fill="rgba(255, 255, 255, 0.05)" />
+  
+  <!-- Main Robot Body (Simplified) -->
+  <rect x="95" y="110" width="50" height="65" rx="2" fill="url(#primary-gradient)" stroke="white" stroke-width="1.5"/>
+  
+  <!-- Robot Head (More Geometric) -->
+  <rect x="100" y="70" width="40" height="35" rx="2" fill="url(#primary-gradient)" stroke="white" stroke-width="1.5"/>
+  
+  <!-- Neck Connection -->
+  <rect x="115" y="105" width="10" height="5" fill="url(#primary-gradient)" stroke="white" stroke-width="1"/>
+  
+  <!-- Minimal Eyes -->
+  <rect x="108" y="80" width="8" height="8" rx="1" fill="white" stroke="white" stroke-width="1"/>
+  <rect x="124" y="80" width="8" height="8" rx="1" fill="white" stroke="white" stroke-width="1"/>
+  
+  <!-- Simple Antenna -->
+  <line x1="120" y1="70" x2="120" y2="60" stroke="white" stroke-width="1.5"/>
+  <circle cx="120" cy="58" r="2" fill="url(#primary-gradient)" stroke="white" stroke-width="1"/>
+  
+  <!-- Streamlined Arms -->
+  <line x1="95" y1="125" x2="75" y2="125" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <line x1="75" y1="125" x2="75" y2="145" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  
+  <line x1="145" y1="125" x2="165" y2="125" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <line x1="165" y1="125" x2="165" y2="145" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Hands (More Geometric) -->
+  <rect x="70" y="145" width="10" height="10" rx="1" fill="url(#primary-gradient)" stroke="white" stroke-width="1"/>
+  <rect x="160" y="145" width="10" height="10" rx="1" fill="url(#primary-gradient)" stroke="white" stroke-width="1"/>
+  
+  <!-- Legs (Cleaner Lines) -->
+  <line x1="105" y1="175" x2="105" y2="195" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <line x1="135" y1="175" x2="135" y2="195" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Feet (More Geometric) -->
+  <rect x="98" y="195" width="15" height="6" rx="1" fill="url(#primary-gradient)" stroke="white" stroke-width="1"/>
+  <rect x="128" y="195" width="15" height="6" rx="1" fill="url(#primary-gradient)" stroke="white" stroke-width="1"/>
+  
+  <!-- Minimal Control Panel -->
+  <rect x="110" y="125" width="20" height="10" fill="rgba(255, 255, 255, 0.1)" stroke="white" stroke-width="1"/>
+  <line x1="115" y1="130" x2="125" y2="130" stroke="white" stroke-width="1" stroke-linecap="round"/>
+  
+  <!-- Simple Indicator Light -->
+  <circle cx="105" cy="90" r="2" fill="#6A67F0" stroke="white" stroke-width="0.5"/>
+  
+  <!-- Subtle Learning Elements -->
+  <circle cx="175" cy="85" r="8" fill="none" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <circle cx="175" cy="85" r="4" fill="url(#primary-gradient)" stroke="white" stroke-width="0.5"/>
+  
+  <circle cx="65" cy="85" r="8" fill="none" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <circle cx="65" cy="85" r="4" fill="url(#primary-gradient)" stroke="white" stroke-width="0.5"/>
+  
+  <circle cx="120" cy="40" r="8" fill="none" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <circle cx="120" cy="40" r="4" fill="url(#primary-gradient)" stroke="white" stroke-width="0.5"/>
+</svg>
