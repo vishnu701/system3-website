@@ -52,3 +52,5 @@ jobs:
         folder: dist
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
+        clean-exclude: |
+          .nojekyll
